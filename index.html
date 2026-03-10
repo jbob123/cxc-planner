@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CxC Travel — Trip Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0B1426;--gold:#C9A455;--gold2:#DFC07A;--cream:#F5F0E8;--gray:#6b7280}
+body{font-family:'Nunito Sans',sans-serif;background:var(--navy);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+.header{background:var(--navy);border-bottom:1px solid rgba(201,164,85,.25);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:.04em}
+.logo span{color:var(--gold)}
+.header-right{display:flex;align-items:center;gap:1rem}
+.pkg-btn{background:rgba(201,164,85,.15);color:var(--gold);border:1px solid rgba(201,164,85,.35);border-radius:20px;padding:.38rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:all .2s}
+.pkg-btn:hover{background:rgba(201,164,85,.28)}
+.contact-link{color:rgba(255,255,255,.5);font-size:.78rem;text-decoration:none;font-weight:600}
+.contact-link:hover{color:var(--gold)}
+.chat-area{flex:1;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:.85rem;max-width:780px;width:100%;margin:0 auto}
+.chat-area::-webkit-scrollbar{width:4px}
+.chat-area::-webkit-scrollbar-thumb{background:rgba(201,164,85,.3);border-radius:2px}
+.msg{display:flex;gap:.65rem;animation:pop .25s ease-out}
+.msg.user{flex-direction:row-reverse}
+.avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;margin-top:2px}
+.msg.bot .avatar{background:var(--gold);color:var(--navy);font-weight:800;font-size:.7rem}
+.msg.user .avatar{background:rgba(255,255,255,.12);font-size:.8rem}
+.bubble{padding:.75rem 1rem;border-radius:16px;max-width:88%;font-size:.9rem;line-height:1.6;white-space:pre-wrap}
+.msg.bot .bubble{background:rgba(255,255,255,.07);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px}
+.msg.user .bubble{background:var(--gold);color:var(--navy);font-weight:600;border-radius:16px 4px 16px 16px}
+.cards{display:flex;flex-direction:column;gap:.5rem;padding-left:2.3rem;animation:pop .3s ease-out}
+.card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.8rem 1rem}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.2rem}
+.card-name{font-weight:700;color:#fff;font-size:.88rem}
+.card-badge{background:var(--gold);color:var(--navy);font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.16rem .48rem;border-radius:10px;flex-shrink:0}
+.card-detail{color:var(--gold2);font-size:.77rem;font-weight:600;margin-bottom:.18rem}
+.card-notes{color:rgba(255,255,255,.52);font-size:.77rem;line-height:1.5}
+.qr-row{display:flex;flex-wrap:wrap;gap:.4rem;padding-left:2.3rem;animation:pop .3s ease-out}
+.qr{background:rgba(201,164,85,.1);color:var(--gold);border:1px solid rgba(201,164,85,.25);border-radius:18px;padding:.32rem .8rem;font-size:.78rem;cursor:pointer;font-weight:600;transition:all .2s}
+.qr:hover{background:rgba(201,164,85,.22)}
+.connect{background:linear-gradient(135deg,rgba(201,164,85,.14),rgba(201,164,85,.06));border:1px solid rgba(201,164,85,.3);border-radius:12px;padding:.9rem 1.1rem;animation:pop .3s ease-out}
+.connect p{color:rgba(255,255,255,.85);font-size:.85rem;margin-bottom:.6rem}
+.connect-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.cbtn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.48rem 1rem;font-weight:700;font-size:.78rem;cursor:pointer;transition:background .2s}
+.cbtn:hover{background:var(--gold2)}
+.cbtn-o{background:transparent;color:var(--gold);border:1px solid rgba(201,164,85,.5);border-radius:6px;padding:.48rem 1rem;font-weight:700;font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center}
+.input-wrap{padding:.75rem 1rem 1rem;max-width:780px;width:100%;margin:0 auto;flex-shrink:0}
+.input-bar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:.5rem .5rem .5rem .9rem;display:flex;gap:.5rem;align-items:center}
+.input-bar input{flex:1;background:transparent;border:none;color:#fff;font-family:'Nunito Sans',sans-serif;font-size:.9rem;outline:none}
+.input-bar input::placeholder{color:rgba(255,255,255,.3)}
+.send{background:var(--gold);color:var(--navy);border:none;border-radius:9px;width:36px;height:36px;cursor:pointer;font-size:1rem;font-weight:700;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.send:hover:not(:disabled){background:var(--gold2)}
+.send:disabled{opacity:.35;cursor:not-allowed}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:50;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
+.panel{background:#1a2540;border-radius:16px 16px 0 0;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:1.5rem}
+.panel-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
+.panel-hd h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;font-weight:700}
+.close-btn{background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem}
+.pkg-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.1rem;margin-bottom:.85rem;cursor:pointer;transition:all .2s}
+.pkg-card:hover{background:rgba(255,255,255,.09)}
+.pkg-cat{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:.25rem}
+.pkg-meta{font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:.65rem}
+.pkg-highlights{list-style:none;margin-bottom:.75rem}
+.pkg-highlights li{font-size:.8rem;color:rgba(255,255,255,.7);padding:.15rem 0;display:flex;gap:.4rem;align-items:flex-start}
+.pkg-highlights li::before{content:'✓';color:var(--gold);flex-shrink:0;font-weight:700}
+.pkg-price-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff}
+.pkg-price span{font-size:.75rem;color:rgba(255,255,255,.4);font-family:'Nunito Sans',sans-serif;font-weight:400}
+.ask-btn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.44rem .9rem;font-weight:700;font-size:.78rem;cursor:pointer}
+.ask-btn:hover{background:var(--gold2)}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px)}
+.modal{background:#fff;border-radius:16px;max-width:480px;width:100%;padding:1.75rem;max-height:90vh;overflow-y:auto}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--navy);margin-bottom:.25rem}
+.modal p{color:var(--gray);font-size:.87rem;margin-bottom:1.25rem}
+.fg{display:flex;flex-direction:column;gap:.32rem;margin-bottom:.85rem}
+.fg label{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#374151}
+.fg input,.fg textarea{border:2px solid #e5e7eb;border-radius:8px;padding:.65rem .85rem;font-family:'Nunito Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.fg input:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg textarea{resize:vertical;min-height:80px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.submit-btn{width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:8px;padding:.9rem;font-weight:700;font-size:.92rem;cursor:pointer;transition:background .2s;margin-top:.5rem}
+.submit-btn:hover:not(:disabled){background:var(--gold2)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.cancel-btn{width:100%;background:transparent;color:var(--gray);border:none;padding:.6rem;cursor:pointer;font-size:.85rem;margin-top:.35rem}
+.success-box{text-align:center;padding:1.5rem 0}
+.success-box .ck{font-size:2.8rem;margin-bottom:.75rem}
+.success-box h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--navy);margin-bottom:.5rem}
+.success-box p{color:var(--gray);font-size:.88rem;line-height:1.6}
+.contact-strip{background:var(--cream);border-radius:8px;padding:.8rem 1rem;margin:1rem 0;font-size:.83rem;color:#374151}
+.contact-strip a{color:var(--navy);font-weight:700;text-decoration:none}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:500px){.row2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- All destination data lives in data.js — edit that file to add destinations -->
+<script src="data.js"></script>
+
+<div class="header">
+  <div class="logo">CxC<span>.</span>Travel</div>
+  <div class="header-right">
+    <button class="pkg-btn" onclick="showPackages()">📦 Packages</button>
+    <a class="contact-link" href="tel:412-420-6826">412-420-6826</a>
+  </div>
+</div>
+
+<div class="chat-area" id="chat"></div>
+
+<div class="input-wrap">
+  <div class="input-bar">
+    <input id="inp" type="text" placeholder="Ask me about any destination — hotels, golf, all-inclusive, cruises..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+    <button class="send" id="sendBtn" onclick="sendMsg()" disabled>→</button>
+  </div>
+</div>
+
+<div class="overlay" id="pkgPanel" style="display:none" onclick="if(event.target===this)hidePackages()">
+  <div class="panel">
+    <div class="panel-hd"><h2>✦ CxC Travel Packages</h2><button class="close-btn" onclick="hidePackages()">✕</button></div>
+    <div id="pkgList"></div>
+  </div>
+</div>
+
+<div class="modal-ov" id="leadModal" style="display:none">
+  <div class="modal" id="leadContent"></div>
+</div>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────────
+const CXC_PHONE = "412-420-6826";
+const CXC_EMAIL = "cxctravel412@gmail.com";
+
+// Web3Forms — FREE, truly unlimited submissions
+// Step 1: Go to https://web3forms.com
+// Step 2: Enter your email (cxctravel412@gmail.com) and click "Create Access Key"
+// Step 3: Copy the key they give you and paste it below
+const WEB3FORMS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+
+// ─── CHAT ENGINE ──────────────────────────────────────────────
+let currentDest = null, msgCount = 0, connectShown = false;
+
+function detectDest(t) {
+  const l = t.toLowerCase();
+  for (const [d,ks] of Object.entries(DEST_KEYS)) if (ks.some(k => l.includes(k))) return d;
+  return null;
+}
+function detectCat(t) {
+  const l = t.toLowerCase();
+  for (const [c,ks] of Object.entries(CAT_KEYS)) if (ks.some(k => l.includes(k))) return c;
+  return null;
+}
+
+function getReply(text) {
+  const lower = text.toLowerCase();
+  const destFromText = detectDest(text);
+  const dest = destFromText || currentDest;
+  const cat  = detectCat(text);
+  const dCount = Object.keys(KB).length;
+
+  if (/^(hi|hey|hello|howdy)[\s!?]*$/.test(lower.trim()))
+    return { text: "Hey! 👋 I'm your CxC Travel destination guide.\n\nI have detailed knowledge on hotels, restaurants, activities, golf, and all-inclusive resorts for " + dCount + " destinations worldwide. What trip are you dreaming about?",
+      qrs: ["🌴 Aruba","🎰 Las Vegas","✨ Disney / Orlando","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville"] };
+
+  if (/honeymoon|romantic|anniversary/i.test(lower) && !destFromText)
+    return { text: "💕 Jesse and Sam specialize in honeymoon and romantic travel!\n\n🏆 Most romantic picks:\n• Aruba — adults-only resorts, perfect calm beaches\n• Amalfi Coast, Italy — cliffside villas and sea views\n• Santorini, Greece — caldera views, iconic white-washed villages\n• Paris — the undisputed romance capital of the world\n• Hawaii (Maui) — Four Seasons, Road to Hana, spectacular sunrises\n• Florida Keys — Little Palm Island is extraordinary\n\nWhich vibe speaks to you?",
+      qrs: ["🌴 Aruba","🍕 Italy","🏛️ Greece","🗼 Paris","🌺 Hawaii","🐠 Florida Keys"] };
+
+  if (/group|bachelor|bachelorette|birthday/i.test(lower) && !destFromText)
+    return { text: "👥 Group travel is one of CxC's specialties!\n\n🏆 Top group destinations:\n• Las Vegas — nightlife, shows, sports, something for everyone\n• Nashville — live music, great food, perfect party city\n• Cancun — all-inclusive group pricing is exceptional\n• Jamaica — Sandals/Beaches have great group packages\n• New Orleans — food and music culture is unmatched\n\nWhat's the occasion?",
+      qrs: ["🎰 Las Vegas","🎸 Nashville","🌊 Cancun","🎵 Jamaica","🎺 New Orleans"] };
+
+  if (/all.inclusive/i.test(lower) && !destFromText)
+    return { text: "🌴 All-inclusive is one of CxC's biggest specialties!\n\n• Aruba — hurricane-free year-round, gorgeous beaches\n• Cancun / Riviera Maya — most options, ruins nearby\n• Punta Cana — best value AI in the Caribbean\n• Jamaica — Sandals properties are world-class\n\nWhich sounds appealing?",
+      qrs: ["🌴 Aruba","🌊 Cancun","🌺 Punta Cana","🎵 Jamaica"] };
+
+  if (/\bgolf\b/i.test(lower) && !destFromText)
+    return { text: "⛳ CxC specializes in golf trips!\n\n• Scottsdale, AZ — 200+ courses, perfect winter weather\n• Myrtle Beach, SC — East Coast golf capital, 100+ courses\n• Pebble Beach, CA — bucket-list golf on California cliffs\n• Pinehurst, NC — the cradle of American golf\n• Las Vegas — Shadow Creek, Cascata, Wolf Creek\n• Kentucky Golf Trail — bourbon + premium golf (package ready!)\n\nWhere are you thinking?",
+      qrs: ["🌵 Scottsdale","⛳ Myrtle Beach","🌊 Pebble Beach","🌲 Pinehurst","🎰 Las Vegas Golf"] };
+
+  if (/cruise/i.test(lower) && !destFromText) {
+    const d = KB.cruises;
+    if (!d) return { text: "Ask Jesse & Sam directly about cruise options!", qrs: [] };
+    if (/port|depart|near pittsburgh|drive/i.test(lower))
+      return { text: "🚢 Closest cruise ports to Pittsburgh:", cards: d.ports.map(p=>({name:p.name,badge:"Port",notes:p.note})), qrs:["Cruise lines comparison","Alaska cruise","Caribbean cruise","Mediterranean cruise"] };
+    return { text: "🚢 Major cruise lines Jesse & Sam book:", cards: d.lines.map(l=>({name:l.name,badge:l.best,notes:l.notes})), qrs:["Ports near Pittsburgh","Disney Cruise Line","Luxury cruises","Alaska cruise"] };
+  }
+
+  if (!dest)
+    return { text: "I'd love to help! I have detailed info on " + dCount + " destinations:\n\n🌴 Caribbean — Aruba, Cancun, Jamaica, Bahamas, Punta Cana\n🇺🇸 USA — Las Vegas, Orlando, Miami, Nashville, Keys, New Orleans, Charleston\n⛳ Golf — Scottsdale, Myrtle Beach, Pebble Beach, Pinehurst\n🌺 Hawaii  ·  🌍 Europe — Paris, Italy, Greece, Spain, Portugal  ·  🚢 Cruises\n\nJust type any destination!",
+      qrs: ["🌴 Aruba","🎰 Las Vegas","⛳ Golf Trip","🚢 Cruises","🌺 Hawaii","🍕 Italy","🏛️ Greece","🎸 Nashville"] };
+
+  currentDest = dest;
+  const d = KB[dest];
+  if (!d) return { text: "I don't have details on that yet — but Jesse & Sam can help! Hit the button below.", qrs: [] };
+
+  if (cat === "hotels"      && d.hotels)                    return { text: "🏨 Top hotels in "      + d.label + ":", cards: d.hotels.map(h=>({name:h.name,badge:h.tier,detail:h.price,notes:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[])] };
+  if (cat === "restaurants" && d.restaurants)               return { text: "🍽️ Top dining in "      + d.label + ":", cards: d.restaurants.map(r=>({name:r.name,badge:r.cuisine,notes:r.notes})),        qrs:["Hotels & Resorts","Things to Do"] };
+  if (cat === "activities"  && (d.activities || d.lines))   return { text: "🎯 Things to do in "    + d.label + ":", cards: (d.activities||d.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||"",notes:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining",...(d.golf?["Golf Courses"]:[])] };
+  if (cat === "golf"        && d.golf)                      return { text: "⛳ Golf courses in "    + d.label + ":", cards: d.golf.map(g=>({name:g.name,badge:g.tier,detail:g.price,notes:g.notes})),    qrs:["Hotels & Resorts","Things to Do"] };
+
+  if (dest === "cruises") return { text: "🚢 " + d.label + "\n\n" + d.vibe + "\n\n🎯 Best for: " + (d.bestFor||[]).join(", "), qrs:["Ports near Pittsburgh","Cruise lines comparison","Alaska cruise","Caribbean cruise"] };
+
+  const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[])];
+  return { text: "Here's what to know about " + d.label + " " + d.emoji + "\n\n" + d.vibe + (d.flight?"\n\n✈️ "+d.flight:"") + "\n📅 Best time: "+(d.bestTime||"Year-round")+"\n🎯 Best for: "+(d.bestFor||[]).join(", "), qrs };
+}
+
+// ─── UI HELPERS ───────────────────────────────────────────────
+function el(id) { return document.getElementById(id); }
+function scrollBottom() { const c = el("chat"); c.scrollTop = c.scrollHeight; }
+
+function addMsg(role, text) {
+  const d = document.createElement("div");
+  d.className = "msg " + role;
+  d.innerHTML = '<div class="avatar">'+(role==="bot"?"CxC":"👤")+'</div><div class="bubble">'+text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</div>';
+  el("chat").appendChild(d); scrollBottom();
+}
+function addCards(cards) {
+  if (!cards?.length) return;
+  const d = document.createElement("div"); d.className = "cards";
+  d.innerHTML = cards.map(c=>'<div class="card"><div class="card-top"><span class="card-name">'+c.name+'</span>'+(c.badge?'<span class="card-badge">'+c.badge+'</span>':'')+'</div>'+(c.detail?'<div class="card-detail">'+c.detail+'</div>':'')+(c.notes?'<div class="card-notes">'+c.notes+'</div>':'')+'</div>').join("");
+  el("chat").appendChild(d); scrollBottom();
+}
+function addQRs(qrs) {
+  if (!qrs?.length) return;
+  const d = document.createElement("div"); d.className = "qr-row";
+  d.innerHTML = qrs.map(q=>'<button class="qr" onclick="sendMsg(\''+q.replace(/'/g,"\\'")+'\')">' +q+'</button>').join("");
+  el("chat").appendChild(d); scrollBottom();
+}
+function showConnect() {
+  if (connectShown) return; connectShown = true;
+  const d = document.createElement("div"); d.className = "connect";
+  d.innerHTML = '<p>✦ Ready to make this trip real? Jesse & Sam have exclusive rates and perks you won\'t find online.</p><div class="connect-btns"><button class="cbtn" onclick="openLead()">Send My Trip to CxC →</button><a class="cbtn-o" href="tel:'+CXC_PHONE+'">'+CXC_PHONE+'</a><a class="cbtn-o" href="mailto:'+CXC_EMAIL+'">Email Us</a></div>';
+  el("chat").appendChild(d); scrollBottom();
+}
+
+// ─── SEND ─────────────────────────────────────────────────────
+function sendMsg(override) {
+  const inp = el("inp"), text = (override || inp.value).trim();
+  if (!text) return;
+  inp.value = ""; el("sendBtn").disabled = true;
+  document.querySelectorAll(".qr-row").forEach(e=>e.remove());
+  addMsg("user", text); msgCount++;
+  setTimeout(() => {
+    const r = getReply(text);
+    addMsg("bot", r.text);
+    if (r.cards) addCards(r.cards);
+    if (r.qrs)   addQRs(r.qrs);
+    if (msgCount >= 3 || currentDest) showConnect();
+  }, 300);
+}
+el("inp").addEventListener("input", function(){ el("sendBtn").disabled = !this.value.trim(); });
+
+// ─── PACKAGES ─────────────────────────────────────────────────
+function showPackages() {
+  el("pkgList").innerHTML = PACKAGES.map(p=>'<div class="pkg-card" onclick="askAboutPackage(\''+p.id+'\')"><div class="pkg-cat">'+p.cat+'</div><div class="pkg-name">'+p.name+'</div><div class="pkg-meta">'+p.meta+'</div><ul class="pkg-highlights">'+p.highlights.map(h=>'<li>'+h+'</li>').join("")+'</ul><div class="pkg-price-row"><div class="pkg-price">'+p.priceLabel+' <span>per person</span></div><button class="ask-btn">Ask About This →</button></div></div>').join("");
+  el("pkgPanel").style.display = "flex";
+}
+function hidePackages() { el("pkgPanel").style.display = "none"; }
+function askAboutPackage(id) { hidePackages(); const p = PACKAGES.find(x=>x.id===id); openLead(p?"Interested in: "+p.name:""); }
+
+// ─── LEAD FORM ────────────────────────────────────────────────
+function openLead(interest) {
+  interest = interest || "";
+  el("leadContent").innerHTML =
+    '<h3>Connect with CxC Travel</h3><p>Jesse or Sam will follow up personally — usually within a few hours.</p>'+
+    '<div class="row2"><div class="fg"><label>Name *</label><input id="lName" placeholder="Your name"/></div><div class="fg"><label>Phone</label><input id="lPhone" placeholder="(412) 000-0000"/></div></div>'+
+    '<div class="fg"><label>Email *</label><input id="lEmail" type="email" placeholder="you@email.com"/></div>'+
+    '<div class="fg"><label>Trip Interest</label><input id="lInterest" value="'+interest.replace(/"/g,'&quot;')+'"/></div>'+
+    '<div class="fg"><label>Notes / Questions</label><textarea id="lNotes" placeholder="Travel dates, group size, budget..."></textarea></div>'+
+    '<button class="submit-btn" id="submitBtn" onclick="submitLead()">Send to Jesse & Sam →</button>'+
+    '<button class="cancel-btn" onclick="closeLead()">Cancel</button>';
+  el("leadModal").style.display = "flex";
+}
+function closeLead() { el("leadModal").style.display = "none"; }
+
+async function submitLead() {
+  const name = el("lName").value.trim(), email = el("lEmail").value.trim();
+  if (!name || !email) { alert("Please enter your name and email."); return; }
+  const data = { name, email, phone: el("lPhone").value, interest: el("lInterest").value, message: el("lNotes").value };
+  const btn = el("submitBtn"); btn.disabled = true; btn.textContent = "Sending...";
+  if (WEB3FORMS_KEY && WEB3FORMS_KEY !== "YOUR_WEB3FORMS_ACCESS_KEY") {
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: "New CxC Travel Lead — " + (data.interest || "General Inquiry"), from_name: "CxC Travel Planner", ...data })
+      });
+    } catch(e) { console.log("Email error:", e); }
+  }
+  el("leadContent").innerHTML =
+    '<div class="success-box"><div class="ck">✅</div><h3>You\'re all set!</h3><p>Jesse or Sam will be in touch shortly to make your trip happen.</p>'+
+    '<div class="contact-strip">Or reach out directly:<br/><a href="tel:'+CXC_PHONE+'">'+CXC_PHONE+'</a> &nbsp;·&nbsp; <a href="mailto:'+CXC_EMAIL+'">'+CXC_EMAIL+'</a></div>'+
+    '<button class="submit-btn" onclick="closeLead()">Close</button></div>';
+}
+
+// ─── BOOT ─────────────────────────────────────────────────────
+addMsg("bot", "Hey! 👋 I'm your CxC Travel destination guide.\n\nI have detailed knowledge on hotels, restaurants, golf, all-inclusive resorts, and activities for " + Object.keys(KB).length + " destinations — free, no sign-up needed.\n\nWhere are you thinking of going?");
+addQRs(["🌴 Aruba","🎰 Las Vegas","✨ Disney / Orlando","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🏛️ Greece","🎸 Nashville"]);
+</script>
+</body>
+</html>
