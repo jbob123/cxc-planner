@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CxC Travel — Trip Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0B1426;--gold:#C9A455;--gold2:#DFC07A;--cream:#F5F0E8;--gray:#6b7280}
+body{font-family:'Nunito Sans',sans-serif;background:var(--navy);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* HEADER */
+.header{background:var(--navy);border-bottom:1px solid rgba(201,164,85,.25);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:.04em}
+.logo span{color:var(--gold)}
+.header-right{display:flex;align-items:center;gap:1rem}
+.pkg-btn{background:rgba(201,164,85,.15);color:var(--gold);border:1px solid rgba(201,164,85,.35);border-radius:20px;padding:.38rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:all .2s}
+.pkg-btn:hover{background:rgba(201,164,85,.28)}
+.contact-link{color:rgba(255,255,255,.5);font-size:.78rem;text-decoration:none;font-weight:600}
+.contact-link:hover{color:var(--gold)}
+
+/* CHAT AREA */
+.chat-area{flex:1;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:.85rem;max-width:780px;width:100%;margin:0 auto}
+.chat-area::-webkit-scrollbar{width:4px}
+.chat-area::-webkit-scrollbar-thumb{background:rgba(201,164,85,.3);border-radius:2px}
+
+/* MESSAGES */
+.msg{display:flex;gap:.65rem;animation:pop .25s ease-out}
+.msg.user{flex-direction:row-reverse}
+.avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;margin-top:2px}
+.msg.bot .avatar{background:var(--gold);color:var(--navy);font-weight:800;font-size:.7rem}
+.msg.user .avatar{background:rgba(255,255,255,.12);font-size:.8rem}
+.bubble{padding:.75rem 1rem;border-radius:16px;max-width:88%;font-size:.9rem;line-height:1.6;white-space:pre-wrap}
+.msg.bot .bubble{background:rgba(255,255,255,.07);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px}
+.msg.user .bubble{background:var(--gold);color:var(--navy);font-weight:600;border-radius:16px 4px 16px 16px}
+
+/* CARDS */
+.cards{display:flex;flex-direction:column;gap:.5rem;padding-left:2.3rem;animation:pop .3s ease-out}
+.card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.8rem 1rem}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.2rem}
+.card-name{font-weight:700;color:#fff;font-size:.88rem}
+.card-badge{background:var(--gold);color:var(--navy);font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.16rem .48rem;border-radius:10px;flex-shrink:0}
+.card-detail{color:var(--gold2);font-size:.77rem;font-weight:600;margin-bottom:.18rem}
+.card-notes{color:rgba(255,255,255,.52);font-size:.77rem;line-height:1.5}
+
+/* QUICK REPLIES */
+.qr-row{display:flex;flex-wrap:wrap;gap:.4rem;padding-left:2.3rem;animation:pop .3s ease-out}
+.qr{background:rgba(201,164,85,.1);color:var(--gold);border:1px solid rgba(201,164,85,.25);border-radius:18px;padding:.32rem .8rem;font-size:.78rem;cursor:pointer;font-weight:600;transition:all .2s}
+.qr:hover{background:rgba(201,164,85,.22)}
+
+/* CONNECT BANNER */
+.connect{background:linear-gradient(135deg,rgba(201,164,85,.14),rgba(201,164,85,.06));border:1px solid rgba(201,164,85,.3);border-radius:12px;padding:.9rem 1.1rem;animation:pop .3s ease-out}
+.connect p{color:rgba(255,255,255,.85);font-size:.85rem;margin-bottom:.6rem}
+.connect-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.cbtn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.48rem 1rem;font-weight:700;font-size:.78rem;cursor:pointer;transition:background .2s}
+.cbtn:hover{background:var(--gold2)}
+.cbtn-o{background:transparent;color:var(--gold);border:1px solid rgba(201,164,85,.5);border-radius:6px;padding:.48rem 1rem;font-weight:700;font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center}
+
+/* INPUT */
+.input-wrap{padding:.75rem 1rem 1rem;max-width:780px;width:100%;margin:0 auto;flex-shrink:0}
+.input-bar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:.5rem .5rem .5rem .9rem;display:flex;gap:.5rem;align-items:center}
+.input-bar input{flex:1;background:transparent;border:none;color:#fff;font-family:'Nunito Sans',sans-serif;font-size:.9rem;outline:none}
+.input-bar input::placeholder{color:rgba(255,255,255,.3)}
+.send{background:var(--gold);color:var(--navy);border:none;border-radius:9px;width:36px;height:36px;cursor:pointer;font-size:1rem;font-weight:700;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.send:hover:not(:disabled){background:var(--gold2)}
+.send:disabled{opacity:.35;cursor:not-allowed}
+
+/* PACKAGES PANEL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:50;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
+.panel{background:#1a2540;border-radius:16px 16px 0 0;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:1.5rem}
+.panel-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
+.panel-hd h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;font-weight:700}
+.close-btn{background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem}
+.pkg-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.1rem;margin-bottom:.85rem;cursor:pointer;transition:all .2s}
+.pkg-card:hover{background:rgba(255,255,255,.09)}
+.pkg-cat{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:.25rem}
+.pkg-meta{font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:.65rem}
+.pkg-highlights{list-style:none;margin-bottom:.75rem}
+.pkg-highlights li{font-size:.8rem;color:rgba(255,255,255,.7);padding:.15rem 0;display:flex;gap:.4rem;align-items:flex-start}
+.pkg-highlights li::before{content:'✓';color:var(--gold);flex-shrink:0;font-weight:700}
+.pkg-price-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff}
+.pkg-price span{font-size:.75rem;color:rgba(255,255,255,.4);font-family:'Nunito Sans',sans-serif;font-weight:400}
+.ask-btn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.44rem .9rem;font-weight:700;font-size:.78rem;cursor:pointer}
+.ask-btn:hover{background:var(--gold2)}
+
+/* LEAD MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px)}
+.modal{background:#fff;border-radius:16px;max-width:480px;width:100%;padding:1.75rem;max-height:90vh;overflow-y:auto}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--navy);margin-bottom:.25rem}
+.modal p{color:var(--gray);font-size:.87rem;margin-bottom:1.25rem}
+.fg{display:flex;flex-direction:column;gap:.32rem;margin-bottom:.85rem}
+.fg label{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#374151}
+.fg input,.fg textarea{border:2px solid #e5e7eb;border-radius:8px;padding:.65rem .85rem;font-family:'Nunito Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.fg input:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg textarea{resize:vertical;min-height:80px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.submit-btn{width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:8px;padding:.9rem;font-weight:700;font-size:.92rem;cursor:pointer;transition:background .2s;margin-top:.5rem}
+.submit-btn:hover:not(:disabled){background:var(--gold2)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.cancel-btn{width:100%;background:transparent;color:var(--gray);border:none;padding:.6rem;cursor:pointer;font-size:.85rem;margin-top:.35rem}
+.success-box{text-align:center;padding:1.5rem 0}
+.success-box .ck{font-size:2.8rem;margin-bottom:.75rem}
+.success-box h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--navy);margin-bottom:.5rem}
+.success-box p{color:var(--gray);font-size:.88rem;line-height:1.6}
+.contact-strip{background:var(--cream);border-radius:8px;padding:.8rem 1rem;margin:1rem 0;font-size:.83rem;color:#374151}
+.contact-strip a{color:var(--navy);font-weight:700;text-decoration:none}
+
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:500px){.row2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">CxC<span>.</span>Travel</div>
+  <div class="header-right">
+    <button class="pkg-btn" onclick="showPackages()">📦 Packages</button>
+    <a class="contact-link" href="tel:412-420-6826">412-420-6826</a>
+  </div>
+</div>
+
+<!-- CHAT -->
+<div class="chat-area" id="chat"></div>
+
+<!-- INPUT -->
+<div class="input-wrap">
+  <div class="input-bar">
+    <input id="inp" type="text" placeholder="Ask me about any destination — hotels, golf, all-inclusive, cruises..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+    <button class="send" id="sendBtn" onclick="sendMsg()" disabled>→</button>
+  </div>
+</div>
+
+<!-- PACKAGES PANEL -->
+<div class="overlay" id="pkgPanel" style="display:none" onclick="if(event.target===this)hidePackages()">
+  <div class="panel">
+    <div class="panel-hd">
+      <h2>✦ CxC Travel Packages</h2>
+      <button class="close-btn" onclick="hidePackages()">✕</button>
+    </div>
+    <div id="pkgList"></div>
+  </div>
+</div>
+
+<!-- LEAD MODAL -->
+<div class="modal-ov" id="leadModal" style="display:none">
+  <div class="modal" id="leadContent"></div>
+</div>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+const CXC_PHONE = "412-420-6826";
+const CXC_EMAIL = "cxctravel412@gmail.com";
+const CXC_SITE  = "https://www.cxctravel.com";
+const FORMSPREE = "YOUR_FORMSPREE_ID"; // get free at formspree.io
+
+// ─── PACKAGES ────────────────────────────────────────────────────────────────
+const PACKAGES = [
+  {
+    id:"ky-golf", cat:"Golf", name:"Kentucky Golf Trail Experience",
+    meta:"Lexington, KY  ·  3 nights / 2 rounds",
+    highlights:["18 holes at The Woodford Club","18 holes at Greenbrier Golf & Country Club","Woodford Reserve Distillery tour","Luxury Lexington lodging"],
+    priceFrom:960, priceLabel:"from $960/pp",
+    teaser:"Two premier Kentucky courses paired with world-class bourbon country."
+  },
+  {
+    id:"desert-golf", cat:"Golf", name:"Desert Golf Getaway",
+    meta:"Scottsdale · Las Vegas · St. George  ·  4 days",
+    highlights:["5 package tiers to choose from","TPC Scottsdale, Shadow Creek, Black Desert & more","Desert Canyon & SunRidge Canyon courses","Group pricing available"],
+    priceFrom:428, priceLabel:"from $428/pp",
+    teaser:"Sun-drenched fairways across Arizona, Nevada & Utah."
+  },
+  {
+    id:"aruba-ai", cat:"All-Inclusive", name:"Aruba All-Inclusive Escape",
+    meta:"Aruba  ·  5–7 nights",
+    highlights:["Riu Palace Antillas or Manchebo Beach Resort","Adults-only options available","Hurricane-free year-round","Eagle Beach — one of the world's best"],
+    priceFrom:300, priceLabel:"from $300/night",
+    teaser:"Perfect weather 365 days a year. No passport required."
+  },
+  {
+    id:"cancun-ai", cat:"All-Inclusive", name:"Cancun / Riviera Maya",
+    meta:"Mexico  ·  5–7 nights",
+    highlights:["Hyatt Ziva, Excellence, Moon Palace & more","Mayan ruins day trips","Adults-only or family options","Best value in the Caribbean"],
+    priceFrom:350, priceLabel:"from $350/night",
+    teaser:"World-class resorts, turquoise water, ancient ruins nearby."
+  },
+  {
+    id:"group-nashville", cat:"Group Travel", name:"Nashville Group Getaway",
+    meta:"Nashville, TN  ·  3–4 nights",
+    highlights:["Live music on Lower Broadway every night","Thompson Nashville & JW Marriott","Whiskey trail & distillery tours","Perfect for bachelorette, birthdays, corporate"],
+    priceFrom:150, priceLabel:"from $150/night",
+    teaser:"America's hottest city for groups. Music, food, nightlife."
+  },
+  {
+    id:"cruise-package", cat:"Cruise", name:"Caribbean Cruise Package",
+    meta:"Multiple departure ports  ·  7 nights",
+    highlights:["Royal Caribbean, Carnival, Celebrity & more","Baltimore port — just 3 hrs from Pittsburgh!","All-inclusive pricing options","Family & adults-only ships available"],
+    priceFrom:699, priceLabel:"from $699/pp",
+    teaser:"Let Jesse & Sam find you the best cruise for your group and budget."
+  }
+];
+
+// ─── KNOWLEDGE BASE ───────────────────────────────────────────────────────────
+const KB = {
+  aruba:{label:"Aruba",emoji:"🌴",vibe:"Aruba is one of the Caribbean's crown jewels — sunny nearly 365 days a year, outside the hurricane belt, powder-white beaches and crystal-clear water.",hotels:[{name:"Bucuti & Tara Beach Resort",tier:"Luxury",price:"$450–$700/night",notes:"Adults-only, consistently rated #1 in the Caribbean. Stunning beachfront."},{name:"Hyatt Regency Aruba",tier:"Upscale",price:"$350–$550/night",notes:"Full resort amenities, casino, multiple pools. Great for groups."},{name:"Riu Palace Antillas",tier:"All-Inclusive",price:"$300–$500/night",notes:"Adults-only all-inclusive. Premium drinks and dining, oceanfront Palm Beach."},{name:"Manchebo Beach Resort",tier:"Boutique",price:"$280–$450/night",notes:"Yoga-focused, quietest beach on the island. Very intimate."}],restaurants:[{name:"Flying Fishbone",cuisine:"Seafood",notes:"Tables literally over the water at sunset. Most romantic spot on the island."},{name:"Gasparito Restaurant",cuisine:"Authentic Aruban",notes:"Set in a 17th century cunucu house. Get the Keshi Yena."},{name:"Zeerovers",cuisine:"Local Seafood",notes:"Hidden gem — a local fish market that fries your catch. Dirt cheap, delicious."}],activities:[{name:"Natural Pool ATV Tour",price:"$80–$120/pp",notes:"Off-road to a secret natural pool carved into volcanic rock. Bucket list."},{name:"Catamaran Snorkel Cruise",price:"$60–$90/pp",notes:"Sail, snorkel two reef sites, open bar. Best way to see the island."},{name:"Eagle Beach",price:"Free",notes:"One of the most beautiful beaches in the world. Don't miss the flamingos nearby."}],bestFor:["Couples","Honeymoon","Beach lovers","Adults-only"],bestTime:"January–August.",flight:"~5 hours from Pittsburgh, 1 stop through Miami or Charlotte."},
+  cancun:{label:"Cancun / Riviera Maya",emoji:"🌊",vibe:"Mexico's Caribbean coast offers world-class all-inclusive resorts, ancient Mayan ruins, cenote swimming, and some of the bluest water you've ever seen.",hotels:[{name:"Hyatt Ziva Cancun",tier:"Luxury AI",price:"$400–$700/night",notes:"Stunning oceanfront location. Rooftop bar, multiple pools."},{name:"Excellence Playa Mujeres",tier:"Adults-Only",price:"$500–$850/night",notes:"Private peninsula. Golf, 11 restaurants."},{name:"Moon Palace",tier:"Mega Resort",price:"$350–$600/night",notes:"Best for large groups. Golf, waterpark, 14 restaurants."},{name:"Hard Rock Cancun",tier:"Upscale AI",price:"$300–$500/night",notes:"Lively atmosphere, entertainment, unlimited premium drinks."}],activities:[{name:"Chichen Itza",price:"$80–$120/pp",notes:"One of the 7 Wonders of the World."},{name:"Cenote Ik Kil",price:"$25/pp",notes:"Sacred cenote near Chichen Itza. Crystal-clear water, waterfall."},{name:"Xcaret Park",price:"$100–$130/pp",notes:"Underground rivers, ruins, cultural show at night."},{name:"Isla Mujeres Catamaran",price:"$70–$100/pp",notes:"Snorkel, beach time, open bar. Best day trip from Cancun."}],bestFor:["Groups","All-inclusive","Families","Couples"],bestTime:"December–April.",flight:"~4.5 hours from Pittsburgh, 1 stop."},
+  jamaica:{label:"Jamaica",emoji:"🎵",vibe:"Jamaica hits different — vibrant culture, reggae in the air, lush mountains, waterfalls, and warm people.",hotels:[{name:"Sandals Royal Plantation",tier:"Ultra-Luxury",price:"$600–$1,100/night",notes:"All-suite, all-butler. Only 74 suites. Most exclusive Sandals property."},{name:"Beaches Negril",tier:"Family AI",price:"$400–$700/night",notes:"Best family resort in Jamaica. Sesame Street, waterpark, 7-Mile Beach."},{name:"Sandals Montego Bay",tier:"Luxury Adults",price:"$400–$800/night",notes:"Original Sandals property. Right on the beach, great energy."}],activities:[{name:"Dunn's River Falls",price:"$30/pp",notes:"Iconic terraced waterfall you climb. Fun, wet, unforgettable."},{name:"Negril 7-Mile Beach",price:"Free",notes:"One of the best beaches in the world."},{name:"Appleton Estate Rum Tour",price:"$45/pp",notes:"Most historic rum distillery in Jamaica. Tasting included."}],bestFor:["Couples","Honeymooners","Families"],bestTime:"November–April.",flight:"~4 hours from Pittsburgh, 1 stop."},
+  lasvegas:{label:"Las Vegas",emoji:"🎰",vibe:"Las Vegas is pure spectacle — world-class dining, jaw-dropping shows, sports, F1, boxing, and nightlife. Something for everyone.",hotels:[{name:"Wynn Las Vegas",tier:"Ultra-Luxury",price:"$300–$800/night",notes:"Most consistently excellent hotel on the Strip."},{name:"The Venetian Resort",tier:"Luxury",price:"$200–$500/night",notes:"All suites 700 sq ft+. Incredible food hall."},{name:"Bellagio",tier:"Luxury",price:"$200–$500/night",notes:"The icon. Fountain show, amazing restaurants."}],golf:[{name:"Shadow Creek",tier:"World-Class",price:"$500–$600/round",notes:"Tom Fazio masterpiece. MGM guests only. Rolls Royce pickup. Bucket list."},{name:"Cascata Golf Club",tier:"Elite",price:"$250–$400/round",notes:"600-foot waterfall, Red Rock views. Top-100 US course."},{name:"Wolf Creek",tier:"Elite",price:"$150–$250/round",notes:"45 min from Vegas. Dramatic canyon course carved into red rock."}],activities:[{name:"The Sphere",price:"$100–$300/pp",notes:"The most immersive entertainment venue ever built."},{name:"F1 Las Vegas Grand Prix",price:"$500+/pp",notes:"November 2026. Cars racing down the Strip at 200mph."},{name:"Grand Canyon Helicopter",price:"$300–$550/pp",notes:"Fly from Vegas, land in the canyon, champagne toast."}],bestFor:["Groups","Bachelor/Bachelorette","Golf","Sports events"],bestTime:"October–April.",flight:"~5 hours from Pittsburgh, 1 stop."},
+  orlando:{label:"Orlando / Disney",emoji:"✨",vibe:"The world's theme park capital — Disney World, Universal's new Epic Universe, world-class golf.",hotels:[{name:"Disney's Grand Floridian",tier:"Luxury Disney",price:"$600–$1,200/night",notes:"The flagship Disney resort. Monorail to Magic Kingdom."},{name:"Loews Portofino Bay",tier:"Upscale Universal",price:"$250–$500/night",notes:"Free Express Pass at Universal included."},{name:"Four Seasons Orlando",tier:"Ultra-Luxury",price:"$500–$1,000/night",notes:"Private waterpark, 5 restaurants. Inside Disney World."}],activities:[{name:"Magic Kingdom",price:"$109–$189/pp",notes:"Fireworks over Cinderella Castle. Best with young kids."},{name:"Universal's Epic Universe",price:"$109–$189/pp",notes:"Brand new in 2025 — Harry Potter, Nintendo, and more."},{name:"EPCOT Food & Wine Festival",price:"Park admission + food",notes:"August–November. Walk around the world eating and drinking."}],bestFor:["Families","Disney fans","Golf groups"],bestTime:"Jan–April and Sept–Nov.",flight:"~2.5 hours direct from Pittsburgh."},
+  miami:{label:"Miami",emoji:"🌆",vibe:"Electric city — Art Deco, crystal water, world-class food, nightlife that never stops.",hotels:[{name:"Faena Hotel Miami Beach",tier:"Ultra-Luxury",price:"$600–$1,500/night",notes:"Most dramatic hotel on South Beach."},{name:"1 Hotel South Beach",tier:"Luxury",price:"$400–$900/night",notes:"Best pool on South Beach. Legendary rooftop bar."},{name:"Fontainebleau",tier:"Luxury Resort",price:"$300–$700/night",notes:"Iconic since 1954. Massive pool scene, LIV nightclub."}],activities:[{name:"Wynwood Walls",price:"Free",notes:"World's largest open-air street art museum."},{name:"Everglades Airboat",price:"$35–$55/pp",notes:"30 min from Miami. Alligators, wilderness."},{name:"Little Havana Tour",price:"$20–$30/pp",notes:"Cigars, café cubano, domino park, culture."}],bestFor:["Nightlife","Foodies","Groups","Couples"],bestTime:"November–April.",flight:"~2.5 hours direct from Pittsburgh."},
+  nashville:{label:"Nashville",emoji:"🎸",vibe:"One of America's greatest cities for groups. Live music everywhere, incredible food, buzzing nightlife.",hotels:[{name:"Thompson Nashville",tier:"Luxury Boutique",price:"$300–$600/night",notes:"Best hotel in Nashville. Rooftop bar with city views."},{name:"JW Marriott Nashville",tier:"Luxury",price:"$250–$500/night",notes:"Rooftop pool with Broadway views. Great for groups."},{name:"Graduate Nashville",tier:"Mid-Range",price:"$150–$300/night",notes:"Fun, quirky. Great for bachelorette parties."}],restaurants:[{name:"Prince's Hot Chicken",cuisine:"Nashville Hot Chicken",notes:"The original. A cultural institution. Order medium at most."},{name:"Husk Nashville",cuisine:"Southern Fine Dining",notes:"James Beard Award. Best Southern ingredients."},{name:"Butchertown Hall",cuisine:"Texas BBQ / Beer Hall",notes:"Perfect group spot. Massive beer list."}],activities:[{name:"Lower Broadway Music Crawl",price:"Free",notes:"Live music starts at noon. Robert's Western World is a must."},{name:"Ryman Auditorium",price:"$25 tour",notes:"The Mother Church of Country Music."},{name:"Jack Daniel's Distillery",price:"$30–$60/pp",notes:"1.5 hours from Nashville. Full whiskey experience."}],bestFor:["Bachelor/Bachelorette","Groups","Music fans","Birthdays"],bestTime:"April–May and Sept–Oct.",flight:"~1.5 hours direct. Easiest trip from Pittsburgh."},
+  scottsdale:{label:"Scottsdale / Phoenix",emoji:"🌵",vibe:"Golf capital of the world. 200+ courses, perfect winter weather, world-class spas and dining.",hotels:[{name:"The Phoenician",tier:"Ultra-Luxury",price:"$500–$1,200/night",notes:"27-hole golf, Camelback Mountain backdrop."},{name:"Four Seasons at Troon North",tier:"Ultra-Luxury",price:"$500–$1,000/night",notes:"Steps from Troon North Golf Club."},{name:"Fairmont Scottsdale Princess",tier:"Luxury",price:"$350–$700/night",notes:"Home of the Waste Management Phoenix Open."}],golf:[{name:"TPC Scottsdale (Stadium)",tier:"World-Class",price:"$200–$350/round",notes:"Host of the WM Phoenix Open. The 16th hole is legendary."},{name:"Troon North (Monument)",tier:"Elite",price:"$175–$295/round",notes:"Golf Digest Top-100. Carved into the McDowell Mountains."},{name:"We-Ko-Pa Golf Club",tier:"Elite",price:"$150–$250/round",notes:"No homes on the course. True desert golf."}],activities:[{name:"Hot Air Balloon at Sunrise",price:"$180–$220/pp",notes:"Float over saguaro cacti with champagne toast."},{name:"Camelback Mountain Hike",price:"Free",notes:"Most iconic hike in Phoenix. Stunning views."},{name:"Old Town Scottsdale",price:"Free",notes:"Western art, galleries, vibrant bar scene."}],bestFor:["Golfers","Spa seekers","Groups","Winter escape"],bestTime:"October–April.",flight:"~5 hours from Pittsburgh, 1 stop."},
+  myrtlebeach:{label:"Myrtle Beach",emoji:"⛳",vibe:"East Coast golf capital — over 100 courses within 60 miles. Plus beaches and great seafood.",hotels:[{name:"Myrtle Beach Marriott",tier:"Luxury Resort",price:"$200–$400/night",notes:"Best resort in the area."},{name:"Embassy Suites Oceanfront",tier:"Mid-Range",price:"$150–$280/night",notes:"Free breakfast, oceanfront. Excellent value for golf groups."}],golf:[{name:"Caledonian Golf & Fish Club",tier:"Elite",price:"$80–$130/round",notes:"Scottish links-style. Best course in Myrtle Beach."},{name:"TPC Myrtle Beach",tier:"Elite",price:"$100–$150/round",notes:"Tom Fazio design. Top-50 public course in US."},{name:"Barefoot Resort (Fazio)",tier:"Elite",price:"$80–$130/round",notes:"One of four Barefoot courses. Fazio is the best."},{name:"Pawleys Plantation",tier:"Upscale",price:"$60–$100/round",notes:"Jack Nicklaus design. Beautiful salt marsh setting."}],bestFor:["Golf groups","Budget golf","East Coast convenience"],bestTime:"March–May and Sept–Nov.",flight:"~2 hours from Pittsburgh, 1 stop through Charlotte."},
+  pebblebeach:{label:"Pebble Beach",emoji:"🌊",vibe:"Golf's holy land. The most beautiful collection of courses on earth, perched on California cliffs.",hotels:[{name:"The Lodge at Pebble Beach",tier:"Iconic",price:"$800–$2,500/night",notes:"Steps from the first tee. 18th fairway views. Bucket list."},{name:"The Inn at Spanish Bay",tier:"Ultra-Luxury",price:"$600–$1,500/night",notes:"Bagpiper at sunset daily. Links-style course on-site."}],golf:[{name:"Pebble Beach Golf Links",tier:"Bucket List",price:"$550–$625/round",notes:"#1 public course in America. Holes 6–10 on the Pacific are the most beautiful in golf."},{name:"Spyglass Hill",tier:"Elite",price:"$300–$400/round",notes:"Extremely challenging. Starts in forest, finishes on the ocean."}],activities:[{name:"17-Mile Drive",price:"$12/car",notes:"Lone Cypress, stunning coastline. Don't skip."},{name:"Carmel-by-the-Sea",price:"Free",notes:"Most charming small town in California. Wine, galleries, great food."}],bestFor:["Serious golfers","Bucket-list trips","Couples"],bestTime:"April–October.",flight:"Fly to SFO (~5.5 hrs), then drive ~2 hours south."},
+  hawaii:{label:"Hawaii",emoji:"🌺",vibe:"America's paradise. No passport required. Maui for romance, Oahu for action, Kauai for raw beauty.",hotels:[{name:"Four Seasons Maui",tier:"Ultra-Luxury",price:"$800–$2,500/night",notes:"The finest hotel in Hawaii. Perfect beach, flawless service."},{name:"Grand Hyatt Kauai",tier:"Luxury Resort",price:"$400–$800/night",notes:"Sprawling lagoon, beautiful beach at Poipu."},{name:"Outrigger Waikiki",tier:"Mid-Range",price:"$300–$500/night",notes:"Best location on Waikiki, right on the beach."}],activities:[{name:"Road to Hana (Maui)",price:"Car rental",notes:"60 miles, waterfalls, bamboo forests, black sand beaches. Essential."},{name:"Hawaii Volcanoes NP",price:"$35/car",notes:"Walk on a lava field, see an active glowing caldera at night."},{name:"Na Pali Helicopter (Kauai)",price:"$250–$350/pp",notes:"4,000-foot cliffs dropping into the sea. Breathtaking."},{name:"Old Lahaina Luau",price:"$120–$200/pp",notes:"Best luau in the islands. Traditional feast and fire dancers."}],golf:[{name:"Kapalua Plantation (Maui)",tier:"Elite",price:"$250–$350/round",notes:"PGA Tour season opener. Sweeping ocean views."},{name:"Princeville Makai (Kauai)",tier:"Elite",price:"$200–$300/round",notes:"Ocean views on almost every hole."}],bestFor:["Couples","Honeymooners","Families","Golf"],bestTime:"April–May and Sept–Nov.",flight:"~10–11 hours via LAX or SFO."},
+  paris:{label:"Paris",emoji:"🗼",vibe:"Arguably the world's greatest city. Art that defines civilization, food that invented fine dining.",hotels:[{name:"Hôtel du Louvre (Hyatt)",tier:"Luxury",price:"$400–$800/night",notes:"Directly across from the Louvre."},{name:"Pavillon de la Reine",tier:"Boutique",price:"$400–$700/night",notes:"Hidden courtyard in Le Marais. Romantic and quiet."},{name:"citizenM Paris",tier:"Budget-Smart",price:"$150–$250/night",notes:"Great location, smart design, affordable."}],restaurants:[{name:"Guy Savoy",cuisine:"Grand French",notes:"3 Michelin stars. One of the 10 best restaurants in the world."},{name:"Septime",cuisine:"Neo-Bistro",notes:"One of the world's most exciting restaurants. Book weeks ahead."},{name:"Breizh Café",cuisine:"Crêpes",notes:"Best crêpes in Paris. Sourced from Brittany."}],activities:[{name:"Eiffel Tower at Sunset",price:"$30–$35/pp",notes:"Book the summit online weeks ahead."},{name:"Louvre Museum",price:"$20/pp",notes:"Book a guided highlights tour — otherwise 3 hours lost."},{name:"Versailles Day Trip",price:"$25–$30/pp",notes:"30 min by RER. Hall of Mirrors is breathtaking."}],bestFor:["Couples","Honeymooners","Art lovers","First Europe trip"],bestTime:"April–June and Sept–Oct.",flight:"~9–10 hours from Pittsburgh."},
+  italy:{label:"Italy",emoji:"🍕",vibe:"Food that redefines everything, art spanning 3,000 years, landscapes so beautiful they seem unreal.",hotels:[{name:"Hotel de Russie (Rome)",tier:"Luxury",price:"$600–$1,200/night",notes:"Best location in Rome. Steps from Spanish Steps."},{name:"J.K. Place Firenze",tier:"Boutique Luxury",price:"$500–$1,000/night",notes:"Like staying in a private Florentine palace."},{name:"Il San Pietro (Positano)",tier:"Ultra-Luxury",price:"$800–$2,000/night",notes:"Clinging to cliffs above Positano. Italy's most romantic hotel."}],restaurants:[{name:"La Pergola (Rome)",cuisine:"Fine Dining",notes:"Rome's only 3-Michelin-star restaurant."},{name:"Buca Mario (Florence)",cuisine:"Florentine Trattoria",notes:"Florence's oldest restaurant (1886). Legendary bistecca."},{name:"Lo Scoglio (Amalfi)",cuisine:"Coastal Italian",notes:"The most famous pasta dish on the Amalfi Coast."}],activities:[{name:"Colosseum Private Tour",price:"$80–$150/pp",notes:"Book private guide with underground access well in advance."},{name:"Sistine Chapel / Vatican",price:"$35–$60/pp",notes:"Book early morning. The ceiling defies description."},{name:"Amalfi Coast Drive",price:"Car + ferry",notes:"One of the great drives on earth."},{name:"Tuscan Wine Tour",price:"$80–$150/pp",notes:"Day trip from Florence into Chianti. Wine, olive oil, cheese."}],bestFor:["Foodies","History lovers","Couples","Honeymooners"],bestTime:"April–June and Sept–Oct.",flight:"~9–11 hours via London or Amsterdam."},
+  cruises:{label:"Cruises",emoji:"🚢",ports:[{name:"Baltimore, MD",note:"Just 3 hours from Pittsburgh — NO FLIGHT needed! Royal Caribbean to Bermuda & Caribbean."},{name:"Port Canaveral (Orlando)",note:"Best for Disney Cruise Line. Combine with Universal/Disney World."},{name:"Miami",note:"World's busiest cruise port. All major lines, Caribbean year-round."},{name:"New York (Bayonne)",note:"4.5 hours from Pittsburgh. Transatlantic and Caribbean routes."},{name:"Tampa",note:"Great for Western Caribbean. Carnival, Royal Caribbean."}],lines:[{name:"Royal Caribbean",best:"Groups & families",notes:"Most amenities — surf simulators, Broadway shows, massive ships."},{name:"Disney Cruise Line",best:"Families with kids",notes:"Character experiences at sea. Premium product."},{name:"Celebrity Cruises",best:"Couples & foodies",notes:"Step above Royal Caribbean. Better food, more refined."},{name:"Carnival",best:"Budget & groups",notes:"Most affordable. Great for large friend groups."},{name:"Norwegian (NCL)",best:"Adults who want freedom",notes:"No formal dinners, no assigned seating — total flexibility."}],bestFor:["First-time travelers","Groups","Families","All-inclusive value"]}
+};
+
+const DEST_KEYS = {
+  aruba:["aruba","eagle beach"],cancun:["cancun","riviera maya","mexico","tulum","playa del carmen"],
+  jamaica:["jamaica","montego bay","negril","ocho rios"],lasvegas:["las vegas","vegas"],
+  orlando:["orlando","disney","universal","magic kingdom","epic universe"],
+  miami:["miami","south beach"],nashville:["nashville","tennessee","music city"],
+  scottsdale:["scottsdale","phoenix","arizona"],myrtlebeach:["myrtle beach"],
+  pebblebeach:["pebble beach","monterey","carmel"],hawaii:["hawaii","maui","oahu","kauai","big island"],
+  paris:["paris","france","eiffel"],italy:["italy","rome","florence","amalfi","tuscany"],
+  cruises:["cruise","cruises","carnival cruise","royal caribbean","disney cruise"]
+};
+const CAT_KEYS = {
+  hotels:["hotel","hotels","stay","resort","where to stay","accommodation","lodge"],
+  restaurants:["restaurant","eat","food","dinner","dining","where to eat"],
+  activities:["do","things to do","activity","activities","tour","visit","see","explore"],
+  golf:["golf","golfing","course","courses","tee time"]
+};
+
+function detectDest(t){const l=t.toLowerCase();for(const[d,ks]of Object.entries(DEST_KEYS))if(ks.some(k=>l.includes(k)))return d;return null;}
+function detectCat(t){const l=t.toLowerCase();for(const[c,ks]of Object.entries(CAT_KEYS))if(ks.some(k=>l.includes(k)))return c;return null;}
+
+// ─── CHAT STATE ───────────────────────────────────────────────────────────────
+let currentDest = null;
+let msgCount = 0;
+let connectShown = false;
+
+function getReply(text) {
+  const lower = text.toLowerCase();
+  const dest = detectDest(text) || currentDest;
+  const cat = detectCat(text);
+
+  if (/^(hi|hey|hello|howdy)[\s!?]*$/.test(lower.trim()))
+    return { text:"Hey! 👋 I'm your CxC Travel guide.\n\nI have detailed knowledge on hotels, restaurants, activities, golf, and all-inclusive resorts for 15+ destinations worldwide. What trip are you dreaming about?", qrs:["🌴 Aruba","🎰 Las Vegas","✨ Disney / Orlando","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville"] };
+
+  if (/honeymoon|romantic|anniversary/i.test(lower) && !detectDest(text))
+    return { text:"💕 Jesse and Sam specialize in honeymoon and romantic travel!\n\n🏆 Most romantic picks:\n• Aruba — adults-only resorts, perfect calm beaches\n• Amalfi Coast, Italy — cliffside villas and sea views\n• Paris — the undisputed romance capital of the world\n• Hawaii (Maui) — Four Seasons, Road to Hana, spectacular sunrises\n• Florida Keys — Little Palm Island is extraordinary\n\nWhich vibe speaks to you?", qrs:["🌴 Aruba","🍕 Italy","🗼 Paris","🌺 Hawaii"] };
+
+  if (/group|bachelor|bachelorette|birthday/i.test(lower) && !detectDest(text))
+    return { text:"👥 Group travel is one of CxC's specialties!\n\n🏆 Top group destinations:\n• Las Vegas — nightlife, shows, sports, something for everyone\n• Nashville — live music, great food, perfect party city\n• Cancun — all-inclusive group pricing is exceptional\n• Jamaica — Sandals/Beaches have great group packages\n\nWhat's the occasion?", qrs:["🎰 Las Vegas","🎸 Nashville","🌊 Cancun","🎵 Jamaica"] };
+
+  if (/all.inclusive/i.test(lower) && !detectDest(text))
+    return { text:"🌴 All-inclusive is one of CxC's biggest specialties!\n\n• Aruba — hurricane-free year-round, gorgeous beaches\n• Cancun / Riviera Maya — most options, ruins nearby\n• Jamaica — Sandals properties are world-class\n• Punta Cana — great value, beautiful beaches\n\nWhich sounds appealing?", qrs:["🌴 Aruba","🌊 Cancun","🎵 Jamaica"] };
+
+  if (/\bgolf\b/i.test(lower) && !detectDest(text))
+    return { text:"⛳ CxC specializes in golf trips!\n\n• Scottsdale, AZ — 200+ courses, perfect winter weather\n• Myrtle Beach, SC — East Coast golf capital, 100+ courses\n• Pebble Beach, CA — bucket-list golf on California cliffs\n• Las Vegas — Shadow Creek, Cascata, Wolf Creek\n• Kentucky Golf Trail — bourbon + premium golf (package ready!)\n• Hawaii — ocean views on every hole\n\nWhere are you thinking?", qrs:["🌵 Scottsdale","⛳ Myrtle Beach","🌊 Pebble Beach","🎰 Las Vegas Golf"] };
+
+  if (/cruise/i.test(lower) && !detectDest(text)) {
+    const d = KB.cruises;
+    if (/port|depart|near pittsburgh|drive/i.test(lower))
+      return { text:"🚢 Closest cruise ports to Pittsburgh:", cards: d.ports.map(p=>({name:p.name,badge:"Port",detail:p.note})), qrs:["Cruise lines comparison","All-inclusive cruises","Family cruises"] };
+    return { text:"🚢 Here's an overview of major cruise lines Jesse & Sam book:", cards: d.lines.map(l=>({name:l.name,badge:l.best,notes:l.notes})), qrs:["Ports near Pittsburgh","Disney Cruise Line","All-inclusive options"] };
+  }
+
+  if (!dest)
+    return { text:"I'd love to help! I have detailed info on:\n\n🌴 Caribbean — Aruba, Cancun, Jamaica\n🇺🇸 USA — Las Vegas, Orlando, Miami, Nashville\n⛳ Golf — Scottsdale, Myrtle Beach, Pebble Beach\n🌺 Hawaii  ·  🌍 Europe — Paris, Italy  ·  🚢 Cruises\n\nJust type any destination or tell me what kind of trip you want!", qrs:["🌴 Aruba","🎰 Las Vegas","⛳ Golf Trip","🚢 Cruises","🌺 Hawaii","🍕 Italy","✨ Disney","🎸 Nashville"] };
+
+  currentDest = dest;
+  const d = KB[dest];
+
+  if (cat === "hotels" && d?.hotels)
+    return { text:`🏨 Top hotels in ${d.label}:`, cards: d.hotels.map(h=>({name:h.name,badge:h.tier,detail:h.price,notes:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[])] };
+  if (cat === "restaurants" && d?.restaurants)
+    return { text:`🍽️ Top dining in ${d.label}:`, cards: d.restaurants.map(r=>({name:r.name,badge:r.cuisine,notes:r.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+  if (cat === "activities" && d?.activities)
+    return { text:`🎯 Things to do in ${d.label}:`, cards: (d.activities||[]).map(a=>({name:a.name,badge:a.price||"",notes:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining",...(d.golf?["Golf Courses"]:[])] };
+  if (cat === "golf" && d?.golf)
+    return { text:`⛳ Golf courses in ${d.label}:`, cards: d.golf.map(g=>({name:g.name,badge:g.tier,detail:g.price,notes:g.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+
+  const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[])];
+  return { text:`Here's what to know about ${d.label} ${d.emoji}\n\n${d.vibe}\n\n✈️ ${d.flight||""}\n📅 Best time: ${d.bestTime||"Year-round"}\n🎯 Best for: ${(d.bestFor||[]).join(", ")}`, qrs };
+}
+
+// ─── RENDER HELPERS ───────────────────────────────────────────────────────────
+function addMsg(role, text) {
+  const chat = document.getElementById("chat");
+  const div = document.createElement("div");
+  div.className = `msg ${role}`;
+  div.innerHTML = `<div class="avatar">${role==="bot"?"CxC":"👤"}</div><div class="bubble">${text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div>`;
+  chat.appendChild(div);
+  scrollBottom();
+}
+
+function addCards(cards) {
+  if (!cards?.length) return;
+  const chat = document.getElementById("chat");
+  const div = document.createElement("div");
+  div.className = "cards";
+  div.innerHTML = cards.map(c=>`
+    <div class="card">
+      <div class="card-top"><span class="card-name">${c.name}</span>${c.badge?`<span class="card-badge">${c.badge}</span>`:""}</div>
+      ${c.detail?`<div class="card-detail">${c.detail}</div>`:""}
+      ${c.notes?`<div class="card-notes">${c.notes}</div>`:""}
+    </div>`).join("");
+  chat.appendChild(div);
+  scrollBottom();
+}
+
+function addQRs(qrs) {
+  if (!qrs?.length) return;
+  const chat = document.getElementById("chat");
+  const div = document.createElement("div");
+  div.className = "qr-row";
+  div.innerHTML = qrs.map(q=>`<button class="qr" onclick="sendMsg('${q.replace(/'/g,"\\'")}')">${q}</button>`).join("");
+  chat.appendChild(div);
+  scrollBottom();
+}
+
+function showConnect() {
+  if (connectShown) return;
+  connectShown = true;
+  const chat = document.getElementById("chat");
+  const div = document.createElement("div");
+  div.className = "connect";
+  div.innerHTML = `
+    <p>✦ Ready to make this trip real? Jesse & Sam have exclusive rates and perks you won't find online.</p>
+    <div class="connect-btns">
+      <button class="cbtn" onclick="openLead()">Send My Trip to CxC →</button>
+      <a class="cbtn-o" href="tel:${CXC_PHONE}">${CXC_PHONE}</a>
+      <a class="cbtn-o" href="mailto:${CXC_EMAIL}">Email Us</a>
+    </div>`;
+  chat.appendChild(div);
+  scrollBottom();
+}
+
+function scrollBottom() {
+  const chat = document.getElementById("chat");
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// ─── SEND MESSAGE ─────────────────────────────────────────────────────────────
+function sendMsg(override) {
+  const inp = document.getElementById("inp");
+  const text = (override || inp.value).trim();
+  if (!text) return;
+  inp.value = "";
+  document.getElementById("sendBtn").disabled = true;
+  // Remove old qr rows
+  document.querySelectorAll(".qr-row").forEach(el=>el.remove());
+  addMsg("user", text);
+  msgCount++;
+  setTimeout(() => {
+    const reply = getReply(text);
+    addMsg("bot", reply.text);
+    if (reply.cards) addCards(reply.cards);
+    if (reply.qrs) addQRs(reply.qrs);
+    if (msgCount >= 3 || currentDest) showConnect();
+  }, 300);
+}
+
+document.getElementById("inp").addEventListener("input", function() {
+  document.getElementById("sendBtn").disabled = !this.value.trim();
+});
+
+// ─── PACKAGES ─────────────────────────────────────────────────────────────────
+function showPackages() {
+  const list = document.getElementById("pkgList");
+  list.innerHTML = PACKAGES.map(p=>`
+    <div class="pkg-card" onclick="askAboutPackage('${p.id}')">
+      <div class="pkg-cat">${p.cat}</div>
+      <div class="pkg-name">${p.name}</div>
+      <div class="pkg-meta">${p.meta}</div>
+      <ul class="pkg-highlights">${p.highlights.map(h=>`<li>${h}</li>`).join("")}</ul>
+      <div class="pkg-price-row">
+        <div class="pkg-price">${p.priceLabel} <span>per person</span></div>
+        <button class="ask-btn">Ask About This →</button>
+      </div>
+    </div>`).join("");
+  document.getElementById("pkgPanel").style.display = "flex";
+}
+function hidePackages() { document.getElementById("pkgPanel").style.display = "none"; }
+function askAboutPackage(id) {
+  hidePackages();
+  const p = PACKAGES.find(x=>x.id===id);
+  openLead(p ? `Interested in: ${p.name}` : "");
+}
+
+// ─── LEAD FORM ────────────────────────────────────────────────────────────────
+function openLead(interest = "") {
+  const modal = document.getElementById("leadModal");
+  const content = document.getElementById("leadContent");
+  content.innerHTML = `
+    <h3>Connect with CxC Travel</h3>
+    <p>Jesse or Sam will follow up personally — usually within a few hours.</p>
+    <div class="row2">
+      <div class="fg"><label>Name *</label><input id="lName" placeholder="Your name"/></div>
+      <div class="fg"><label>Phone</label><input id="lPhone" placeholder="(412) 000-0000"/></div>
+    </div>
+    <div class="fg"><label>Email *</label><input id="lEmail" type="email" placeholder="you@email.com"/></div>
+    <div class="fg"><label>Trip Interest</label><input id="lInterest" value="${interest}"/></div>
+    <div class="fg"><label>Notes / Questions</label><textarea id="lNotes" placeholder="Travel dates, group size, budget..."></textarea></div>
+    <button class="submit-btn" id="submitBtn" onclick="submitLead()">Send to Jesse & Sam →</button>
+    <button class="cancel-btn" onclick="closeLead()">Cancel</button>`;
+  modal.style.display = "flex";
+}
+function closeLead() { document.getElementById("leadModal").style.display = "none"; }
+
+async function submitLead() {
+  const name = document.getElementById("lName").value.trim();
+  const email = document.getElementById("lEmail").value.trim();
+  if (!name || !email) { alert("Please enter your name and email."); return; }
+  const data = { name, email, phone: document.getElementById("lPhone").value, interest: document.getElementById("lInterest").value, message: document.getElementById("lNotes").value };
+  document.getElementById("submitBtn").disabled = true;
+  document.getElementById("submitBtn").textContent = "Sending...";
+  // Save locally
+  try { const leads = JSON.parse(localStorage.getItem("cxc-leads")||"[]"); leads.unshift({...data,date:new Date().toISOString()}); localStorage.setItem("cxc-leads",JSON.stringify(leads)); } catch{}
+  // Email via Formspree
+  if (FORMSPREE && FORMSPREE !== "YOUR_FORMSPREE_ID") {
+    try { await fetch(`https://formspree.io/f/${FORMSPREE}`,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)}); } catch{}
+  }
+  document.getElementById("leadContent").innerHTML = `
+    <div class="success-box">
+      <div class="ck">✅</div>
+      <h3>You're all set!</h3>
+      <p>Jesse or Sam will be in touch shortly to make your trip happen.</p>
+      <div class="contact-strip">Or reach out directly:<br/><a href="tel:${CXC_PHONE}">${CXC_PHONE}</a> &nbsp;·&nbsp; <a href="mailto:${CXC_EMAIL}">${CXC_EMAIL}</a></div>
+      <button class="submit-btn" onclick="closeLead()">Close</button>
+    </div>`;
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+addMsg("bot", "Hey! 👋 I'm your CxC Travel destination guide.\n\nI have detailed knowledge on hotels, restaurants, golf, all-inclusive resorts, and activities for 15+ destinations — completely free, no sign-up needed.\n\nWhere are you thinking of going?");
+addQRs(["🌴 Aruba","🎰 Las Vegas","✨ Disney / Orlando","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville"]);
+</script>
+</body>
+</html>
