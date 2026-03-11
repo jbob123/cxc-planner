@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CxC Travel — Trip Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0B1426;--gold:#C9A455;--gold2:#DFC07A;--cream:#F5F0E8;--gray:#6b7280;--dark2:#152035}
+body{font-family:'Nunito Sans',sans-serif;background:var(--navy);height:100svh;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── HEADER ── */
+.header{background:var(--navy);border-bottom:1px solid rgba(201,164,85,.22);padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:#fff;letter-spacing:.04em}
+.logo span{color:var(--gold)}
+.header-r{display:flex;align-items:center;gap:.75rem}
+.pkg-btn{background:rgba(201,164,85,.13);color:var(--gold);border:1px solid rgba(201,164,85,.3);border-radius:20px;padding:.35rem .85rem;font-size:.76rem;font-weight:700;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:all .2s}
+.pkg-btn:hover{background:rgba(201,164,85,.25)}
+.hdr-link{color:rgba(255,255,255,.45);font-size:.76rem;text-decoration:none;font-weight:600;transition:color .2s}
+.hdr-link:hover{color:var(--gold)}
+
+/* ── CHAT ── */
+.chat{flex:1;overflow-y:auto;padding:1.1rem 1rem;display:flex;flex-direction:column;gap:.8rem;max-width:800px;width:100%;margin:0 auto}
+.chat::-webkit-scrollbar{width:4px}
+.chat::-webkit-scrollbar-thumb{background:rgba(201,164,85,.25);border-radius:2px}
+
+.msg{display:flex;gap:.6rem;animation:pop .22s ease-out}
+.msg.user{flex-direction:row-reverse}
+.av{width:27px;height:27px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;margin-top:3px}
+.msg.bot .av{background:var(--gold);color:var(--navy)}
+.msg.user .av{background:rgba(255,255,255,.1);font-size:.85rem}
+.bub{padding:.7rem .95rem;border-radius:16px;max-width:86%;font-size:.875rem;line-height:1.65;white-space:pre-wrap}
+.msg.bot .bub{background:rgba(255,255,255,.068);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.07);border-radius:4px 16px 16px 16px}
+.msg.user .bub{background:var(--gold);color:var(--navy);font-weight:600;border-radius:16px 4px 16px 16px}
+
+/* cards */
+.cards{display:flex;flex-direction:column;gap:.45rem;padding-left:2.1rem;animation:pop .28s ease-out}
+.card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.75rem .95rem}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.18rem}
+.card-name{font-weight:700;color:#fff;font-size:.85rem}
+.card-badge{background:var(--gold);color:var(--navy);font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.14rem .45rem;border-radius:10px;flex-shrink:0;white-space:nowrap}
+.card-sub{color:var(--gold2);font-size:.75rem;font-weight:600;margin-bottom:.15rem}
+.card-note{color:rgba(255,255,255,.5);font-size:.75rem;line-height:1.5}
+
+/* quick replies */
+.qrs{display:flex;flex-wrap:wrap;gap:.38rem;padding-left:2.1rem;animation:pop .28s ease-out}
+.qr{background:rgba(201,164,85,.09);color:var(--gold);border:1px solid rgba(201,164,85,.22);border-radius:18px;padding:.3rem .78rem;font-size:.77rem;cursor:pointer;font-weight:600;transition:all .2s;white-space:nowrap}
+.qr:hover{background:rgba(201,164,85,.22)}
+
+/* connect banner */
+.connect{background:linear-gradient(135deg,rgba(201,164,85,.13),rgba(201,164,85,.05));border:1px solid rgba(201,164,85,.28);border-radius:12px;padding:.85rem 1rem;animation:pop .3s ease-out}
+.connect p{color:rgba(255,255,255,.83);font-size:.84rem;margin-bottom:.55rem;line-height:1.55}
+.connect-btns{display:flex;gap:.45rem;flex-wrap:wrap}
+.cbtn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.44rem .95rem;font-weight:700;font-size:.77rem;cursor:pointer;transition:background .2s}
+.cbtn:hover{background:var(--gold2)}
+.cbtn-o{background:transparent;color:var(--gold);border:1px solid rgba(201,164,85,.45);border-radius:6px;padding:.44rem .95rem;font-weight:700;font-size:.77rem;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer}
+
+/* lead collecting inline */
+.lead-prompt{background:rgba(201,164,85,.08);border:1px solid rgba(201,164,85,.2);border-radius:12px;padding:.8rem 1rem;animation:pop .3s ease-out;font-size:.84rem;color:rgba(255,255,255,.85);line-height:1.55}
+.lead-done{background:rgba(50,200,100,.08);border:1px solid rgba(50,200,100,.2);border-radius:12px;padding:1rem;animation:pop .3s ease-out}
+.lead-done h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:.4rem}
+.lead-done p{color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.6}
+.lead-done .ck{font-size:1.6rem;margin-bottom:.35rem}
+.contact-line{margin-top:.6rem;font-size:.8rem;color:rgba(255,255,255,.45)}
+.contact-line a{color:var(--gold);text-decoration:none}
+
+/* ── INPUT ── */
+.input-wrap{padding:.6rem .9rem .85rem;max-width:800px;width:100%;margin:0 auto;flex-shrink:0}
+.input-bar{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.45rem .45rem .45rem .85rem;display:flex;gap:.45rem;align-items:center}
+.input-bar input{flex:1;background:transparent;border:none;color:#fff;font-family:'Nunito Sans',sans-serif;font-size:.875rem;outline:none}
+.input-bar input::placeholder{color:rgba(255,255,255,.28)}
+.send{background:var(--gold);color:var(--navy);border:none;border-radius:9px;width:34px;height:34px;cursor:pointer;font-size:1rem;font-weight:700;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.send:hover:not(:disabled){background:var(--gold2)}
+.send:disabled{opacity:.3;cursor:not-allowed}
+
+/* ── PACKAGES PANEL ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:50;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
+.panel{background:#162033;border-radius:16px 16px 0 0;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;padding:1.4rem}
+.panel-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+.panel-hd h2{font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:#fff;font-weight:700}
+.x-btn{background:rgba(255,255,255,.09);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.95rem}
+.pkg-card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1rem;margin-bottom:.8rem;cursor:pointer;transition:all .2s}
+.pkg-card:hover{background:rgba(255,255,255,.08)}
+.pkg-cat{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.pkg-meta{font-size:.77rem;color:rgba(255,255,255,.4);margin-bottom:.55rem}
+.pkg-hl{list-style:none;margin-bottom:.65rem}
+.pkg-hl li{font-size:.77rem;color:rgba(255,255,255,.68);padding:.12rem 0;display:flex;gap:.38rem}
+.pkg-hl li::before{content:'✓';color:var(--gold);flex-shrink:0;font-weight:700}
+.pkg-pr-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.pkg-pr{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#fff}
+.ask-btn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.4rem .85rem;font-weight:700;font-size:.75rem;cursor:pointer}
+.ask-btn:hover{background:var(--gold2)}
+
+@keyframes pop{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.bub{max-width:92%}.hdr-link{display:none}}
+</style>
+</head>
+<body>
+<script src="data.js"></script>
+
+<div class="header">
+  <div class="logo">CxC<span>.</span>Travel</div>
+  <div class="header-r">
+    <button class="pkg-btn" onclick="showPkgs()">📦 Packages</button>
+    <a class="hdr-link" href="tel:412-420-6826">412-420-6826</a>
+    <a class="hdr-link" href="/cdn-cgi/l/email-protection#0b6873687f796a7d6e673f3a394b6c666a626725686466">Email Us</a>
+  </div>
+</div>
+
+<div class="chat" id="chat"></div>
+
+<div class="input-wrap">
+  <div class="input-bar">
+    <input id="inp" type="text" placeholder="Ask about any destination, or tell me what kind of trip you're dreaming about..." onkeydown="if(event.key==='Enter')send()"/>
+    <button class="send" id="sendBtn" onclick="send()" disabled>→</button>
+  </div>
+</div>
+
+<div class="ov" id="pkgPanel" style="display:none" onclick="if(event.target===this)hidePkgs()">
+  <div class="panel">
+    <div class="panel-hd"><h2>✦ CxC Travel Packages</h2><button class="x-btn" onclick="hidePkgs()">✕</button></div>
+    <div id="pkgList"></div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── CONSTANTS ──────────────────────────────────────────────────────────────────
+const CXC_PHONE = "412-420-6826";
+const CXC_EMAIL = "cxctravel412@gmail.com";
+
+// ── STATE ──────────────────────────────────────────────────────────────────────
+// mode: 'chat' | 'quiz' | 'lead'
+let mode = 'chat';
+let currentDest = null;
+let msgCount = 0;
+let connectShown = false;
+let chatLog = [];   // {role, text} full history for lead summary
+
+// Quiz state
+let quizStep = 0;
+let quizAnswers = {};
+
+// Lead state
+let leadStep = 0;
+let leadData = {};
+const LEAD_QUESTIONS = [
+  { key:'name',   ask:"What's your name?" },
+  { key:'email',  ask:"Great! And your email address?" },
+  { key:'phone',  ask:"Best phone number to reach you?" },
+  { key:'dates',  ask:"When are you thinking of traveling? (Even a rough month or season works!)" },
+  { key:'people', ask:"Last one — how many people total in your group?" }
+];
+
+// ── QUIZ FLOW ──────────────────────────────────────────────────────────────────
+const QUIZ = [
+  {
+    q: "Let's find your perfect trip! First — what kind of experience matters most to you?",
+    opts: ["🏖️ Beach & Relaxation","⛳ Golf","🏙️ City, Food & Culture","🌿 Nature & Adventure","💕 Romance / Honeymoon","👨‍👩‍👧 Family with Kids","🎉 Group Party / Event"]
+  },
+  {
+    q: "How far are you open to traveling?",
+    opts: ["🇺🇸 USA / Canada only","🌴 Caribbean or Mexico","🌍 Anywhere — the farther the better"]
+  },
+  {
+    q: "What's your rough budget per person, per night?",
+    opts: ["💰 Value (under $200/night)","💰💰 Mid-range ($200–$400/night)","💰💰💰 Luxury ($400–$800/night)","👑 Ultra-luxury (sky's the limit)"]
+  },
+  {
+    q: "When are you thinking of going?",
+    opts: ["Next 3 months","3–6 months out","6–12 months out","Just exploring ideas for now"]
+  }
+];
+
+function startQuiz() {
+  mode = 'quiz';
+  quizStep = 0;
+  quizAnswers = {};
+  askQuiz();
+}
+
+function askQuiz() {
+  const q = QUIZ[quizStep];
+  botMsg(q.q, q.opts.map(o => ({label:o, action:()=>quizAnswer(o)})));
+}
+
+function quizAnswer(val) {
+  removeQRs();
+  userMsg(val);
+  quizAnswers[quizStep] = val;
+  quizStep++;
+  if (quizStep < QUIZ.length) {
+    setTimeout(askQuiz, 350);
+  } else {
+    setTimeout(deliverRecommendations, 400);
+  }
+}
+
+function deliverRecommendations() {
+  mode = 'chat';
+  const type   = quizAnswers[0] || '';
+  const range  = quizAnswers[1] || '';
+  const budget = quizAnswers[2] || '';
+
+  // Build destination shortlist based on answers
+  let recs = [];
+
+  // Golf
+  if (type.includes('Golf')) {
+    if (range.includes('Anywhere') || range.includes('far')) recs = ['bandondunes','irelandscotland','pebblebeach'];
+    else if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['cabo','scottsdale','myrtlebeach'];
+    else recs = ['scottsdale','myrtlebeach','pinehurst'];
+  }
+  // Romance / Honeymoon
+  else if (type.includes('Romance') || type.includes('Honeymoon')) {
+    if (range.includes('Anywhere')) recs = ['italy','greece','bali'];
+    else if (range.includes('Caribbean')) recs = ['aruba','stlucia','turksandcaicos'];
+    else recs = ['napa','sedona','keys'];
+  }
+  // Family
+  else if (type.includes('Family')) {
+    if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['cancun','bahamas','puntacana'];
+    else if (range.includes('Anywhere')) recs = ['japan','costarica','orlando'];
+    else recs = ['orlando','lasvegas','nashville'];
+  }
+  // Group / Party
+  else if (type.includes('Group') || type.includes('Party')) {
+    if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['cancun','jamaica','cabo'];
+    else recs = ['lasvegas','nashville','neworleans'];
+  }
+  // Nature / Adventure
+  else if (type.includes('Nature') || type.includes('Adventure')) {
+    if (range.includes('Anywhere')) recs = ['iceland','costarica','peru'];
+    else recs = ['hawaii','colorado','sedona'];
+  }
+  // City / Food / Culture
+  else if (type.includes('City') || type.includes('Food') || type.includes('Culture')) {
+    if (range.includes('Anywhere')) recs = ['japan','morocco','peru'];
+    else if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['puertorico','neworleans','charleston'];
+    else recs = ['nyc','neworleans','nashville'];
+  }
+  // Beach & Relaxation
+  else {
+    if (range.includes('Anywhere')) recs = ['bali','turksandcaicos','barbados'];
+    else if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['aruba','turksandcaicos','stlucia'];
+    else recs = ['keys','hawaii','miami'];
+  }
+
+  // Filter to valid KB keys
+  recs = recs.filter(k => KB[k]);
+  if (!recs.length) recs = ['aruba','cancun','lasvegas'];
+
+  const intro = `Based on what you told me, here are my top ${recs.length} picks for you — let me know which one catches your eye and I'll go deep on it!`;
+  const recText = recs.map((k,i) => {
+    const d = KB[k];
+    return `${i+1}. ${d.emoji} **${d.label}**\n${d.vibe.split('.')[0] + '.'}`;
+  }).join('\n\n');
+
+  botMsg(intro + '\n\n' + recText, recs.map(k => ({label: KB[k].emoji+' '+KB[k].label, action:()=>sendText(KB[k].label)})));
+  currentDest = recs[0];
+  maybeShowConnect();
+}
+
+// ── LEAD COLLECTION ───────────────────────────────────────────────────────────
+function startLead(interestHint) {
+  mode = 'lead';
+  leadStep = 0;
+  leadData = { interest: interestHint || currentDest ? (KB[currentDest]||{}).label || '' : '' };
+  logChat('bot', "I'd love to connect you with Jesse and Sam — they'll reach out personally with options and pricing.");
+  botMsg("I'd love to connect you with Jesse and Sam — they'll reach out personally with options and pricing.\n\nLet me grab a few quick details...\n\n" + LEAD_QUESTIONS[0].ask);
+}
+
+function advanceLead(userInput) {
+  const q = LEAD_QUESTIONS[leadStep];
+  leadData[q.key] = userInput;
+  leadStep++;
+
+  if (leadStep < LEAD_QUESTIONS.length) {
+    setTimeout(()=> botMsg(LEAD_QUESTIONS[leadStep].ask), 300);
+  } else {
+    setTimeout(finishLead, 300);
+  }
+}
+
+function finishLead() {
+  mode = 'chat';
+  // Build chat summary
+  const dest = currentDest && KB[currentDest] ? KB[currentDest].label : 'Not specified';
+  const summary = buildChatSummary();
+
+  // Save lead locally
+  const lead = { ...leadData, dest, summary, timestamp: new Date().toISOString() };
+  const stored = JSON.parse(localStorage.getItem('cxc_leads')||'[]');
+  stored.push(lead);
+  localStorage.setItem('cxc_leads', JSON.stringify(stored));
+
+  // Show confirmation
+  const el = document.createElement('div');
+  el.className = 'lead-done';
+  el.innerHTML = `
+    <div class="ck">✅</div>
+    <h4>You're all set, ${leadData.name}!</h4>
+    <p>Jesse or Sam will reach out to <strong>${leadData.email}</strong> — usually within a few hours.</p>
+    <p style="margin-top:.45rem">Here's a recap of your inquiry:</p>
+    <p style="margin-top:.35rem;color:rgba(255,255,255,.55);font-size:.79rem">
+      📅 Travel dates: ${leadData.dates}<br/>
+      👥 Group size: ${leadData.people}<br/>
+      🌍 Destination interest: ${dest}
+    </p>
+    <div class="contact-line">Prefer to reach out directly? <a href="tel:${CXC_PHONE}">${CXC_PHONE}</a> &nbsp;·&nbsp; <a href="mailto:${CXC_EMAIL}">${CXC_EMAIL}</a></div>`;
+  document.getElementById('chat').appendChild(el);
+  scrollBot();
+
+  botMsg("Is there anything else you'd like to explore while you wait to hear from them? I can go deeper on any destination — hotels, specific activities, restaurant picks, what to pack for the season...");
+}
+
+function buildChatSummary() {
+  return chatLog.map(m => (m.role==='user'?'Customer: ':'Bot: ') + m.text).join('\n');
+}
+
+// ── VAGUE DESTINATION DETECTION ───────────────────────────────────────────────
+function isVague(text) {
+  return /where should (i|we)|where (to|do i|can i)|suggest|recommend|not sure|help me (decide|choose|pick)|best (place|destination|spot)|ideas?|options?\??|what('s| is) (good|nice|best|popular)|don'?t know where|anywhere good|can't decide|can not decide/i.test(text);
+}
+
+function isBookingReady(text) {
+  return /\b(book|ready|contact|reach out|call me|email me|sign up|sign me up|let'?s do it|let'?s go|i('m| am) (in|ready|interested)|how do i (book|get started)|get started|set it up|connect me|talk to (jesse|sam|someone|an agent)|speak with|get a quote|plan my trip|move forward)\b|jesse\s*&\s*sam|connect with cxc/i.test(text);
+}
+
+function isNonTravel(text) {
+  const lo = text.toLowerCase();
+  // Clearly non-travel topics with no travel context
+  if (/\b(recipe|how to cook|bake a|coding|javascript error|python script|calcul(ate|ation)|math problem|solve for|sports score|stock (price|market)|who won|weather forecast|news today|political|write me a (poem|song|essay)|homework help|medical symptom|legal advice)\b/i.test(lo)) {
+    // Make sure there's no travel angle
+    if (!/\b(hotel|resort|flight|trip|travel|vacation|destination|visit|cruise|booking|passport|visa|itinerary|airport)\b/i.test(lo)) return true;
+  }
+  return false;
+}
+
+function detectCompare(text) {
+  const lo = text.toLowerCase();
+  if (!/\bvs\.?\b|\bversus\b|\bor\b|\bcompare\b|\bwhich (is|should)\b|\bbetter\b|\bdifference\b/i.test(lo)) return null;
+  const found = [];
+  for (const [d, ks] of Object.entries(DEST_KEYS)) {
+    if (ks.some(k => lo.includes(k))) { found.push(d); if (found.length === 2) break; }
+  }
+  return found.length === 2 ? found : null;
+}
+
+// ── MAIN REPLY ENGINE ─────────────────────────────────────────────────────────
+function getReply(text) {
+  const lo = text.toLowerCase();
+
+  if (mode === 'lead') { advanceLead(text); return null; }
+  if (mode === 'quiz') return null;
+  if (isBookingReady(lo)) { startLead(); return null; }
+  if (isVague(lo)) { startQuiz(); return null; }
+
+  // ── GREETING ──────────────────────────────────────────────────────────────
+  if (/^(hi+|hey+|hello|howdy|hiya|sup|what'?s up|good (morning|afternoon|evening))[\s!?.,]*$/i.test(lo.trim()))
+    return {
+      text:`Hey! 👋 Welcome to CxC Travel's planning guide.\n\nTell me where you're dreaming of going and I'll give you the full picture — hotels, restaurants, activities, and more. Or if you're not sure where to go yet, I'll help you figure that out.\n\nWhat kind of trip are you thinking about?`,
+      qrs:["🤔 Help me choose","🌴 Caribbean","⛳ Golf Trip","🚢 Cruises","🌍 Europe","🗾 Japan","💕 Honeymoon","👨‍👩‍👧 Family"]
+    };
+
+  // ── COMPARE TWO DESTINATIONS ───────────────────────────────────────────────
+  const cmp = detectCompare(text);
+  if (cmp) {
+    const [a, b] = cmp;
+    const da = KB[a], db = KB[b];
+    if (da && db) {
+      const rows = [
+        ['Region', da.region||'—', db.region||'—'],
+        ['Best for', (da.bestFor||[]).slice(0,3).join(', ')||'—', (db.bestFor||[]).slice(0,3).join(', ')||'—'],
+        ['Best time', (da.bestTime||'—').split('.')[0], (db.bestTime||'—').split('.')[0]],
+        ['Travel note', (da.travelNote||'—').split('.')[0], (db.travelNote||'—').split('.')[0]],
+      ];
+      const table = rows.map(([lbl,av,bv])=>`• **${lbl}**\n  ${da.label}: ${av}\n  ${db.label}: ${bv}`).join('\n\n');
+      return {
+        text:`${da.emoji} **${da.label}** vs ${db.emoji} **${db.label}**\n\n${table}\n\n*Jesse and Sam can help you decide which fits your specific dates, budget, and group — both are great for different reasons.*`,
+        qrs:[`${da.emoji} More about ${da.label}`,`${db.emoji} More about ${db.label}`,"💬 Talk to Jesse & Sam"]
+      };
+    }
+  }
+
+  // ── ADULTS-ONLY ────────────────────────────────────────────────────────────
+  if (/adults?.?only|no kids|adult.?resort|without kids|just adults|couples?.?only|child.?free/i.test(lo) && !detectDest(text))
+    return {
+      text:`💑 Adults-only resorts are one of CxC's most-requested categories. There's a real difference in the experience — quieter pools, better service ratios, more romantic atmosphere.\n\n**Best adults-only destinations:**\n• **Aruba** — Bucuti & Tara and Riu Palace Antillas on Eagle Beach are stunning adults-only properties\n• **St. Lucia** — Sandals Grande is the gold standard couples resort in the Caribbean\n• **Turks & Caicos** — Grace Bay Club, COMO Parrot Cay. True exclusivity.\n• **Cancun / Riviera Maya** — Excellence Playa Mujeres, Secrets, Zoëtry — all adults-only\n• **Barbados** — Cobblers Cove, Coral Reef Club. British elegance, quiet beaches\n• **Bali** — Private pool villa with butler for $150–$400/night. Hard to beat.\n\nWhat region are you leaning toward?`,
+      qrs:["🌴 Aruba","🌋 St. Lucia","🐢 Turks & Caicos","🌊 Cancun","🌸 Bali","🏏 Barbados"]
+    };
+
+  // ── BEACH / SNORKELING / DIVING ────────────────────────────────────────────
+  if (/\b(best beach(es)?|beach (destination|trip|vacation)|snorkel(ing)?|scuba( div(ing)?)?|coral reef|clearest water|bluest water|water sport)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`🏖️ Beach quality varies a LOT by destination. Here's how CxC thinks about it:\n\n**Clearest, calmest water:**\n• **Turks & Caicos** — Grace Bay is consistently ranked the #1 beach in the world. The water color is genuinely unreal.\n• **Aruba** — Eagle Beach is calm, clear, and almost always uncrowded. Hurricane-free.\n• **Barbados (West Coast)** — Platinum Coast has the calmest Caribbean water outside of TCI.\n\n**Best snorkeling & diving:**\n• **US Virgin Islands** — Buck Island has a federally protected underwater snorkel trail\n• **Puerto Rico** — Culebra's Flamenco Beach and surrounding reef are extraordinary\n• **Bali / Nusa Penida** — Manta rays, vibrant reef, incredibly affordable\n\n**Best all-around beach experience:**\n• **Hawaii (Maui)** — Variety: calm bays, black sand, snorkeling with sea turtles, dramatic sunsets\n• **Thailand (Phi Phi Islands)** — Limestone cliffs over turquoise water. Visually extraordinary.`,
+      qrs:["🐢 Turks & Caicos","🌴 Aruba","🏏 Barbados","🌺 US Virgin Islands","🌺 Hawaii","🌸 Bali","🌶️ Thailand"]
+    };
+
+  // ── SOLO TRAVEL ────────────────────────────────────────────────────────────
+  if (/\b(solo|alone|by myself|traveling alone|single traveler|just me|one person trip)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`🧳 Solo travel is some of the best travel — and CxC books plenty of it. Key things that matter: safety, ease of getting around, and places where you can be comfortably alone or easily meet people.\n\n**Best solo travel destinations:**\n• **Japan** — Arguably the safest country on earth for solo travel. Everything works perfectly. Eating alone at a ramen counter is a cultural institution.\n• **Iceland** — Solo Ring Road road trips are life-changing. Safe, easy, otherworldly scenery.\n• **Portugal** — Lisbon is one of the most social cities in Europe. Easy to meet fellow travelers, great food and wine.\n• **Costa Rica** — Adventure activities are naturally social, logistics are easy, very safe.\n• **New York City** — Easiest city in the world to be alone in and never actually feel lonely.\n• **Nashville / New Orleans** — Cities where solo travelers immediately feel welcome at every bar and music venue.`,
+      qrs:["🗾 Japan","🌋 Iceland","🇵🇹 Portugal","🐒 Costa Rica","🗽 New York City","🎸 Nashville","🎺 New Orleans"]
+    };
+
+  // ── BUDGET TRAVEL ──────────────────────────────────────────────────────────
+  if (/\b(cheap|budget|affordable|inexpensive|value|bang for (your )?buck|under \$\d|how much (does?|do) (it|things) cost|low cost|save money|best deal|most affordable)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`💰 The best-value destinations are genuinely excellent — not a consolation prize.\n\n**Best value Caribbean / Mexico:**\n• **Punta Cana** — best all-inclusive value in the Caribbean, rivals Mexico at lower cost\n• **Cancun** — most AI options at every price point; solid resorts from $150–$350/night\n• **Puerto Rico** — no passport needed, US dollars, incredible food scene, good hotel value\n\n**Best value international:**\n• **Portugal** — Michelin-starred meals for $60, stunning coast, the best wine you've never heard of\n• **Thailand** — private pool villa with butler service from $150/night. Nothing touches it for luxury-per-dollar.\n• **Bali** — private pool villa from $150–$250/night. Private chef dinners for $30/person.\n• **Morocco** — extraordinary riads, Sahara desert camp, unique experiences at accessible prices\n\n**Best value USA:**\n• **Nashville** — great hotels, incredible food scene, live music that's often free\n• **New Orleans** — one of America's best food cities at accessible prices\n\nWhat's your rough budget and how many travelers?`,
+      qrs:["🌺 Punta Cana","🌊 Cancun","🇵🇷 Puerto Rico","🇵🇹 Portugal","🌸 Bali","🎸 Nashville","🎺 New Orleans"]
+    };
+
+  // ── LUXURY TRAVEL ──────────────────────────────────────────────────────────
+  if (/\b(luxury|luxurious|ultra.?luxury|high.?end|splurge|5.?star|most expensive|finest|treat (myself|ourselves)|no budget|money no object|top (tier|hotel|resort)|best of the best)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`✨ CxC books luxury travel extensively — and knows the difference between properties that market themselves as luxury and those that actually deliver.\n\n**True ultra-luxury experiences:**\n• **Turks & Caicos** — Grace Bay Club and COMO Parrot Cay. The quietest, most exclusive Caribbean.\n• **St. Lucia** — Jade Mountain's open-wall suites with private infinity pool and Piton views. Nothing else like it.\n• **Bali** — Four Seasons Sayan or Amandari. Private villas that feel extraordinary at pricing that's almost reasonable.\n• **Japan** — Aman Tokyo or a traditional ryokan like Hiiragiya Honkan. The highest service standards on earth.\n• **Cabo San Lucas** — One&Only Palmilla or Las Ventanas al Paraíso (Rosewood). Mexico's finest resorts.\n• **Morocco** — Royal Mansour Marrakech, built by the King of Morocco. 53 private riads. Extraordinary.\n\nJesse and Sam have direct relationships with many of these properties — which often means upgrades and amenities that aren't available booking direct.`,
+      qrs:["🐢 Turks & Caicos","🌋 St. Lucia","🌸 Bali","🗾 Japan","🌵 Cabo","🕌 Morocco","💬 Talk to Jesse & Sam"]
+    };
+
+  // ── ADVENTURE TRAVEL ──────────────────────────────────────────────────────
+  if (/\b(adventure|hiking|hike|trek(king)?|zip.?line|white.?water|rafting|volcano|glacier|extreme|off the beaten|wildlife safari|national park)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`🏔️ Adventure travel is one of the most requested categories at CxC.\n\n**Top adventure destinations:**\n• **Costa Rica** — zip-lining through cloud forest, Arenal Volcano hot springs, Pacuare River white-water rafting (top 10 in the world), sea turtle nesting\n• **Iceland** — glacier hiking, Northern Lights, volcanic craters, Ring Road road trip. Genuinely otherworldly.\n• **Peru / Machu Picchu** — Inca Trail is the world's most famous trek. Sacred Valley ruins with almost no crowds.\n• **Hawaii** — Haleakala volcano crater at sunrise, Road to Hana, snorkeling with sea turtles in Maui\n• **Colorado (Aspen / Vail)** — skiing in winter, Maroon Bells hiking in summer, incredible mountain terrain year-round\n• **Bali** — Sunrise Mount Batur hike, rice terrace walks, surf lessons on gentle waves\n\nWhat kind of adventure are you after — hiking, water sports, winter, wildlife, or a mix?`,
+      qrs:["🐒 Costa Rica","🌋 Iceland","🏔️ Peru","🌺 Hawaii","⛷️ Colorado","🌸 Bali"]
+    };
+
+  // ── FOODIE / CULINARY ──────────────────────────────────────────────────────
+  if (/\b(foodie|culinary|gastronomy|best food (city|scene)|eat my way|michelin|fine dining (destination|city)|food and wine|chef|restaurant (scene|destination))\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`🍽️ Food-focused travel is one of CxC's favorite categories. The cities that truly stand out:\n\n**World-class food destinations:**\n• **Japan (Tokyo)** — More Michelin stars than any city on earth. Extraordinary at every level, from ramen stalls to kaiseki.\n• **Peru (Lima)** — Central is frequently ranked the #1 restaurant in the world. Lima is the most underrated food city anywhere.\n• **Italy** — Amalfi Coast seafood, Tuscany truffles, Rome's carbonara. Every meal matters deeply.\n• **Spain (Barcelona / San Sebastián)** — Most Michelin stars per capita. Basque pintxos culture is extraordinary.\n• **Thailand (Bangkok)** — Jay Fai (the only Michelin-starred street food stall), incredible at every price point.\n\n**Best USA food cities:**\n• **New Orleans** — The most distinctive food culture in America. Nowhere else tastes like this.\n• **New York City** — Inexhaustible. Le Bernardin, Carbone, Di Fara, great pizza at 2am.\n• **Nashville** — Fastest-growing restaurant scene in the South.\n\nAny cuisine preference or price range?`,
+      qrs:["🗾 Japan","🏔️ Peru","🍕 Italy","🇪🇸 Spain","🌶️ Thailand","🎺 New Orleans","🗽 NYC"]
+    };
+
+  // ── SHORT TRIP / WEEKEND ───────────────────────────────────────────────────
+  if (/\b(\d\s*-?\s*(day|night)s?|weekend( getaway)?|long weekend|quick trip|short (trip|vacation)|few days|limited time)\b/i.test(lo) && !detectDest(text)) {
+    const days = parseInt((lo.match(/(\d+)\s*-?\s*(day|night)/i)||[])[1]||3);
+    return {
+      text:`⏱️ ${days <= 3 ? 'Short trips are totally doable with the right destination.' : 'That gives you solid time to really feel a place.'}\n\n**Best ${days <= 3 ? '2–3 day' : '4–5 day'} trips:**\n• **Nashville** — fly in, hit Lower Broadway that night, explore the next day, fly home. Perfect 3-day trip.\n• **New Orleans** — French Quarter, Frenchmen Street, Commander's Palace. 3 days is the sweet spot.\n• **Savannah, GA** — One of America's most beautiful cities. 2–3 days is exactly right.\n• **Charleston, SC** — Walkable, gorgeous, great food. 3 days is ideal.\n${days >= 4 ? '• **Aruba** — 5 nights is the perfect AI trip. Beach, food, one excursion, total relaxation.\n• **Cancun** — 4–5 nights at a good AI resort is the most common booking CxC does.' : ''}\n\nFlying or driving, and which part of the country are you coming from?`,
+      qrs:["🎸 Nashville","🎺 New Orleans","🦚 Savannah","🌸 Charleston","🌴 Aruba","🌊 Cancun"]
+    };
+  }
+
+  // ── SKI TRIPS ──────────────────────────────────────────────────────────────
+  if (/\b(ski(ing)?|snowboard(ing)?|powder|ski resort|ski (trip|vacation)|slopes|mountain (resort|trip))\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`⛷️ Ski trips are a specialty at CxC — and the difference between a good trip and a great one is usually the lodging and knowing when to book.\n\n**Best ski destinations:**\n• **Aspen, CO** — The most glamorous ski resort in America. Ajax Mountain, extraordinary food and nightlife. The Little Nell is ski-in/ski-out perfection.\n• **Vail, CO** — Largest skiable terrain in the US. The Back Bowls on a powder day are unlike anything else in North America.\n• **Breckenridge, CO** — Best value in Colorado. Great terrain, lively village, more accessible than Aspen.\n• **Snowmass, CO** — Largest ski area in Colorado, excellent for families and groups.\n\n*Bucket-list ski:*\n• **Whistler, BC** — Largest ski resort in North America. The real thing.\n• **Verbier / Zermatt, Switzerland** — World-class skiing with Matterhorn views.\n\n📅 Book Colorado lodging by October for Christmas/New Year's. January–February is peak powder.\n\nHow big is your group and what dates are you thinking?`,
+      qrs:["⛷️ Aspen","🏔️ Vail","🎿 Breckenridge","❄️ Snowmass","🍁 Whistler BC","💬 Talk to Jesse & Sam"]
+    };
+
+  // ── ALL-INCLUSIVE ──────────────────────────────────────────────────────────
+  if (/all.?inclusive/i.test(lo) && !detectDest(text))
+    return {
+      text:`🌴 All-inclusive is one of CxC's biggest specialties — and this is where working with Jesse and Sam really pays off. They have relationships with the top AI resorts and can often secure room upgrades and resort credits that aren't available booking direct.\n\n**Best AI destinations:**\n• **Aruba** — hurricane-free year-round, calm beautiful beaches, great adults-only options\n• **Cancun / Riviera Maya** — most options at every price, Mayan ruins nearby, excellent group rates\n• **Punta Cana** — best value AI in the Caribbean, rivals Mexico at lower cost\n• **Jamaica** — Sandals and Beaches are world-class; Jesse and Sam are certified Sandals specialists\n• **St. Lucia** — more intimate, dramatic Pitons scenery, very romantic\n• **Turks & Caicos** — Beaches TCI is exceptional for families on Grace Bay Beach`,
+      qrs:["🌴 Aruba","🌊 Cancun","🌺 Punta Cana","🎵 Jamaica","🌋 St. Lucia","🐢 Turks & Caicos"]
+    };
+
+  // ── HONEYMOON / ROMANCE ────────────────────────────────────────────────────
+  if (/honeymoon|romantic getaway|anniversary trip|proposal trip/i.test(lo) && !detectDest(text))
+    return {
+      text:`💕 Honeymoon and romantic travel is where Jesse and Sam genuinely shine — they take the planning stress off completely so you can just enjoy it.\n\n**Most romantic destinations CxC books:**\n• **Aruba** — adults-only resorts, year-round perfect weather, Eagle Beach\n• **St. Lucia** — Jade Mountain's open-wall suites with private infinity pools and Pitons views\n• **Turks & Caicos** — Grace Bay Beach (#1 in the world), exclusive private-island options\n• **Bali** — private pool villas, rice terraces, deeply spiritual and beautiful\n• **Santorini, Greece** — caldera views, cliff-edge infinity pools, unforgettable sunsets\n• **Amalfi Coast, Italy** — cliffside villas, extraordinary food, the most beautiful coastline in Europe\n• **Napa Valley** — vineyard estates, Michelin-starred dinners, no passport needed\n• **Maui, Hawaii** — Four Seasons, Road to Hana, volcanic drama`,
+      qrs:["🌴 Aruba","🌋 St. Lucia","🐢 Turks & Caicos","🌸 Bali","🏛️ Greece","🍕 Italy","🍷 Napa Valley","🌺 Hawaii"]
+    };
+
+  // ── GROUP / BACHELOR / BACHELORETTE ───────────────────────────────────────
+  if (/\b(group (trip|travel)|bachelor|bachelorette|birthday trip|corporate (trip|retreat)|family reunion|trip with friends|party trip|guys trip|girls trip)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`👥 Groups are one of CxC's biggest specialties. The right destination, hotel, and itinerary makes the difference between a good trip and one people talk about for years.\n\n**Top group destinations:**\n• **Las Vegas** — something for every personality, world-class shows and dining, best nightlife in the US\n• **Nashville** — live music noon to 3am, incredible food scene, walkable, perfect energy\n• **New Orleans** — best food and music culture in America. Frenchmen Street beats Bourbon Street every time.\n• **Cancun** — all-inclusive group pricing is exceptional, Moon Palace handles 1,000+ guests effortlessly\n• **Jamaica (Sandals/Beaches)** — full resort takeover options for larger groups\n• **Cabo San Lucas** — high-energy resort strip plus world-class sport fishing and golf\n\nWhat's the occasion and roughly how many people?`,
+      qrs:["🎰 Las Vegas","🎸 Nashville","🎺 New Orleans","🌊 Cancun","🎵 Jamaica","🌵 Cabo"]
+    };
+
+  // ── GOLF ──────────────────────────────────────────────────────────────────
+  if (/\bgolf\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`⛳ Golf trips are Jesse and Sam's specialty — from planning the tee times to finding the right group hotel.\n\n**Top golf destinations CxC books:**\n• **Scottsdale, AZ** — 200+ courses, TPC Scottsdale, Troon North, We-Ko-Pa. World-class.\n• **Myrtle Beach, SC** — 100+ courses within 60 miles. Best East Coast golf value.\n• **Pebble Beach, CA** — bucket-list golf. Holes 6–10 along the Pacific cliffs are the most beautiful in the game.\n• **Pinehurst, NC** — the cradle of American golf. More USGA championships than anywhere.\n• **Bandon Dunes, OR** — five world-class links courses on the Oregon coast. The most serious golf trip in America.\n• **Ireland & Scotland** — St Andrews, Royal County Down, Ballybunion. Where the game was born.\n• **Cabo San Lucas** — Tiger Woods' Diamante, Quivira cliffside holes over the Pacific.\n• **Las Vegas** — Shadow Creek, Cascata, Wolf Creek. Dramatic desert golf.`,
+      qrs:["🌵 Scottsdale","⛳ Myrtle Beach","🌊 Pebble Beach","🌲 Pinehurst","🌊 Bandon Dunes","🍀 Ireland & Scotland","🌵 Cabo Golf","🎰 Las Vegas Golf"]
+    };
+
+  // ── CRUISE ────────────────────────────────────────────────────────────────
+  if (/\bcruise/i.test(lo) && !detectDest(text)) {
+    const d = KB.cruises;
+    if (/port|depart|drive|no flight|nearest/i.test(lo))
+      return { text:"🚢 Cruise ports closest to you:", cards:d.ports.map(p=>({name:p.name,badge:"Port",notes:p.note})), qrs:["Compare cruise lines","Alaska cruise","Caribbean cruise","Mediterranean cruise"] };
+    if (/line|which cruise|compare|best cruise company/i.test(lo))
+      return { text:"🚢 Major cruise lines Jesse & Sam book:", cards:d.lines.map(l=>({name:l.name,badge:l.best,notes:l.notes})), qrs:["Ports near me","Alaska cruise","Caribbean cruise","Family cruise"] };
+    return {
+      text:`🚢 ${d.vibe}\n\n${d.sell}\n\n🎯 Best for: ${(d.bestFor||[]).join(', ')}`,
+      qrs:["Compare cruise lines","Ports near me","Alaska cruise","Caribbean cruise","Mediterranean cruise"]
+    };
+  }
+
+  // ── FAMILY ────────────────────────────────────────────────────────────────
+  if (/\b(family (trip|vacation|travel)|with kids|kids trip|children|toddler|teen travel|multigenerational)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`👨‍👩‍👧 Family travel is all about the right mix of activities for different ages — and knowing which resorts genuinely deliver on their kids programming vs. just marketing it.\n\n**Best family destinations:**\n• **Orlando / Disney** — unbeatable for ages 3–15. Epic Universe is brand new.\n• **Cancun / Riviera Maya** — Moon Palace and Hyatt Ziva have excellent kids clubs and water parks\n• **Bahamas (Atlantis)** — 20+ waterslides, aquarium, marine habitat. Kids lose their minds.\n• **Jamaica (Beaches Negril)** — Sesame Street characters, waterpark, 7-Mile Beach. The gold standard family AI.\n• **Costa Rica** — wildlife, volcanoes, zip-lining. Perfect for teens and adventure-minded families.\n• **Hawaii** — volcanoes, sea turtles, Maui beaches. Works beautifully for all ages.\n• **US Virgin Islands** — no passport needed, calm water, easy snorkeling, very family-friendly.`,
+      qrs:["✨ Orlando / Disney","🌊 Cancun","🏝️ Bahamas","🎵 Jamaica","🐒 Costa Rica","🌺 Hawaii","🌺 US Virgin Islands"]
+    };
+
+  // ── PASSPORT / VISA ───────────────────────────────────────────────────────
+  if (/\b(passport|visa|entry requirements?|do i need a passport|can (americans?|canadians?|us citizens?) (go|travel|visit)|no passport (needed|required)|without a passport)\b/i.test(lo)) {
+    const dest = detectDest(text);
+    if (dest && KB[dest]) {
+      return {
+        text:`📘 **Passport & entry info for ${KB[dest].label}:**\n\n${KB[dest].travelNote||'Check travel.state.gov for the latest entry requirements.'}\n\n*Requirements can change — Jesse and Sam always verify current entry requirements when booking your trip.*`,
+        qrs:[`${KB[dest].emoji} Tell me more about ${KB[dest].label}`,"💬 Talk to Jesse & Sam"]
+      };
+    }
+    return {
+      text:`📘 **US citizen passport & entry quick guide:**\n\n**No passport needed:**\n• 🇵🇷 Puerto Rico — US territory, domestic travel rules apply\n• 🌺 US Virgin Islands — US territory, no passport required\n• 🇺🇸 All US domestic destinations\n\n**Passport required, no visa (most popular destinations):**\n• Mexico, Caribbean, Canada, all of Europe — just a valid US passport\n• Japan, Thailand, Bali — visa-free up to 30–90 days depending on country\n• Costa Rica, Peru, Morocco — no visa required for US citizens\n\n**Passport must be valid:** Most countries require 6 months validity beyond your travel dates.\n\n*Always confirm at travel.state.gov — requirements do change. Jesse and Sam verify everything when booking.*\n\nAre you asking about a specific destination?`,
+      qrs:["🇵🇷 Puerto Rico (no passport)","🌺 US Virgin Islands","🌍 Europe travel","🗾 Japan","🌵 Mexico / Cabo","💬 Ask about a specific destination"]
+    };
+  }
+
+  // ── TRAVEL INSURANCE ──────────────────────────────────────────────────────
+  if (/travel insurance|trip (protection|insurance)|cancel for any reason|\bcfar\b|trip cancel(lation)?/i.test(lo))
+    return {
+      text:`🛡️ Travel insurance is something Jesse and Sam take seriously — and they walk every client through options when booking.\n\n**Why it matters:**\n• **Trip cancellation** — covers you if you get sick, have a family emergency, or something unexpected comes up before departure\n• **Medical coverage abroad** — your US health insurance often doesn't apply internationally\n• **Emergency evacuation** — critical for remote destinations, adventure travel, or cruises far from major hospitals\n• **Cancel for Any Reason (CFAR)** — the most flexible option, typically covers 75% of prepaid costs if you cancel for literally any reason\n• **"Covered reason" policies** — cheaper but more restricted; only pay out for specific qualifying events\n\n**Jesse and Sam's approach:** They'll present the right insurance options for your specific trip and destination. It's always your call, but they'll make sure you understand exactly what you're opting into or out of.\n\nDo you have a specific trip you're planning, or just researching?`,
+      qrs:["💬 Talk to Jesse & Sam","🤔 Help me choose a destination"]
+    };
+
+  // ── PACKING ───────────────────────────────────────────────────────────────
+  if (/\b(pack(ing)?|what to (bring|pack|wear)|luggage|suitcase|carry.?on)\b/i.test(lo)) {
+    const dest = detectDest(text);
+    if (dest && KB[dest]) {
+      const d = KB[dest];
+      const isBeach = /Caribbean|Mexico|Pacific|Bali|Thailand/i.test(d.region||'');
+      const isEurope = /Europe/i.test(d.region||'');
+      let tips = '';
+      if (isBeach) tips = `☀️ **Packing for ${d.label}:**\n\n• 2–3 swimsuits (so one is always dry)\n• Reef-safe sunscreen — required in some Caribbean destinations\n• Light linen or moisture-wicking clothing\n• Sandals and water shoes\n• Light cover-up for restaurants in the evening\n• Waterproof phone case for excursions\n• Prescriptions + basic first aid\n• Passport (if required) + photocopies kept separate`;
+      else if (isEurope) tips = `🇪🇺 **Packing for ${d.label}:**\n\n• Comfortable walking shoes — European cities involve serious walking on cobblestones\n• Layers — weather shifts throughout the day\n• Smart-casual for dinner — Europeans dress up more than Americans expect\n• Power adapter (Type C or G depending on country)\n• Passport + photocopies kept separate\n• Notify your bank before departure\n• Small daypack for exploring`;
+      else tips = `🧳 **Packing for ${d.label}:**\n\n• Check exact weather for your travel dates before packing\n• Passport (required) + copies stored separately from the original\n• Any prescriptions you need for the full trip plus extra days\n• Notify your bank and credit cards before traveling internationally\n• Download offline maps before you land`;
+      return { text:tips, qrs:[`Tell me more about ${d.label}`,"💬 Talk to Jesse & Sam"] };
+    }
+    return {
+      text:`🧳 Packing varies a lot by destination — tell me where you're headed and I'll give you specific advice.\n\n**Rules that apply everywhere:**\n• Notify your bank before any international travel\n• Keep passport copies separate from your actual passport\n• Download offline maps before you land (Google Maps works great offline)\n• Reef-safe sunscreen for beach destinations — required in some countries\n• Comfortable walking shoes — you'll always walk more than you plan`,
+      qrs:["☀️ Caribbean packing","🇪🇺 Europe packing","🗾 Japan / Asia packing","⛳ Golf trip gear"]
+    };
+  }
+
+  // ── SAFETY ────────────────────────────────────────────────────────────────
+  if (/\b(is it safe|how safe|safety|crime rate|dangerous|security concerns)\b/i.test(lo)) {
+    const dest = detectDest(text);
+    if (dest && KB[dest]) {
+      return {
+        text:`🛡️ **Safety: ${KB[dest].label}**\n\n${KB[dest].travelNote||''}\n\nFor any destination, Jesse and Sam recommend:\n• Check the State Department advisory at **travel.state.gov** before booking\n• Most popular tourist corridors are significantly safer than broader regional statistics suggest\n• Established hotels vs. random rentals makes a real difference in safety and security\n• Travel insurance with emergency evacuation coverage is smart for international trips\n\nThe State Dept issues Level 1 (Exercise Normal Precautions) through Level 4 (Do Not Travel) advisories. Most CxC destinations are Level 1 or 2.`,
+        qrs:[`Tell me more about ${KB[dest].label}`,"🛡️ Travel insurance","💬 Talk to Jesse & Sam"]
+      };
+    }
+    return {
+      text:`🛡️ Safety varies by destination and by what part of a destination you're in.\n\n**Generally very safe for tourists:**\n• 🗾 Japan, 🌋 Iceland, 🇵🇹 Portugal, 🍀 Ireland/Scotland — among the safest countries in the world\n• Caribbean resort areas — the resort corridors are heavily patrolled and secured\n• Most of Western Europe, 🇳🇱 Amsterdam, 🇬🇧 London\n\n**Worth researching first:**\n• Jamaica, Mexico — perfectly safe in resort areas and with a reputable tour operator; more caution warranted off-resort\n• Any destination: always check **travel.state.gov** for current State Dept advisories before booking\n\nAre you asking about a specific destination?`,
+      qrs:["🗾 Japan (very safe)","🌋 Iceland","🇵🇹 Portugal","🌴 Caribbean safety","💬 Talk to Jesse & Sam"]
+    };
+  }
+
+  // ── BEST TIME TO VISIT / WEATHER (general) ────────────────────────────────
+  if (/\b(best time (to go|to visit|of year)|when (should i go|to go|is best to visit)|what month|hurricane season|peak season|off.?season|shoulder season)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`📅 Timing makes a real difference for some destinations more than others.\n\n**Key timing rules:**\n• **Caribbean / Mexico** — December–April is the sweet spot. Hurricane season runs June–November. (Aruba is outside the hurricane belt — great year-round.)\n• **Europe** — April–June and September–October are ideal. July–August is peak season, crowded and expensive.\n• **Hawaii** — Excellent year-round. April–May and September–October are less crowded.\n• **Japan** — March–May (cherry blossoms) and October–November (fall foliage) are extraordinary.\n• **Costa Rica** — December–April for dry season on the Pacific side.\n• **Iceland** — Northern Lights: October–March. Midnight Sun and road trips: May–August.\n• **Ski (Colorado)** — January–February for peak powder. Book lodging 3–4 months ahead.\n\nTell me the specific destination and I'll give you the exact best windows for your trip.`,
+      qrs:["🌴 Caribbean timing","🌍 Europe timing","⛷️ Ski timing","🌺 Hawaii timing","🗾 Japan timing","💬 Ask about a destination"]
+    };
+
+  // ── ITINERARY / HOW LONG TO STAY ──────────────────────────────────────────
+  if (/\b(itinerary|day.?by.?day|how long|how many (days|nights)|trip length|length of stay|sample schedule)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`🗓️ Trip length really depends on the destination and what you want to do. Here are the sweet spots:\n\n• **Weekend cities** (Nashville, New Orleans, Savannah, Charleston) — 3 nights is ideal\n• **Caribbean AI resorts** (Aruba, Cancun, Jamaica) — 5–7 nights is the classic booking\n• **Hawaii** — 7 nights minimum; 10+ if you want more than one island\n• **Europe cities** (Paris, London, Amsterdam) — 4–5 nights per city\n• **Europe multi-country** (Italy + Greece, Ireland + Scotland) — 10–14 nights\n• **Japan** — 10–14 nights minimum to do it properly\n• **Bali / Southeast Asia** — 10–14 nights is ideal\n• **Peru / Machu Picchu** — 7–10 nights including Lima, Cusco, and the ruins\n\nTell me your destination and I'll give you a specific recommendation.`,
+      qrs:["🌴 Caribbean trip length","🌍 Europe trip length","🗾 Japan itinerary","🏔️ Peru itinerary","💬 Talk to Jesse & Sam"]
+    };
+
+  // ── DESTINATION DETECTED ──────────────────────────────────────────────────
+  const dest = detectDest(text);
+  if (dest) {
+    currentDest = dest;
+    const d = KB[dest];
+    if (!d) return { text:`I don't have full details on that one yet — but Jesse and Sam can absolutely help. Reach out directly and they'll take it from there!`, qrs:["💬 Talk to Jesse & Sam"] };
+
+    // Best time / weather — destination specific
+    if (/\b(best time|when (to go|should i go|to visit)|what month|weather|season|climate)\b/i.test(lo))
+      return {
+        text:`📅 **Best time to visit ${d.label}:**\n\n${d.bestTime||'Great year-round — check with Jesse and Sam for your specific dates.'}\n\n${d.travelNote||''}`,
+        qrs:[`🏨 Hotels in ${d.label}`,`🎯 Things to do in ${d.label}`,"💬 Talk to Jesse & Sam"]
+      };
+
+    // Passport / visa — destination specific
+    if (/passport|visa|entry|do i need/i.test(lo))
+      return {
+        text:`📘 **Passport & entry: ${d.label}**\n\n${d.travelNote||'Check entry requirements before booking.'}\n\n*Requirements can change — Jesse and Sam always verify current entry requirements.*`,
+        qrs:[`Tell me more about ${d.label}`,"💬 Talk to Jesse & Sam"]
+      };
+
+    // How long to stay — destination specific
+    if (/how long|how many (days|nights)|trip length|length of stay|itinerary/i.test(lo)) {
+      const len = {
+        japan:'10–14 nights minimum to cover Tokyo + Kyoto + Osaka properly. 7 nights is doable but rushed.',
+        italy:'10–14 nights for Rome + Amalfi Coast + a third stop. 7 nights works if you focus on one region.',
+        greece:'7–10 nights covers Athens + one or two islands well.',
+        hawaii:'7 nights minimum. 10+ if you want more than one island.',
+        iceland:'7–10 nights for the Ring Road. 4–5 nights covers Reykjavik + the South Coast.',
+        paris:'4–5 nights is the classic Paris trip. 7 nights if you want day trips.',
+        nashville:'3 nights is perfect. 4 if you want a day trip to Lynchburg or the Natchez Trace.',
+        neworleans:'3–4 nights. You can feel the whole city in that window.',
+        peru:'7–10 nights: a day or two in Lima, 2 nights to acclimatize in the Sacred Valley, 2 nights in Cusco, 1–2 nights near Machu Picchu.',
+        bali:'10–14 nights is ideal. 7 nights works if you stay in one area.',
+        croatia:'7–10 nights: Split, Hvar, and Dubrovnik is the classic routing.',
+        thailand:'10–14 nights: Bangkok + islands is the classic. 7 nights if you pick one region.',
+        morocco:'7–10 nights: Marrakech + Fez + a Sahara night.',
+        london:'4–5 nights is a solid London trip. 7 if you want day trips to Oxford or Bath.',
+        amsterdam:'3–4 nights is plenty for Amsterdam itself. Add Belgium and you need 6–7.'
+      }[dest];
+      return {
+        text:`⏱️ **How long to stay in ${d.label}:**\n\n${len||`5–7 nights is the typical sweet spot for ${d.label}. Jesse and Sam can build a day-by-day itinerary once you've picked your dates.`}\n\n*Jesse and Sam can structure the whole trip from arrival to departure — transfers, hotels, activities, restaurants, all of it.*`,
+        qrs:[`🏨 Hotels in ${d.label}`,`🎯 Things to do`,`💬 Talk to Jesse & Sam`]
+      };
+    }
+
+    // Safety — destination specific
+    if (/\b(safe|safety|dangerous|crime|is it safe)\b/i.test(lo))
+      return {
+        text:`🛡️ **Safety: ${d.label}**\n\n${d.travelNote||''}\n\nFor current advisories, check **travel.state.gov**. The tourist zones and resort areas where CxC books are typically significantly safer than broader regional statistics suggest. Jesse and Sam brief every client on relevant safety considerations for their specific destination.`,
+        qrs:[`Tell me more about ${d.label}`,"🛡️ Travel insurance","💬 Talk to Jesse & Sam"]
+      };
+
+    const cat = detectCat(text);
+
+    if (cat==='hotels' && d.hotels)
+      return { text:`🏨 **Hotels in ${d.label}:**\n\n${d.sell||''}`, cards:d.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[])] };
+
+    if (cat==='restaurants' && d.restaurants)
+      return { text:`🍽️ **Top dining in ${d.label}:**`, cards:d.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+
+    if (cat==='activities' && (d.activities||d.lines))
+      return { text:`🎯 **Top things to do in ${d.label}:**`, cards:(d.activities||d.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||'',note:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining",...(d.golf?["Golf Courses"]:[])] };
+
+    if (cat==='golf' && d.golf)
+      return { text:`⛳ **Golf in ${d.label}:**\n\n${d.sell||''}`, cards:d.golf.map(g=>({name:g.name,badge:g.tier,sub:g.price,note:g.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+
+    if (/all.?inclusive/i.test(lo) && d.allinclusive)
+      return { text:`🌴 **All-inclusive options in ${d.label}:**`, cards:d.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining"] };
+
+    // General destination overview
+    const dqrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),(d.bestFor||[]).length?"Talk to Jesse & Sam":""];
+    return {
+      text:`${d.emoji} **${d.label}**\n\n${d.vibe}\n\n✦ *Why book with CxC:* ${d.sell||'Jesse and Sam handle every detail so you just show up and enjoy.'}\n\n✈️ ${d.travelNote||''}\n📅 Best time: ${d.bestTime||'Year-round'}\n🎯 Best for: ${(d.bestFor||[]).join(', ')}`,
+      qrs:dqrs.filter(Boolean)
+    };
+  }
+
+  // ── NON-TRAVEL CATCH-ALL ──────────────────────────────────────────────────
+  if (isNonTravel(text))
+    return {
+      text:`That one's a bit outside my lane — I'm a travel planning guide, so I'm best at destinations, hotels, trip ideas, and connecting you with Jesse and Sam at CxC! 😄\n\nHere's what I *can* help with:\n• Destination research and recommendations\n• Hotels, restaurants, and activities anywhere in the world\n• Golf trips, cruises, all-inclusive resorts\n• Honeymoons, group trips, family vacations\n• Visa and passport info, best time to visit, packing tips\n• Connecting you directly with Jesse and Sam\n\nWhat travel question can I help with?`,
+      qrs:["🤔 Help me choose a destination","🌴 Caribbean","⛳ Golf","🚢 Cruises","💕 Honeymoon"]
+    };
+
+  // ── GENERIC TRAVEL FALLBACK ───────────────────────────────────────────────
+  return {
+    text:`I want to help — give me a bit more to work with!\n\nTry something like:\n• A destination ("Tell me about Bali" or "What's Japan like?")\n• A trip type ("Planning a golf trip" or "Honeymoon ideas")\n• A question ("When's the best time for the Caribbean?" or "Do I need a passport for Puerto Rico?")\n• A filter ("Adults-only resorts" or "Best beaches for snorkeling")\n\nOr I can ask you a few quick questions and figure out the right destination together.`,
+    qrs:["🤔 Help me choose","🌴 Caribbean","⛳ Golf Trip","🚢 Cruises","🌍 Europe","💕 Honeymoon","💰 Budget travel","✨ Luxury travel"]
+  };
+}
+
+// ── KEYWORD DETECTION ─────────────────────────────────────────────────────────
+function detectDest(t) {
+  const lo = t.toLowerCase();
+  for (const [d,ks] of Object.entries(DEST_KEYS)) if (ks.some(k=>lo.includes(k))) return d;
+  return null;
+}
+function detectCat(t) {
+  const lo = t.toLowerCase();
+  for (const [c,ks] of Object.entries(CAT_KEYS)) if (ks.some(k=>lo.includes(k))) return c;
+  return null;
+}
+
+// ── UI RENDERING ──────────────────────────────────────────────────────────────
+function el(id){return document.getElementById(id)}
+function scrollBot(){const c=el('chat');c.scrollTop=c.scrollHeight}
+
+function logChat(role,text){chatLog.push({role,text:text.replace(/\*\*(.*?)\*\*/g,'$1')})}
+
+function botMsg(text, buttons) {
+  logChat('bot', text);
+  removeQRs();
+  const wrap = document.createElement('div');
+  wrap.className = 'msg bot';
+  wrap.innerHTML = `<div class="av">CxC</div><div class="bub">${fmt(text)}</div>`;
+  el('chat').appendChild(wrap);
+  if (buttons && buttons.length) {
+    const row = document.createElement('div');
+    row.className = 'qrs';
+    buttons.forEach(b => {
+      const btn = document.createElement('button');
+      btn.className = 'qr';
+      btn.textContent = b.label;
+      btn.onclick = () => { removeQRs(); b.action(); };
+      row.appendChild(btn);
+    });
+    el('chat').appendChild(row);
+  }
+  scrollBot();
+}
+
+function userMsg(text) {
+  logChat('user', text);
+  const wrap = document.createElement('div');
+  wrap.className = 'msg user';
+  wrap.innerHTML = `<div class="av">👤</div><div class="bub">${esc(text)}</div>`;
+  el('chat').appendChild(wrap);
+  scrollBot();
+}
+
+function addCards(cards) {
+  if (!cards||!cards.length) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'cards';
+  wrap.innerHTML = cards.map(c=>`
+    <div class="card">
+      <div class="card-top"><span class="card-name">${esc(c.name)}</span>${c.badge?`<span class="card-badge">${esc(c.badge)}</span>`:''}</div>
+      ${c.sub?`<div class="card-sub">${esc(c.sub)}</div>`:''}
+      ${c.note?`<div class="card-note">${esc(c.note)}</div>`:''}
+    </div>`).join('');
+  el('chat').appendChild(wrap);
+  scrollBot();
+}
+
+function addQRs(opts) {
+  if (!opts||!opts.length) return;
+  const row = document.createElement('div');
+  row.className = 'qrs';
+  opts.forEach(label => {
+    const btn = document.createElement('button');
+    btn.className = 'qr';
+    btn.textContent = label;
+    btn.onclick = () => sendText(label);
+    row.appendChild(btn);
+  });
+  el('chat').appendChild(row);
+  scrollBot();
+}
+
+function removeQRs() {
+  document.querySelectorAll('.qrs').forEach(e=>e.remove());
+}
+
+function maybeShowConnect() {
+  if (connectShown) return;
+  if (msgCount < 3 && !currentDest) return;
+  connectShown = true;
+  const wrap = document.createElement('div');
+  wrap.className = 'connect';
+  wrap.innerHTML = `
+    <p>✦ Jesse and Sam can take everything from here — personalized options, perks you won't find online, and pricing that's often better than booking direct. They respond fast.</p>
+    <div class="connect-btns">
+      <button class="cbtn" onclick="startLead()">Connect with CxC →</button>
+      <a class="cbtn-o" href="tel:${CXC_PHONE}">📞 ${CXC_PHONE}</a>
+      <a class="cbtn-o" href="mailto:${CXC_EMAIL}">✉️ Email</a>
+    </div>`;
+  el('chat').appendChild(wrap);
+  scrollBot();
+}
+
+// ── TEXT FORMATTING ───────────────────────────────────────────────────────────
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function fmt(s){
+  return esc(s)
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n/g,'<br/>');
+}
+
+// ── SEND ──────────────────────────────────────────────────────────────────────
+function sendText(t) { el('inp').value=''; processText(t); }
+
+function send() {
+  const t = el('inp').value.trim();
+  if (!t) return;
+  el('inp').value = '';
+  el('sendBtn').disabled = true;
+  processText(t);
+}
+
+function processText(text) {
+  removeQRs();
+  userMsg(text);
+  msgCount++;
+  setTimeout(() => {
+    const reply = getReply(text);
+    if (reply) {
+      botMsg(reply.text, null);
+      if (reply.cards) addCards(reply.cards);
+      if (reply.qrs && reply.qrs.length) addQRs(reply.qrs);
+    }
+    maybeShowConnect();
+  }, 280);
+}
+
+el('inp').addEventListener('input', function(){ el('sendBtn').disabled = !this.value.trim(); });
+
+// ── PACKAGES ──────────────────────────────────────────────────────────────────
+function showPkgs() {
+  el('pkgList').innerHTML = PACKAGES.map(p=>`
+    <div class="pkg-card" onclick="pkgClicked('${p.id}')">
+      <div class="pkg-cat">${esc(p.cat)}</div>
+      <div class="pkg-name">${esc(p.name)}</div>
+      <div class="pkg-meta">${esc(p.meta)}</div>
+      <ul class="pkg-hl">${p.highlights.map(h=>`<li>${esc(h)}</li>`).join('')}</ul>
+      <div class="pkg-pr-row">
+        <div class="pkg-pr">${esc(p.priceLabel)}</div>
+        <button class="ask-btn">Ask About This →</button>
+      </div>
+    </div>`).join('');
+  el('pkgPanel').style.display='flex';
+}
+function hidePkgs(){el('pkgPanel').style.display='none'}
+function pkgClicked(id){
+  hidePkgs();
+  const p=PACKAGES.find(x=>x.id===id);
+  if(p) startLead('Interested in: '+p.name);
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+botMsg(
+  `Hey! 👋 I'm your CxC Travel planning guide.\n\nTell me where you're dreaming of going and I'll give you the full picture — hotels, restaurants, activities, golf courses, and all-inclusive options. Or if you're not sure where to go yet, I'll help you figure that out too.\n\nWhat kind of trip are you thinking about?`,
+  null
+);
+addQRs(["🤔 Help me choose","🌴 Caribbean","⛳ Golf Trip","🚢 Cruises","🍕 Italy","�
