@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CxC Travel — Trip Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0B1426;--gold:#C9A455;--gold2:#DFC07A;--cream:#F5F0E8;--gray:#6b7280;--dark2:#152035}
+body{font-family:'Nunito Sans',sans-serif;background:var(--navy);height:100svh;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── HEADER ── */
+.header{background:var(--navy);border-bottom:1px solid rgba(201,164,85,.22);padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:#fff;letter-spacing:.04em}
+.logo span{color:var(--gold)}
+.header-r{display:flex;align-items:center;gap:.75rem}
+.pkg-btn{background:rgba(201,164,85,.13);color:var(--gold);border:1px solid rgba(201,164,85,.3);border-radius:20px;padding:.35rem .85rem;font-size:.76rem;font-weight:700;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:all .2s}
+.pkg-btn:hover{background:rgba(201,164,85,.25)}
+.hdr-link{color:rgba(255,255,255,.45);font-size:.76rem;text-decoration:none;font-weight:600;transition:color .2s}
+.hdr-link:hover{color:var(--gold)}
+
+/* ── CHAT ── */
+.chat{flex:1;overflow-y:auto;padding:1.1rem 1rem;display:flex;flex-direction:column;gap:.8rem;max-width:800px;width:100%;margin:0 auto}
+.chat::-webkit-scrollbar{width:4px}
+.chat::-webkit-scrollbar-thumb{background:rgba(201,164,85,.25);border-radius:2px}
+
+.msg{display:flex;gap:.6rem;animation:pop .22s ease-out}
+.msg.user{flex-direction:row-reverse}
+.av{width:27px;height:27px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;margin-top:3px}
+.msg.bot .av{background:var(--gold);color:var(--navy)}
+.msg.user .av{background:rgba(255,255,255,.1);font-size:.85rem}
+.bub{padding:.7rem .95rem;border-radius:16px;max-width:86%;font-size:.875rem;line-height:1.65;white-space:pre-wrap}
+.msg.bot .bub{background:rgba(255,255,255,.068);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.07);border-radius:4px 16px 16px 16px}
+.msg.user .bub{background:var(--gold);color:var(--navy);font-weight:600;border-radius:16px 4px 16px 16px}
+
+/* cards */
+.cards{display:flex;flex-direction:column;gap:.45rem;padding-left:2.1rem;animation:pop .28s ease-out}
+.card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.75rem .95rem}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.18rem}
+.card-name{font-weight:700;color:#fff;font-size:.85rem}
+.card-badge{background:var(--gold);color:var(--navy);font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.14rem .45rem;border-radius:10px;flex-shrink:0;white-space:nowrap}
+.card-sub{color:var(--gold2);font-size:.75rem;font-weight:600;margin-bottom:.15rem}
+.card-note{color:rgba(255,255,255,.5);font-size:.75rem;line-height:1.5}
+
+/* quick replies */
+.qrs{display:flex;flex-wrap:wrap;gap:.38rem;padding-left:2.1rem;animation:pop .28s ease-out}
+.qr{background:rgba(201,164,85,.09);color:var(--gold);border:1px solid rgba(201,164,85,.22);border-radius:18px;padding:.3rem .78rem;font-size:.77rem;cursor:pointer;font-weight:600;transition:all .2s;white-space:nowrap}
+.qr:hover{background:rgba(201,164,85,.22)}
+
+/* connect banner */
+.connect{background:linear-gradient(135deg,rgba(201,164,85,.13),rgba(201,164,85,.05));border:1px solid rgba(201,164,85,.28);border-radius:12px;padding:.85rem 1rem;animation:pop .3s ease-out}
+.connect p{color:rgba(255,255,255,.83);font-size:.84rem;margin-bottom:.55rem;line-height:1.55}
+.connect-btns{display:flex;gap:.45rem;flex-wrap:wrap}
+.cbtn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.44rem .95rem;font-weight:700;font-size:.77rem;cursor:pointer;transition:background .2s}
+.cbtn:hover{background:var(--gold2)}
+.cbtn-o{background:transparent;color:var(--gold);border:1px solid rgba(201,164,85,.45);border-radius:6px;padding:.44rem .95rem;font-weight:700;font-size:.77rem;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer}
+
+/* lead collecting inline */
+.lead-prompt{background:rgba(201,164,85,.08);border:1px solid rgba(201,164,85,.2);border-radius:12px;padding:.8rem 1rem;animation:pop .3s ease-out;font-size:.84rem;color:rgba(255,255,255,.85);line-height:1.55}
+.lead-done{background:rgba(50,200,100,.08);border:1px solid rgba(50,200,100,.2);border-radius:12px;padding:1rem;animation:pop .3s ease-out}
+.lead-done h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:.4rem}
+.lead-done p{color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.6}
+.lead-done .ck{font-size:1.6rem;margin-bottom:.35rem}
+.contact-line{margin-top:.6rem;font-size:.8rem;color:rgba(255,255,255,.45)}
+.contact-line a{color:var(--gold);text-decoration:none}
+
+/* ── INPUT ── */
+.input-wrap{padding:.6rem .9rem .85rem;max-width:800px;width:100%;margin:0 auto;flex-shrink:0}
+.input-bar{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.45rem .45rem .45rem .85rem;display:flex;gap:.45rem;align-items:center}
+.input-bar input{flex:1;background:transparent;border:none;color:#fff;font-family:'Nunito Sans',sans-serif;font-size:.875rem;outline:none}
+.input-bar input::placeholder{color:rgba(255,255,255,.28)}
+.send{background:var(--gold);color:var(--navy);border:none;border-radius:9px;width:34px;height:34px;cursor:pointer;font-size:1rem;font-weight:700;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.send:hover:not(:disabled){background:var(--gold2)}
+.send:disabled{opacity:.3;cursor:not-allowed}
+
+/* ── PACKAGES PANEL ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:50;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
+.panel{background:#162033;border-radius:16px 16px 0 0;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;padding:1.4rem}
+.panel-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+.panel-hd h2{font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:#fff;font-weight:700}
+.x-btn{background:rgba(255,255,255,.09);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.95rem}
+.pkg-card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1rem;margin-bottom:.8rem;cursor:pointer;transition:all .2s}
+.pkg-card:hover{background:rgba(255,255,255,.08)}
+.pkg-cat{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.pkg-meta{font-size:.77rem;color:rgba(255,255,255,.4);margin-bottom:.55rem}
+.pkg-hl{list-style:none;margin-bottom:.65rem}
+.pkg-hl li{font-size:.77rem;color:rgba(255,255,255,.68);padding:.12rem 0;display:flex;gap:.38rem}
+.pkg-hl li::before{content:'✓';color:var(--gold);flex-shrink:0;font-weight:700}
+.pkg-pr-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.pkg-pr{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#fff}
+.ask-btn{background:var(--gold);color:var(--navy);border:none;border-radius:6px;padding:.4rem .85rem;font-weight:700;font-size:.75rem;cursor:pointer}
+.ask-btn:hover{background:var(--gold2)}
+
+@keyframes pop{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.bub{max-width:92%}.hdr-link{display:none}}
+</style>
+</head>
+<body>
+<script src="data.js"></script>
+
+<div class="header">
+  <div class="logo">CxC<span>.</span>Travel</div>
+  <div class="header-r">
+    <button class="pkg-btn" onclick="showPkgs()">📦 Packages</button>
+    <a class="hdr-link" href="tel:412-420-6826">412-420-6826</a>
+    <a class="hdr-link" href="mailto:cxctravel412@gmail.com">Email Us</a>
+  </div>
+</div>
+
+<div class="chat" id="chat"></div>
+
+<div class="input-wrap">
+  <div class="input-bar">
+    <input id="inp" type="text" placeholder="Ask about any destination, or tell me what kind of trip you're dreaming about..." onkeydown="if(event.key==='Enter')send()"/>
+    <button class="send" id="sendBtn" onclick="send()" disabled>→</button>
+  </div>
+</div>
+
+<div class="ov" id="pkgPanel" style="display:none" onclick="if(event.target===this)hidePkgs()">
+  <div class="panel">
+    <div class="panel-hd"><h2>✦ CxC Travel Packages</h2><button class="x-btn" onclick="hidePkgs()">✕</button></div>
+    <div id="pkgList"></div>
+  </div>
+</div>
+
+<script>
+// ── CONSTANTS ──────────────────────────────────────────────────────────────────
+const CXC_PHONE = "412-420-6826";
+const CXC_EMAIL = "cxctravel412@gmail.com";
+
+// ── STATE ──────────────────────────────────────────────────────────────────────
+// mode: 'chat' | 'quiz' | 'lead'
+let mode = 'chat';
+let currentDest = null;
+let msgCount = 0;
+let connectShown = false;
+let chatLog = [];   // {role, text} full history for lead summary
+
+// Quiz state
+let quizStep = 0;
+let quizAnswers = {};
+
+// Lead state
+let leadStep = 0;
+let leadData = {};
+const LEAD_QUESTIONS = [
+  { key:'name',   ask:"What's your name?" },
+  { key:'email',  ask:"Great! And your email address?" },
+  { key:'phone',  ask:"Best phone number to reach you?" },
+  { key:'dates',  ask:"When are you thinking of traveling? (Even a rough month or season works!)" },
+  { key:'people', ask:"Last one — how many people total in your group?" }
+];
+
+// ── QUIZ FLOW ──────────────────────────────────────────────────────────────────
+const QUIZ = [
+  {
+    q: "Let's find your perfect trip! First — what kind of experience matters most to you?",
+    opts: ["🏖️ Beach & Relaxation","⛳ Golf","🏙️ City, Food & Culture","🌿 Nature & Adventure","💕 Romance / Honeymoon","👨‍👩‍👧 Family with Kids","🎉 Group Party / Event"]
+  },
+  {
+    q: "How far are you open to traveling?",
+    opts: ["🇺🇸 USA / Canada only","🌴 Caribbean or Mexico","🌍 Anywhere — the farther the better"]
+  },
+  {
+    q: "What's your rough budget per person, per night?",
+    opts: ["💰 Value (under $200/night)","💰💰 Mid-range ($200–$400/night)","💰💰💰 Luxury ($400–$800/night)","👑 Ultra-luxury (sky's the limit)"]
+  },
+  {
+    q: "When are you thinking of going?",
+    opts: ["Next 3 months","3–6 months out","6–12 months out","Just exploring ideas for now"]
+  }
+];
+
+function startQuiz() {
+  mode = 'quiz';
+  quizStep = 0;
+  quizAnswers = {};
+  askQuiz();
+}
+
+function askQuiz() {
+  const q = QUIZ[quizStep];
+  botMsg(q.q, q.opts.map(o => ({label:o, action:()=>quizAnswer(o)})));
+}
+
+function quizAnswer(val) {
+  removeQRs();
+  userMsg(val);
+  quizAnswers[quizStep] = val;
+  quizStep++;
+  if (quizStep < QUIZ.length) {
+    setTimeout(askQuiz, 350);
+  } else {
+    setTimeout(deliverRecommendations, 400);
+  }
+}
+
+function deliverRecommendations() {
+  mode = 'chat';
+  const type   = quizAnswers[0] || '';
+  const range  = quizAnswers[1] || '';
+  const budget = quizAnswers[2] || '';
+
+  // Build destination shortlist based on answers
+  let recs = [];
+
+  // Golf
+  if (type.includes('Golf')) {
+    if (range.includes('Anywhere') || range.includes('far')) recs = ['pebblebeach','pinehurst','scottsdale'];
+    else if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['scottsdale','myrtlebeach','lasvegas'];
+    else recs = ['scottsdale','myrtlebeach','pinehurst'];
+  }
+  // Romance / Honeymoon
+  else if (type.includes('Romance') || type.includes('Honeymoon')) {
+    if (range.includes('Anywhere')) recs = ['italy','greece','stlucia'];
+    else if (range.includes('Caribbean')) recs = ['aruba','stlucia','turksandcaicos'];
+    else recs = ['aruba','keys','charleston'];
+  }
+  // Family
+  else if (type.includes('Family')) {
+    if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['cancun','bahamas','puntacana'];
+    else recs = ['orlando','lasvegas','nashville'];
+  }
+  // Group / Party
+  else if (type.includes('Group') || type.includes('Party')) {
+    if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['cancun','jamaica','puntacana'];
+    else recs = ['lasvegas','nashville','neworleans'];
+  }
+  // Nature / Adventure
+  else if (type.includes('Nature') || type.includes('Adventure')) {
+    if (range.includes('Anywhere')) recs = ['hawaii','greece','italy'];
+    else recs = ['hawaii','keys','neworleans'];
+  }
+  // City / Food / Culture
+  else if (type.includes('City') || type.includes('Food') || type.includes('Culture')) {
+    if (range.includes('Anywhere')) recs = ['paris','spain','portugal'];
+    else recs = ['neworleans','nashville','charleston'];
+  }
+  // Beach & Relaxation
+  else {
+    if (range.includes('Anywhere')) recs = ['turksandcaicos','aruba','stlucia'];
+    else if (range.includes('Caribbean') || range.includes('Mexico')) recs = ['aruba','cancun','turksandcaicos'];
+    else recs = ['keys','hawaii','miami'];
+  }
+
+  // Filter to valid KB keys
+  recs = recs.filter(k => KB[k]);
+  if (!recs.length) recs = ['aruba','cancun','lasvegas'];
+
+  const intro = `Based on what you told me, here are my top ${recs.length} picks for you — let me know which one catches your eye and I'll go deep on it!`;
+  const recText = recs.map((k,i) => {
+    const d = KB[k];
+    return `${i+1}. ${d.emoji} **${d.label}**\n${d.vibe.split('.')[0] + '.'}`;
+  }).join('\n\n');
+
+  botMsg(intro + '\n\n' + recText, recs.map(k => ({label: KB[k].emoji+' '+KB[k].label, action:()=>sendText(KB[k].label)})));
+  currentDest = recs[0];
+  maybeShowConnect();
+}
+
+// ── LEAD COLLECTION ───────────────────────────────────────────────────────────
+function startLead(interestHint) {
+  mode = 'lead';
+  leadStep = 0;
+  leadData = { interest: interestHint || currentDest ? (KB[currentDest]||{}).label || '' : '' };
+  logChat('bot', "I'd love to connect you with Jesse and Sam — they'll reach out personally with options and pricing.");
+  botMsg("I'd love to connect you with Jesse and Sam — they'll reach out personally with options and pricing.\n\nLet me grab a few quick details...\n\n" + LEAD_QUESTIONS[0].ask);
+}
+
+function advanceLead(userInput) {
+  const q = LEAD_QUESTIONS[leadStep];
+  leadData[q.key] = userInput;
+  leadStep++;
+
+  if (leadStep < LEAD_QUESTIONS.length) {
+    setTimeout(()=> botMsg(LEAD_QUESTIONS[leadStep].ask), 300);
+  } else {
+    setTimeout(finishLead, 300);
+  }
+}
+
+function finishLead() {
+  mode = 'chat';
+  // Build chat summary
+  const dest = currentDest && KB[currentDest] ? KB[currentDest].label : 'Not specified';
+  const summary = buildChatSummary();
+
+  // Save lead locally
+  const lead = { ...leadData, dest, summary, timestamp: new Date().toISOString() };
+  const stored = JSON.parse(localStorage.getItem('cxc_leads')||'[]');
+  stored.push(lead);
+  localStorage.setItem('cxc_leads', JSON.stringify(stored));
+
+  // Show confirmation
+  const el = document.createElement('div');
+  el.className = 'lead-done';
+  el.innerHTML = `
+    <div class="ck">✅</div>
+    <h4>You're all set, ${leadData.name}!</h4>
+    <p>Jesse or Sam will reach out to <strong>${leadData.email}</strong> — usually within a few hours.</p>
+    <p style="margin-top:.45rem">Here's a recap of your inquiry:</p>
+    <p style="margin-top:.35rem;color:rgba(255,255,255,.55);font-size:.79rem">
+      📅 Travel dates: ${leadData.dates}<br/>
+      👥 Group size: ${leadData.people}<br/>
+      🌍 Destination interest: ${dest}
+    </p>
+    <div class="contact-line">Prefer to reach out directly? <a href="tel:${CXC_PHONE}">${CXC_PHONE}</a> &nbsp;·&nbsp; <a href="mailto:${CXC_EMAIL}">${CXC_EMAIL}</a></div>`;
+  document.getElementById('chat').appendChild(el);
+  scrollBot();
+
+  botMsg("Is there anything else you'd like to explore while you wait to hear from them? I can go deeper on any destination — hotels, specific activities, restaurant picks, what to pack for the season...");
+}
+
+function buildChatSummary() {
+  return chatLog.map(m => (m.role==='user'?'Customer: ':'Bot: ') + m.text).join('\n');
+}
+
+// ── VAGUE DESTINATION DETECTION ───────────────────────────────────────────────
+function isVague(text) {
+  return /where should (i|we)|where (to|do i|can i)|suggest|recommend|not sure|help me (decide|choose|pick)|best (place|destination|spot)|ideas?|options?\??|what('s| is) (good|nice|best|popular)|don'?t know where|anywhere good/i.test(text);
+}
+
+function isBookingReady(text) {
+  return /\b(book|ready|contact|reach out|call me|email me|sign up|sign me up|let'?s do it|let'?s go|i('m| am) (in|ready|interested)|how do i (book|get started)|get started|set it up)\b/i.test(text);
+}
+
+// ── MAIN REPLY ENGINE ─────────────────────────────────────────────────────────
+function getReply(text) {
+  const lo = text.toLowerCase();
+
+  // Lead mode
+  if (mode === 'lead') { advanceLead(text); return null; }
+
+  // Quiz mode (shouldn't hit here but safety)
+  if (mode === 'quiz') return null;
+
+  // Ready to book / contact
+  if (isBookingReady(lo)) { startLead(); return null; }
+
+  // Vague destination question → start quiz
+  if (isVague(lo)) { startQuiz(); return null; }
+
+  // Greetings
+  if (/^(hi+|hey+|hello|howdy|hiya|sup|what'?s up)[\s!?]*$/.test(lo.trim()))
+    return {
+      text:`Hey! 👋 I'm your CxC Travel planning guide.\n\nI have detailed info on hotels, restaurants, activities, golf, and all-inclusive resorts for **${Object.keys(KB).length} destinations** — from the Caribbean to Europe to Hawaii. Zero cost to explore, no sign-up needed.\n\nTell me a destination you're thinking about, or ask me to help you figure out where to go!`,
+      qrs:["🏖️ Help me choose","🌴 Aruba","🎰 Las Vegas","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville"]
+    };
+
+  // All-inclusive intent (no dest)
+  if (/all.?inclusive/i.test(lo) && !detectDest(text))
+    return {
+      text:`🌴 All-inclusive is one of CxC's biggest specialties — and this is where working with Jesse and Sam really pays off. We have relationships with the top AI resorts and can often get room category upgrades and resort credits you won't get booking direct.\n\n**Best AI destinations:**\n• **Aruba** — hurricane-free year-round, calm beautiful beaches, great adults-only options\n• **Cancun / Riviera Maya** — most options at every price, ruins nearby, excellent group rates\n• **Punta Cana** — best value AI in the Caribbean, rivals Mexico at lower cost\n• **Jamaica** — Sandals and Beaches are world-class; Jesse and Sam are certified specialists\n• **St. Lucia** — more intimate, dramatic Pitons scenery, romantic\n• **Turks & Caicos** — Beaches TCI is exceptional for families on Grace Bay`,
+      qrs:["🌴 Aruba","🌊 Cancun","🌺 Punta Cana","🎵 Jamaica","🌋 St. Lucia","🐢 Turks & Caicos"]
+    };
+
+  // Honeymoon intent
+  if (/honeymoon|romantic|anniversary|proposal/i.test(lo) && !detectDest(text))
+    return {
+      text:`💕 Honeymoon and romantic travel is where Jesse and Sam genuinely shine — they take the planning stress off completely so you can just enjoy it.\n\n**Most romantic destinations CxC books:**\n• **Aruba** — adults-only resorts, year-round perfect weather, Eagle Beach\n• **St. Lucia** — the Pitons, Jade Mountain's open-wall suites with private infinity pools\n• **Turks & Caicos** — Grace Bay Beach (#1 in the world), exclusive private-island options\n• **Santorini, Greece** — caldera views, cliff-edge infinity pools, unforgettable sunsets\n• **Amalfi Coast, Italy** — cliffside villas, incredible food, arguably the most beautiful coastline in Europe\n• **Paris** — the classics are classics for a reason\n• **Maui, Hawaii** — Four Seasons, Road to Hana, no passport needed`,
+      qrs:["🌴 Aruba","🌋 St. Lucia","🐢 Turks & Caicos","🏛️ Greece","🍕 Italy","🗼 Paris","🌺 Maui / Hawaii"]
+    };
+
+  // Group / bachelor / bachelorette intent
+  if (/\b(group|bachelor|bachelorette|birthday|corporate|reunion|trip with friends|party trip)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`👥 Groups are one of CxC's biggest specialties. The right destination, the right hotel, and the right itinerary makes the difference between a good trip and one people talk about for years.\n\n**Top group destinations:**\n• **Las Vegas** — something for every personality, world-class shows and dining, best nightlife in the US\n• **Nashville** — live music from noon to 3am, incredible food scene, perfect party energy\n• **New Orleans** — the best food and music culture in America, Frenchmen Street beats Bourbon every time\n• **Cancun** — all-inclusive group pricing is exceptional, Moon Palace handles 1,000+ guests effortlessly\n• **Jamaica (Sandals/Beaches)** — full resort takeover options for larger groups\n\nWhat's the occasion?`,
+      qrs:["🎰 Las Vegas","🎸 Nashville","🎺 New Orleans","🌊 Cancun","🎵 Jamaica"]
+    };
+
+  // Golf intent (no dest)
+  if (/\bgolf\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`⛳ Golf trips are Jesse and Sam's specialty — from planning the tee times to finding the right group hotel package.\n\n**Top golf destinations CxC books:**\n• **Scottsdale, AZ** — 200+ courses, TPC Scottsdale, Troon North, We-Ko-Pa. World-class.\n• **Myrtle Beach, SC** — 100+ courses within 60 miles. Best East Coast golf value.\n• **Pebble Beach, CA** — bucket-list golf. Holes 6–10 along the Pacific are the most beautiful in the game.\n• **Pinehurst, NC** — the cradle of American golf. More USGA championships than anywhere on earth.\n• **Las Vegas** — Shadow Creek, Cascata, Wolf Creek. Dramatic desert golf.\n• **Kentucky Golf Trail** — Woodford Club + bourbon country. A CxC original package!\n• **Hawaii** — Kapalua Plantation Course, ocean views on every hole.`,
+      qrs:["🌵 Scottsdale","⛳ Myrtle Beach","🌊 Pebble Beach","🌲 Pinehurst","🎰 Las Vegas Golf","🌺 Hawaii Golf"]
+    };
+
+  // Cruise intent (no dest)
+  if (/\bcruise/i.test(lo) && !detectDest(text)) {
+    const d = KB.cruises;
+    if (/port|depart|drive|no flight|nearest/i.test(lo))
+      return { text:"🚢 Cruise ports closest to you:", cards:d.ports.map(p=>({name:p.name,badge:"Port",notes:p.note})), qrs:["Compare cruise lines","Alaska cruise","Caribbean cruise","Mediterranean cruise"] };
+    if (/line|which cruise|compare|best cruise company/i.test(lo))
+      return { text:"🚢 Major cruise lines Jesse & Sam book:", cards:d.lines.map(l=>({name:l.name,badge:l.best,notes:l.notes})), qrs:["Ports near me","Alaska cruise","Caribbean cruise","Family cruise"] };
+    return {
+      text:`🚢 ${d.vibe}\n\n${d.sell}\n\n🎯 Best for: ${(d.bestFor||[]).join(', ')}`,
+      qrs:["Compare cruise lines","Ports near me","Alaska cruise","Caribbean cruise","Mediterranean cruise"]
+    };
+  }
+
+  // Family intent
+  if (/\b(family|kids|children|toddler|teen|with kids)\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`👨‍👩‍👧 Family travel is all about the right mix of activities for different ages — and knowing which resorts genuinely deliver on their kids programming.\n\n**Best family destinations:**\n• **Orlando / Disney** — unbeatable for ages 3–15. Epic Universe is brand new and extraordinary.\n• **Cancun / Riviera Maya** — Moon Palace and Hyatt Ziva are excellent for families with great kids clubs\n• **Bahamas (Atlantis)** — 20+ waterslides, marine habitat, massive resort. Kids lose their minds.\n• **Jamaica (Beaches Negril)** — Sesame Street, waterpark, 7-Mile Beach. The gold standard family AI.\n• **Hawaii** — Big Island volcanoes, Maui beaches, sea turtles. Works for all ages.`,
+      qrs:["✨ Orlando / Disney","🌊 Cancun","🏝️ Bahamas","🎵 Jamaica","🌺 Hawaii"]
+    };
+
+  // No destination detected
+  const dest = detectDest(text);
+  if (!dest)
+    return {
+      text:`I'd love to help — can you give me a destination or tell me a bit about what kind of trip you have in mind?\n\nI have detailed info on **${Object.keys(KB).length} destinations** — Caribbean, USA, Europe, Hawaii, golf, cruises, all-inclusive.\n\nOr try asking me something like:\n• "Best beaches for a honeymoon"\n• "Where should we go for a group trip"\n• "Golf trip under $2,000"`,
+      qrs:["Help me choose a destination","🌴 Caribbean","🇺🇸 USA destinations","🌍 Europe","⛳ Golf trips","🚢 Cruises"]
+    };
+
+  // Good — we have a destination
+  currentDest = dest;
+  const d = KB[dest];
+  if (!d) return { text:"I don't have full details on that one yet — but Jesse and Sam can absolutely help. Hit the button below to reach out!", qrs:[] };
+
+  const cat = detectCat(text);
+
+  if (cat==='hotels' && d.hotels)
+    return { text:`🏨 **Hotels in ${d.label}:**\n\n${d.sell||''}`, cards:d.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[])] };
+
+  if (cat==='restaurants' && d.restaurants)
+    return { text:`🍽️ **Top dining in ${d.label}:**`, cards:d.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+
+  if (cat==='activities' && (d.activities||d.lines))
+    return { text:`🎯 **Top things to do in ${d.label}:**`, cards:(d.activities||d.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||'',note:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining",...(d.golf?["Golf Courses"]:[])] };
+
+  if (cat==='golf' && d.golf)
+    return { text:`⛳ **Golf in ${d.label}:**\n\n${d.sell||''}`, cards:d.golf.map(g=>({name:g.name,badge:g.tier,sub:g.price,note:g.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+
+  if (/all.?inclusive/i.test(lo) && d.allinclusive)
+    return { text:`🌴 **All-inclusive options in ${d.label}:**`, cards:d.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining"] };
+
+  // General destination overview
+  const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),(d.bestFor||[]).length?"Talk to Jesse & Sam":""];
+  return {
+    text:`${d.emoji} **${d.label}**\n\n${d.vibe}\n\n✦ *Why book with CxC:* ${d.sell||'Jesse and Sam handle every detail so you just show up and enjoy.'}\n\n✈️ ${d.travelNote||''}\n📅 Best time: ${d.bestTime||'Year-round'}\n🎯 Best for: ${(d.bestFor||[]).join(', ')}`,
+    qrs:qrs.filter(Boolean)
+  };
+}
+
+// ── KEYWORD DETECTION ─────────────────────────────────────────────────────────
+function detectDest(t) {
+  const lo = t.toLowerCase();
+  for (const [d,ks] of Object.entries(DEST_KEYS)) if (ks.some(k=>lo.includes(k))) return d;
+  return null;
+}
+function detectCat(t) {
+  const lo = t.toLowerCase();
+  for (const [c,ks] of Object.entries(CAT_KEYS)) if (ks.some(k=>lo.includes(k))) return c;
+  return null;
+}
+
+// ── UI RENDERING ──────────────────────────────────────────────────────────────
+function el(id){return document.getElementById(id)}
+function scrollBot(){const c=el('chat');c.scrollTop=c.scrollHeight}
+
+function logChat(role,text){chatLog.push({role,text:text.replace(/\*\*(.*?)\*\*/g,'$1')})}
+
+function botMsg(text, buttons) {
+  logChat('bot', text);
+  removeQRs();
+  const wrap = document.createElement('div');
+  wrap.className = 'msg bot';
+  wrap.innerHTML = `<div class="av">CxC</div><div class="bub">${fmt(text)}</div>`;
+  el('chat').appendChild(wrap);
+  if (buttons && buttons.length) {
+    const row = document.createElement('div');
+    row.className = 'qrs';
+    buttons.forEach(b => {
+      const btn = document.createElement('button');
+      btn.className = 'qr';
+      btn.textContent = b.label;
+      btn.onclick = () => { removeQRs(); b.action(); };
+      row.appendChild(btn);
+    });
+    el('chat').appendChild(row);
+  }
+  scrollBot();
+}
+
+function userMsg(text) {
+  logChat('user', text);
+  const wrap = document.createElement('div');
+  wrap.className = 'msg user';
+  wrap.innerHTML = `<div class="av">👤</div><div class="bub">${esc(text)}</div>`;
+  el('chat').appendChild(wrap);
+  scrollBot();
+}
+
+function addCards(cards) {
+  if (!cards||!cards.length) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'cards';
+  wrap.innerHTML = cards.map(c=>`
+    <div class="card">
+      <div class="card-top"><span class="card-name">${esc(c.name)}</span>${c.badge?`<span class="card-badge">${esc(c.badge)}</span>`:''}</div>
+      ${c.sub?`<div class="card-sub">${esc(c.sub)}</div>`:''}
+      ${c.note?`<div class="card-note">${esc(c.note)}</div>`:''}
+    </div>`).join('');
+  el('chat').appendChild(wrap);
+  scrollBot();
+}
+
+function addQRs(opts) {
+  if (!opts||!opts.length) return;
+  const row = document.createElement('div');
+  row.className = 'qrs';
+  opts.forEach(label => {
+    const btn = document.createElement('button');
+    btn.className = 'qr';
+    btn.textContent = label;
+    btn.onclick = () => sendText(label);
+    row.appendChild(btn);
+  });
+  el('chat').appendChild(row);
+  scrollBot();
+}
+
+function removeQRs() {
+  document.querySelectorAll('.qrs').forEach(e=>e.remove());
+}
+
+function maybeShowConnect() {
+  if (connectShown) return;
+  if (msgCount < 3 && !currentDest) return;
+  connectShown = true;
+  const wrap = document.createElement('div');
+  wrap.className = 'connect';
+  wrap.innerHTML = `
+    <p>✦ Jesse and Sam can take everything from here — personalized options, perks you won't find online, and pricing that's often better than booking direct. They respond fast.</p>
+    <div class="connect-btns">
+      <button class="cbtn" onclick="startLead()">Connect with CxC →</button>
+      <a class="cbtn-o" href="tel:${CXC_PHONE}">📞 ${CXC_PHONE}</a>
+      <a class="cbtn-o" href="mailto:${CXC_EMAIL}">✉️ Email</a>
+    </div>`;
+  el('chat').appendChild(wrap);
+  scrollBot();
+}
+
+// ── TEXT FORMATTING ───────────────────────────────────────────────────────────
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function fmt(s){
+  return esc(s)
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n/g,'<br/>');
+}
+
+// ── SEND ──────────────────────────────────────────────────────────────────────
+function sendText(t) { el('inp').value=''; processText(t); }
+
+function send() {
+  const t = el('inp').value.trim();
+  if (!t) return;
+  el('inp').value = '';
+  el('sendBtn').disabled = true;
+  processText(t);
+}
+
+function processText(text) {
+  removeQRs();
+  userMsg(text);
+  msgCount++;
+  setTimeout(() => {
+    const reply = getReply(text);
+    if (reply) {
+      botMsg(reply.text, null);
+      if (reply.cards) addCards(reply.cards);
+      if (reply.qrs && reply.qrs.length) addQRs(reply.qrs);
+    }
+    maybeShowConnect();
+  }, 280);
+}
+
+el('inp').addEventListener('input', function(){ el('sendBtn').disabled = !this.value.trim(); });
+
+// ── PACKAGES ──────────────────────────────────────────────────────────────────
+function showPkgs() {
+  el('pkgList').innerHTML = PACKAGES.map(p=>`
+    <div class="pkg-card" onclick="pkgClicked('${p.id}')">
+      <div class="pkg-cat">${esc(p.cat)}</div>
+      <div class="pkg-name">${esc(p.name)}</div>
+      <div class="pkg-meta">${esc(p.meta)}</div>
+      <ul class="pkg-hl">${p.highlights.map(h=>`<li>${esc(h)}</li>`).join('')}</ul>
+      <div class="pkg-pr-row">
+        <div class="pkg-pr">${esc(p.priceLabel)}</div>
+        <button class="ask-btn">Ask About This →</button>
+      </div>
+    </div>`).join('');
+  el('pkgPanel').style.display='flex';
+}
+function hidePkgs(){el('pkgPanel').style.display='none'}
+function pkgClicked(id){
+  hidePkgs();
+  const p=PACKAGES.find(x=>x.id===id);
+  if(p) startLead('Interested in: '+p.name);
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+botMsg(
+  `Hey! 👋 I'm your CxC Travel planning guide.\n\nI have detailed info on **${Object.keys(KB).length} destinations** — hotels, restaurants, activities, golf courses, all-inclusive resorts, cruises, and more. All free, no sign-up needed.\n\nTell me where you're dreaming of going, or let me help you figure it out!`,
+  null
+);
+addQRs(["🤔 Help me choose","🌴 Aruba","🎰 Las Vegas","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville","💕 Honeymoon","👨‍👩‍👧 Family Trip"]);
+</script>
+</body>
+</html>
