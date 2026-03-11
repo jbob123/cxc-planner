@@ -2041,7 +2041,470 @@ const KB = {
     bestFor:["Foodies","Adventure travelers","Value-conscious luxury"],
     bestTime:"Varies by region, but February–April is a strong general window.",
     travelNote:"Best planned as a multi-stop itinerary because the country stretches north to south with different climates."
+  },
+
+  seychelles:{
+    label:"Seychelles",emoji:"🌴",region:"Indian Ocean",
+    vibe:"Seychelles is pure barefoot luxury — giant granite boulders, calm turquoise water, and beaches that look almost unreal in person. It feels more remote, more polished, and more private than most tropical destinations, which is exactly why it stands out for high-end travelers.",
+    sell:"CxC can match clients to the right island and resort combo, because the Seychelles works best when flights, ferries, and hotel pairings are planned together instead of booked piece by piece.",
+    hotels:[
+      {name:"Four Seasons Resort Seychelles",tier:"Ultra-Luxury",price:"$1,200–$3,000/night",notes:"Hillside villas with private plunge pools and dramatic Indian Ocean views."},
+      {name:"North Island",tier:"Ultra-Luxury Private Island",price:"$5,000+/night",notes:"One of the most exclusive island resorts in the world and a true bucket-list honeymoon stay."},
+      {name:"Constance Ephelia",tier:"Luxury Resort",price:"$500–$1,100/night",notes:"Large resort with multiple beaches, strong value for the destination, and broad appeal."}
+    ],
+    restaurants:[
+      {name:"Del Place",cuisine:"Creole Seafood",notes:"Beautiful waterside restaurant known for fresh local seafood and sunset views."},
+      {name:"Cyann",cuisine:"Fine Dining",notes:"Upscale island dining with polished service and strong seafood-focused menus."}
+    ],
+    activities:[
+      {name:"Anse Source d'Argent",price:"Free–$15",notes:"One of the world's most photographed beaches with giant granite boulders and shallow clear water."},
+      {name:"Island Hopping by Boat",price:"$120–$250/pp",notes:"A classic Seychelles experience that lets travelers combine beaches, snorkeling, and multiple islands."}
+    ],
+    bestFor:["Honeymoon","Luxury travel","Beach lovers"],
+    bestTime:"April–May and October–November.",
+    travelNote:"Usually reached through international hubs in the Middle East or Europe, with inter-island ferries or short flights often required."
+  },
+
+  tahiti:{
+    label:"Tahiti & Moorea",emoji:"🌺",region:"South Pacific",
+    vibe:"Tahiti and Moorea offer lush volcanic scenery, warm lagoons, and a French Polynesian atmosphere that feels both tropical and refined. Moorea in particular is stunning for overwater bungalows, calm water, and a slower pace than many better-known honeymoon destinations.",
+    sell:"CxC can structure Tahiti and Moorea together the right way, helping clients avoid awkward transfers and match the right island with the right style of resort stay.",
+    hotels:[
+      {name:"Hilton Moorea Lagoon Resort & Spa",tier:"Luxury",price:"$600–$1,200/night",notes:"Popular overwater bungalow option with easy access and beautiful lagoon views."},
+      {name:"Sofitel Kia Ora Moorea Beach Resort",tier:"Luxury",price:"$550–$1,100/night",notes:"Elegant beachfront and overwater stay with great views across the lagoon."},
+      {name:"InterContinental Tahiti Resort & Spa",tier:"Upscale Resort",price:"$350–$700/night",notes:"Convenient first or last night stay near the international airport with lagoon views."}
+    ],
+    restaurants:[
+      {name:"Le Mayflower",cuisine:"French Polynesian",notes:"Polished resort dining with strong seafood and French influence."},
+      {name:"Snack Mahana",cuisine:"Local Seafood",notes:"Casual favorite known for poisson cru and a relaxed island setting."}
+    ],
+    activities:[
+      {name:"Lagoon Excursion",price:"$100–$180/pp",notes:"Classic full-day outing with snorkeling, rays, and dramatic mountain views from the water."},
+      {name:"Belvedere Lookout",price:"Free",notes:"One of Moorea's best panoramic viewpoints and easy to build into a scenic island day."}
+    ],
+    bestFor:["Couples","Honeymoon","Scenic island escapes"],
+    bestTime:"May–October.",
+    travelNote:"International arrivals are typically through Tahiti, with Moorea reached by short ferry or quick regional flight."
+  },
+
+  venice:{
+    label:"Venice",emoji:"🛶",region:"Europe",
+    vibe:"Venice feels unlike anywhere else in the world — canals instead of roads, grand palaces rising from the water, and a dreamlike atmosphere that gets even better early in the morning or after sunset. It is romantic, visually unforgettable, and ideal for a slower style of travel.",
+    sell:"CxC helps clients stay in the right part of Venice and avoid wasting time on poor logistics, especially when combining the city with the rest of Italy.",
+    hotels:[
+      {name:"Aman Venice",tier:"Ultra-Luxury",price:"$1,400–$3,500/night",notes:"One of Venice's most exclusive hotels inside a historic Grand Canal palace."},
+      {name:"Gritti Palace",tier:"Luxury Iconic",price:"$1,000–$2,500/night",notes:"Classic Venetian luxury with one of the most recognizable waterfront settings in the city."},
+      {name:"Ca' Sagredo Hotel",tier:"Luxury Historic",price:"$450–$900/night",notes:"A great option for travelers wanting palace-style character with strong Grand Canal atmosphere."}
+    ],
+    restaurants:[
+      {name:"Osteria alle Testiere",cuisine:"Seafood",notes:"Small and highly respected seafood restaurant that rewards booking ahead."},
+      {name:"Ristorante Quadri",cuisine:"Fine Dining",notes:"Elegant Michelin-starred dining overlooking Piazza San Marco."}
+    ],
+    activities:[
+      {name:"Grand Canal Vaporetto Ride",price:"$10–$20",notes:"The best first introduction to Venice and much more useful than an expensive gondola for orientation."},
+      {name:"St. Mark's Basilica & Doge's Palace",price:"$25–$50",notes:"The city's essential historic core and a must for first-time visitors."}
+    ],
+    bestFor:["Couples","Honeymoon","Italy itineraries"],
+    bestTime:"April–June and September–October.",
+    travelNote:"Best reached by rail or regional flight, and easiest when paired with Florence, Milan, or the Dolomites."
+  },
+
+  milan:{
+    label:"Milan",emoji:"👜",region:"Europe",
+    vibe:"Milan is Italy's polished fashion and business capital, but it is also a great city for food, design, and luxury hotels. It works especially well as a gateway to Lake Como, northern Italy, or a shorter upscale city stay.",
+    sell:"CxC can turn Milan from a simple arrival city into a strong luxury stop with dining, shopping, and easy onward access to northern Italy." ,
+    hotels:[
+      {name:"Bulgari Hotel Milano",tier:"Ultra-Luxury",price:"$1,000–$2,000/night",notes:"One of Milan's most refined luxury stays with a quiet garden setting."},
+      {name:"Park Hyatt Milan",tier:"Luxury",price:"$700–$1,400/night",notes:"Excellent central location steps from the Duomo and Galleria."},
+      {name:"Portrait Milano",tier:"Luxury",price:"$800–$1,600/night",notes:"Stylish newer luxury property with strong fashion-world appeal."}
+    ],
+    restaurants:[
+      {name:"Cracco",cuisine:"Modern Italian",notes:"Flagship fine-dining option in a landmark central setting."},
+      {name:"Luini",cuisine:"Italian Street Food",notes:"Famous quick stop for panzerotti and a true Milan classic."}
+    ],
+    activities:[
+      {name:"Duomo Rooftop",price:"$20–$35",notes:"One of the best city viewpoints in Italy with dramatic cathedral detail."},
+      {name:"Galleria Vittorio Emanuele II",price:"Free",notes:"Historic arcade ideal for shopping, photos, and soaking in central Milan."}
+    ],
+    bestFor:["Luxury travel","Shopping","Northern Italy itineraries"],
+    bestTime:"April–June and September–October.",
+    travelNote:"Excellent international gateway and one of the easiest launch points for Lake Como and northern Italy rail routes."
+  },
+
+  lakecomo:{
+    label:"Lake Como",emoji:"🚤",region:"Europe",
+    vibe:"Lake Como is all about polished lakeside luxury, dramatic mountain scenery, elegant villas, and timeless Italian glamour. It feels peaceful, upscale, and especially strong for couples and special occasion trips.",
+    sell:"CxC can help clients choose the right base town and hotel, which matters a lot here because ferry access, views, and atmosphere vary meaningfully from one part of the lake to another.",
+    hotels:[
+      {name:"Grand Hotel Tremezzo",tier:"Luxury Iconic",price:"$1,000–$2,500/night",notes:"One of the lake's most famous hotels with a classic glamorous feel and standout floating pool."},
+      {name:"Passalacqua",tier:"Ultra-Luxury",price:"$1,800–$4,000/night",notes:"Exceptionally high-end villa hotel and one of the top luxury stays in Europe."},
+      {name:"Villa d'Este",tier:"Ultra-Luxury Historic",price:"$1,200–$3,000/night",notes:"Legendary lakeside property with formal gardens and classic old-world prestige."}
+    ],
+    restaurants:[
+      {name:"La Terrazza Gualtiero Marchesi",cuisine:"Fine Dining",notes:"Elegant special occasion dining with polished lakefront atmosphere."},
+      {name:"Mistral",cuisine:"Italian Fine Dining",notes:"Refined Michelin-starred option with strong views and a romantic feel."}
+    ],
+    activities:[
+      {name:"Private Boat on Lake Como",price:"$200–$600/pp depending on group",notes:"The best way to experience the villas, shoreline towns, and scenery."},
+      {name:"Bellagio & Varenna Ferry Day",price:"$20–$40",notes:"Easy way to experience the lake's most famous towns in one day."}
+    ],
+    bestFor:["Couples","Luxury travel","Honeymoon"],
+    bestTime:"May–September.",
+    travelNote:"Usually reached from Milan with private transfer or rail plus short onward transit."
+  },
+
+  budapest:{
+    label:"Budapest",emoji:"🌉",region:"Europe",
+    vibe:"Budapest blends grand architecture, thermal baths, riverside views, and strong nightlife into one of Europe's most rewarding city breaks. It feels elegant but still offers better value than many Western European capitals.",
+    sell:"CxC can build Budapest as a standout city stay or pair it with Vienna and Prague for a polished multi-city Central Europe trip.",
+    hotels:[
+      {name:"Four Seasons Gresham Palace",tier:"Luxury",price:"$600–$1,200/night",notes:"Iconic luxury hotel on the Danube with one of the city's best locations."},
+      {name:"Matild Palace",tier:"Luxury",price:"$450–$900/night",notes:"Beautiful restored palace stay with a strong design feel."},
+      {name:"Aria Hotel Budapest",tier:"Boutique Luxury",price:"$350–$700/night",notes:"Music-themed luxury property with rooftop views and strong value for the standard."}
+    ],
+    restaurants:[
+      {name:"Stand",cuisine:"Modern Hungarian",notes:"One of Budapest's most acclaimed fine-dining options."},
+      {name:"Mazel Tov",cuisine:"Mediterranean",notes:"Lively courtyard favorite in the Jewish Quarter."}
+    ],
+    activities:[
+      {name:"Széchenyi Thermal Baths",price:"$25–$40",notes:"One of the city's signature experiences and a must for first-time visitors."},
+      {name:"Danube River Cruise",price:"$20–$50",notes:"A great way to see Budapest's bridges and illuminated skyline."}
+    ],
+    bestFor:["Couples","Value-conscious Europe trips","City breaks"],
+    bestTime:"April–June and September–October.",
+    travelNote:"Budapest works especially well as part of a multi-city Central Europe rail itinerary."
+  },
+
+  munich:{
+    label:"Munich",emoji:"🍺",region:"Europe",
+    vibe:"Munich combines Bavarian tradition, polished city design, beer halls, and easy access to castles and the Alps. It works well for both cultural city travelers and those wanting a gateway into southern Germany or Austria.",
+    sell:"CxC can position Munich as more than just Oktoberfest by pairing it with day trips, luxury hotels, and scenic onward routes into Bavaria or the Alps.",
+    hotels:[
+      {name:"Hotel Bayerischer Hof",tier:"Luxury Historic",price:"$500–$1,100/night",notes:"One of Munich's classic grand hotels with long-standing prestige."},
+      {name:"Mandarin Oriental Munich",tier:"Luxury",price:"$700–$1,400/night",notes:"Elegant smaller luxury option in the heart of the city."},
+      {name:"Sofitel Munich Bayerpost",tier:"Upscale",price:"$300–$600/night",notes:"Convenient and polished option near major rail connections."}
+    ],
+    restaurants:[
+      {name:"Tantris",cuisine:"Fine Dining",notes:"Legendary Munich restaurant known for high-end tasting menus."},
+      {name:"Hofbräuhaus",cuisine:"Bavarian",notes:"Touristy but iconic and still worth experiencing once."}
+    ],
+    activities:[
+      {name:"Marienplatz & Old Town",price:"Free",notes:"The easiest way to take in Munich's historic center and atmosphere."},
+      {name:"Neuschwanstein Day Trip",price:"$40–$100",notes:"A classic excursion to one of Germany's most famous castles."}
+    ],
+    bestFor:["Groups","Beer + culture trips","Germany itineraries"],
+    bestTime:"May–October, with late September for Oktoberfest.",
+    travelNote:"Excellent gateway for Bavaria, Austria, and alpine add-ons by train or private transfer."
+  },
+
+  vancouver:{
+    label:"Vancouver",emoji:"🌲",region:"Canada",
+    vibe:"Vancouver offers a rare mix of urban polish, water views, mountains, and easy outdoor access. It feels cleaner, calmer, and more scenic than most major North American cities while still delivering strong food and hotel options.",
+    sell:"CxC can use Vancouver as either a premium city stay or the perfect gateway to Whistler, Victoria, and Alaska cruise departures.",
+    hotels:[
+      {name:"Fairmont Pacific Rim",tier:"Luxury",price:"$500–$1,000/night",notes:"One of Vancouver's best luxury stays with a prime waterfront location."},
+      {name:"Rosewood Hotel Georgia",tier:"Luxury Historic",price:"$450–$900/night",notes:"Classic downtown luxury with strong service and style."},
+      {name:"JW Marriott Parq Vancouver",tier:"Upscale",price:"$300–$600/night",notes:"Modern full-service option with easy downtown access."}
+    ],
+    restaurants:[
+      {name:"Miku",cuisine:"Japanese",notes:"Best known for upscale sushi and waterfront dining."},
+      {name:"Published on Main",cuisine:"Modern Canadian",notes:"Creative dining option that reflects the city's current food scene."}
+    ],
+    activities:[
+      {name:"Stanley Park Seawall",price:"Free",notes:"One of the city's signature experiences and an easy first-day activity."},
+      {name:"Capilano Suspension Bridge",price:"$50–$80",notes:"Popular scenic attraction combining forest views and suspension walkways."}
+    ],
+    bestFor:["City + nature trips","Cruise add-ons","Couples"],
+    bestTime:"May–September.",
+    travelNote:"A strong international gateway and an excellent pairing with Whistler or Alaska cruises."
+  },
+
+  banff:{
+    label:"Banff",emoji:"🏔️",region:"Canada",
+    vibe:"Banff is one of North America's most visually spectacular destinations, with turquoise lakes, mountain peaks, luxury lodges, and easy access to the Canadian Rockies. It feels cinematic in both summer and winter.",
+    sell:"CxC can build Banff trips around scenic drives, luxury stays, and lake experiences while helping clients avoid wasting time on poor routing or sold-out high-demand activities.",
+    hotels:[
+      {name:"Fairmont Banff Springs",tier:"Luxury Iconic",price:"$500–$1,100/night",notes:"Castle-like landmark resort and the best-known hotel in Banff."},
+      {name:"Rimrock Resort Hotel",tier:"Luxury",price:"$350–$700/night",notes:"Scenic mountainside hotel with a more polished, quieter feel."},
+      {name:"Fairmont Chateau Lake Louise",tier:"Luxury Iconic",price:"$700–$1,500/night",notes:"Bucket-list stay right on one of the most famous lakes in the world."}
+    ],
+    restaurants:[
+      {name:"Eden",cuisine:"Fine Dining",notes:"Refined mountain dining experience ideal for a special evening."},
+      {name:"Sky Bistro",cuisine:"Canadian",notes:"A memorable dining option paired with panoramic mountain views."}
+    ],
+    activities:[
+      {name:"Lake Louise & Moraine Lake",price:"Free–$50 transit",notes:"The defining scenic experiences of the Banff area and absolute must-sees."},
+      {name:"Banff Gondola",price:"$50–$80",notes:"Easy mountain-top views and a good year-round anchor activity."}
+    ],
+    bestFor:["Scenic travel","Couples","Adventure + luxury"],
+    bestTime:"June–September for lakes and hiking, December–March for winter scenery and ski.",
+    travelNote:"Usually reached via Calgary with a scenic transfer into the Rockies."
+  },
+
+  quebeccity:{
+    label:"Quebec City",emoji:"❄️",region:"Canada",
+    vibe:"Quebec City feels more European than almost anywhere else in North America, with cobblestone streets, fortified walls, French-speaking culture, and a charming old town that is especially strong in winter and holiday season.",
+    sell:"CxC can position Quebec City as a romantic city break, a winter holiday escape, or part of a longer eastern Canada itinerary.",
+    hotels:[
+      {name:"Fairmont Le Château Frontenac",tier:"Luxury Iconic",price:"$400–$900/night",notes:"The signature hotel of Quebec City and one of Canada's most recognizable properties."},
+      {name:"Auberge Saint-Antoine",tier:"Boutique Luxury",price:"$300–$650/night",notes:"Beautiful historic boutique stay in Old Quebec with excellent service."},
+      {name:"Le Capitole Hotel",tier:"Upscale",price:"$250–$500/night",notes:"Strong central option with modern rooms and easy walkability."}
+    ],
+    restaurants:[
+      {name:"Chez Muffy",cuisine:"French-Canadian",notes:"Polished restaurant with a warm historic setting."},
+      {name:"Le Continental",cuisine:"Classic French",notes:"Old-school special occasion dining with tableside preparation."}
+    ],
+    activities:[
+      {name:"Old Quebec Walk",price:"Free",notes:"The best way to take in the city's atmosphere, architecture, and charm."},
+      {name:"Montmorency Falls",price:"$10–$25",notes:"Popular nearby natural attraction that works well as a short excursion."}
+    ],
+    bestFor:["Romantic trips","Winter getaways","Culture lovers"],
+    bestTime:"June–October and December for holiday atmosphere.",
+    travelNote:"Easy to pair with Montreal or as a standalone long weekend from the Northeast."
+  },
+
+  alaska:{
+    label:"Alaska",emoji:"🧊",region:"USA / Adventure",
+    vibe:"Alaska is about glaciers, wildlife, dramatic fjords, and huge landscapes that feel genuinely untamed. It works as a cruise, a rail-and-lodge trip, or a more active land adventure depending on the traveler.",
+    sell:"CxC can guide clients toward the right style of Alaska trip, because cruise itineraries, lodge stays, and land packages deliver very different experiences even within the same destination.",
+    hotels:[
+      {name:"Alyeska Resort",tier:"Upscale Resort",price:"$300–$700/night",notes:"Popular luxury-leaning base south of Anchorage with strong scenery and adventure access."},
+      {name:"Hotel Captain Cook",tier:"Luxury",price:"$250–$500/night",notes:"Classic Anchorage stay often used as a polished starting or ending point."},
+      {name:"Tutka Bay Lodge",tier:"Luxury Wilderness Lodge",price:"$1,000+/night",notes:"Remote high-end lodge experience for travelers seeking a more immersive Alaska trip."}
+    ],
+    restaurants:[
+      {name:"Crow's Nest",cuisine:"Fine Dining",notes:"Anchorage favorite with skyline and mountain views."},
+      {name:"The Bake Shop",cuisine:"Casual Alaskan",notes:"Well-known stop near Seward for hearty comfort food."}
+    ],
+    activities:[
+      {name:"Glacier Cruise",price:"$120–$250/pp",notes:"One of the best ways to experience Alaska's fjords, ice, and wildlife."},
+      {name:"Denali Flightseeing",price:"$250–$500/pp",notes:"Bucket-list scenic flight opportunity if weather cooperates."}
+    ],
+    bestFor:["Adventure travel","Nature lovers","Bucket-list trips"],
+    bestTime:"June–August.",
+    travelNote:"Most visitors route through Anchorage, Juneau, or cruise gateways like Seattle or Vancouver."
+  },
+
+  yosemite:{
+    label:"Yosemite",emoji:"🌲",region:"California",
+    vibe:"Yosemite is one of America's iconic national parks, with granite cliffs, waterfalls, giant sequoias, and a scale that feels almost impossible in person. It works for both scenic luxury and active outdoor travel.",
+    sell:"CxC can help structure Yosemite with the right lodging and pacing, especially because in-park stays and peak season access can become difficult without planning well ahead.",
+    hotels:[
+      {name:"The Ahwahnee",tier:"Historic Luxury",price:"$500–$1,100/night",notes:"The park's most famous lodge and the best-known in-park luxury stay."},
+      {name:"Tenaya at Yosemite",tier:"Upscale Resort",price:"$250–$500/night",notes:"Reliable resort option outside the park with broad family and couple appeal."},
+      {name:"Rush Creek Lodge",tier:"Upscale",price:"$300–$650/night",notes:"Strong base near the park with a more modern lodge feel."}
+    ],
+    restaurants:[
+      {name:"The Ahwahnee Dining Room",cuisine:"American",notes:"Classic setting and one of the most recognizable dining rooms in the national park system."},
+      {name:"Mountain Room",cuisine:"American",notes:"Good option with views near Yosemite Valley."}
+    ],
+    activities:[
+      {name:"Tunnel View",price:"Free",notes:"One of the most famous viewpoints in the US and an easy must-do stop."},
+      {name:"Yosemite Valley Day",price:"$35/car",notes:"The core park experience with waterfalls, valley views, and iconic landmarks."}
+    ],
+    bestFor:["Nature lovers","Families","National park trips"],
+    bestTime:"May–October.",
+    travelNote:"Often paired with San Francisco, Napa, or a California road trip."
+  },
+
+  zion:{
+    label:"Zion National Park",emoji:"🧡",region:"Southwest USA",
+    vibe:"Zion delivers massive red canyon walls, dramatic hikes, and one of the most visually striking desert landscapes in the US. It works especially well for active travelers and Southwest road trips.",
+    sell:"CxC can position Zion as the outdoor centerpiece of a bigger Southwest itinerary with proper pacing and strong nearby lodging instead of a rushed one-night stop.",
+    hotels:[
+      {name:"Amangiri",tier:"Ultra-Luxury",price:"$3,000+/night",notes:"One of the most exclusive desert resorts in the world, often paired with Zion and southern Utah."},
+      {name:"Cliffrose Springdale",tier:"Upscale",price:"$250–$500/night",notes:"Great location near the park entrance with resort-style comforts."},
+      {name:"Cable Mountain Lodge",tier:"Mid-Range",price:"$220–$450/night",notes:"Excellent convenience for park-focused travelers who want walkable access."}
+    ],
+    restaurants:[
+      {name:"King's Landing Bistro",cuisine:"American",notes:"Reliable Springdale dinner option after a day in the park."},
+      {name:"Oscar's Cafe",cuisine:"Casual",notes:"Popular spot for relaxed meals and strong portions."}
+    ],
+    activities:[
+      {name:"Zion Canyon Shuttle Day",price:"$35/car park entry",notes:"The standard way to experience the park's main scenic corridor."},
+      {name:"The Narrows or Angels Landing",price:"Permit/gear varies",notes:"Two of Zion's best-known adventure hikes, with Angels Landing requiring advance permit planning."}
+    ],
+    bestFor:["Adventure travelers","Hikers","Southwest road trips"],
+    bestTime:"March–May and September–November.",
+    travelNote:"Often paired with Las Vegas, Bryce Canyon, or Scottsdale-style Southwest itineraries."
+  },
+
+  santabarbara:{
+    label:"Santa Barbara",emoji:"🌴",region:"California",
+    vibe:"Santa Barbara blends wine-country sophistication, ocean views, Spanish-style architecture, and an easy California pace. It feels upscale without trying too hard and works very well for romantic weekends and food-and-wine trips.",
+    sell:"CxC can use Santa Barbara as either a standalone long weekend or part of a larger Southern California coastal itinerary with the right hotel and wine-country add-ons.",
+    hotels:[
+      {name:"Rosewood Miramar Beach",tier:"Ultra-Luxury",price:"$1,200–$2,800/night",notes:"Top luxury option directly on the sand in nearby Montecito."},
+      {name:"Hotel Californian",tier:"Luxury",price:"$500–$1,000/night",notes:"Stylish downtown luxury near the waterfront and Funk Zone."},
+      {name:"El Encanto",tier:"Luxury Boutique",price:"$700–$1,500/night",notes:"Romantic hillside property with gardens and city/ocean views."}
+    ],
+    restaurants:[
+      {name:"Bouchon",cuisine:"California / French",notes:"Longtime favorite for polished but relaxed dining."},
+      {name:"The Lark",cuisine:"American",notes:"Popular Funk Zone restaurant ideal for a lively evening out."}
+    ],
+    activities:[
+      {name:"Santa Ynez Wine Tasting",price:"$50–$150/pp",notes:"Easy wine-country add-on that gives the trip much more range."},
+      {name:"State Street + Waterfront",price:"Free",notes:"A relaxed way to enjoy the city's main shopping and beach areas."}
+    ],
+    bestFor:["Couples","Wine lovers","California coastal trips"],
+    bestTime:"March–June and September–November.",
+    travelNote:"Easy pairing with Los Angeles, the Central Coast, or a longer California coastal route."
+  },
+
+  seattle:{
+    label:"Seattle",emoji:"☕",region:"Pacific Northwest",
+    vibe:"Seattle combines waterfront scenery, coffee culture, strong food, and easy mountain and island access. It feels urban but outdoorsy at the same time, which gives it a very different personality than most major US cities.",
+    sell:"CxC can build Seattle as a city break, a cruise add-on, or the gateway to a broader Pacific Northwest trip with ferries, islands, and national parks.",
+    hotels:[
+      {name:"Four Seasons Seattle",tier:"Luxury",price:"$500–$1,000/night",notes:"Top luxury choice with prime downtown and waterfront access."},
+      {name:"Thompson Seattle",tier:"Luxury Boutique",price:"$350–$700/night",notes:"Stylish stay near Pike Place with strong city and water views."},
+      {name:"Fairmont Olympic Hotel",tier:"Historic Luxury",price:"$300–$650/night",notes:"Classic Seattle grand hotel with a timeless feel."}
+    ],
+    restaurants:[
+      {name:"Canlis",cuisine:"Fine Dining",notes:"Seattle's iconic high-end restaurant with long-standing prestige."},
+      {name:"The Pink Door",cuisine:"Italian",notes:"Beloved Pike Place-adjacent spot with strong atmosphere."}
+    ],
+    activities:[
+      {name:"Pike Place Market",price:"Free",notes:"The essential first stop for food, atmosphere, and city energy."},
+      {name:"Bainbridge Ferry",price:"$10–$20",notes:"Easy scenic outing that shows off Seattle's waterfront and mountain setting."}
+    ],
+    bestFor:["City breaks","Cruise add-ons","Food + scenery trips"],
+    bestTime:"May–September.",
+    travelNote:"Strong air access and a common gateway for Alaska cruise departures."
+  },
+
+  sanfrancisco:{
+    label:"San Francisco",emoji:"🌉",region:"California",
+    vibe:"San Francisco delivers iconic scenery, dense neighborhoods, major food appeal, and a sense of personality that still feels distinct in the US. It works well as both a cultural city trip and a launch point for Napa, Carmel, or Yosemite.",
+    sell:"CxC can use San Francisco as an anchor for a broader Northern California itinerary rather than just a stand-alone hotel booking.",
+    hotels:[
+      {name:"The St. Regis San Francisco",tier:"Luxury",price:"$500–$1,100/night",notes:"Polished luxury option close to downtown museums and dining."},
+      {name:"Fairmont San Francisco",tier:"Historic Luxury",price:"$400–$900/night",notes:"Classic Nob Hill stay with strong city views and old-school presence."},
+      {name:"Hotel Nikko",tier:"Upscale",price:"$250–$500/night",notes:"Reliable modern option with strong location value."}
+    ],
+    restaurants:[
+      {name:"Atelier Crenn",cuisine:"Fine Dining",notes:"One of California's most acclaimed tasting menu experiences."},
+      {name:"Swan Oyster Depot",cuisine:"Seafood",notes:"Legendary casual seafood stop worth the wait."}
+    ],
+    activities:[
+      {name:"Golden Gate + Sausalito Day",price:"Free–$40",notes:"Classic San Francisco experience with easy photo and ferry opportunities."},
+      {name:"Alcatraz",price:"$40–$60",notes:"Popular must-book-in-advance sight for first-time visitors."}
+    ],
+    bestFor:["City breaks","Foodies","California itineraries"],
+    bestTime:"April–June and September–October.",
+    travelNote:"Excellent pairing with Napa, Carmel, Yosemite, or Highway 1 trips."
+  },
+
+  losangeles:{
+    label:"Los Angeles",emoji:"🎬",region:"California",
+    vibe:"Los Angeles is sprawling, sunny, and full of distinct neighborhoods — beach cities, Hollywood, Beverly Hills, arts districts, and great dining across the city. It works best when the trip is structured intentionally rather than treated like one compact downtown destination.",
+    sell:"CxC helps clients choose the right area to stay, which matters enormously in LA because the wrong hotel location can waste hours in transit.",
+    hotels:[
+      {name:"Beverly Hills Hotel",tier:"Luxury Iconic",price:"$1,000–$2,500/night",notes:"Classic Hollywood luxury and one of LA's most famous addresses."},
+      {name:"Pendry West Hollywood",tier:"Luxury",price:"$500–$1,000/night",notes:"Stylish modern option with strong nightlife and dining access."},
+      {name:"Shutters on the Beach",tier:"Luxury Beachfront",price:"$900–$1,800/night",notes:"A top Santa Monica choice for coastal luxury."}
+    ],
+    restaurants:[
+      {name:"Bestia",cuisine:"Italian",notes:"One of LA's best-known reservation-worthy restaurants."},
+      {name:"Gjelina",cuisine:"California",notes:"Venice staple that works well for stylish brunch or dinner."}
+    ],
+    activities:[
+      {name:"Santa Monica + Venice",price:"Free",notes:"Classic coastal LA day with beach, shopping, and people-watching."},
+      {name:"Getty Center",price:"Free parking extra",notes:"Great art and one of the city's best scenic cultural stops."}
+    ],
+    bestFor:["Luxury travel","Families","California combo trips"],
+    bestTime:"March–June and September–November.",
+    travelNote:"Choosing the right neighborhood is critical because LA travel times can be substantial."
+  },
+
+  washingtondc:{
+    label:"Washington, DC",emoji:"🏛️",region:"Mid-Atlantic USA",
+    vibe:"Washington, DC offers monuments, museums, walkable neighborhoods, and a stronger food scene than many travelers expect. It works well for both quick cultural getaways and more polished city weekends.",
+    sell:"CxC can make DC feel less like a school trip and more like a real city stay by building around the right neighborhoods, dining, and seasonal timing.",
+    hotels:[
+      {name:"The Jefferson",tier:"Luxury Boutique",price:"$500–$1,000/night",notes:"One of the city's most refined luxury stays with a quiet polished feel."},
+      {name:"Rosewood Washington, DC",tier:"Luxury",price:"$500–$1,100/night",notes:"Georgetown-based option with strong style and location."},
+      {name:"Riggs Washington DC",tier:"Upscale",price:"$300–$650/night",notes:"Stylish historic bank conversion with broad appeal."}
+    ],
+    restaurants:[
+      {name:"Rose's Luxury",cuisine:"American",notes:"One of the city's signature reservation-worthy dining experiences."},
+      {name:"Old Ebbitt Grill",cuisine:"American Seafood",notes:"Classic DC institution and a reliable stop near the Mall."}
+    ],
+    activities:[
+      {name:"National Mall Museums",price:"Free",notes:"The biggest cultural advantage of DC and easy to build into multiple days."},
+      {name:"Georgetown Walk",price:"Free",notes:"Great neighborhood for dining, shopping, and a less formal side of the city."}
+    ],
+    bestFor:["Culture trips","Long weekends","History lovers"],
+    bestTime:"March–May and September–November.",
+    travelNote:"Very easy East Coast access by air or rail and especially good for short premium city breaks."
+  },
+
+  boston:{
+    label:"Boston",emoji:"⚓",region:"Northeast USA",
+    vibe:"Boston combines walkable history, polished neighborhoods, strong sports culture, and an excellent dining scene. It works especially well as a smart long weekend destination with minimal wasted time getting around.",
+    sell:"CxC can build Boston around food, neighborhoods, Fenway, and seasonal New England add-ons rather than treating it like a one-note historic city.",
+    hotels:[
+      {name:"The Newbury Boston",tier:"Luxury",price:"$500–$1,000/night",notes:"One of Boston's most polished luxury options overlooking the Public Garden."},
+      {name:"Raffles Boston",tier:"Luxury",price:"$600–$1,200/night",notes:"High-end newer addition with a strong modern luxury feel."},
+      {name:"XV Beacon",tier:"Boutique Luxury",price:"$400–$800/night",notes:"Elegant smaller stay with strong location and service."}
+    ],
+    restaurants:[
+      {name:"Neptune Oyster",cuisine:"Seafood",notes:"One of the city's most famous seafood spots and worth the wait."},
+      {name:"Mamma Maria",cuisine:"Italian",notes:"Classic North End special occasion restaurant."}
+    ],
+    activities:[
+      {name:"Freedom Trail",price:"Free–$20 guided",notes:"A simple anchor activity for first-time visitors that connects the city's historic core."},
+      {name:"Fenway Park",price:"$20–$80",notes:"Strong draw for sports-focused trips and Boston weekend energy."}
+    ],
+    bestFor:["Long weekends","History lovers","Sports trips"],
+    bestTime:"May–October.",
+    travelNote:"Easy to pair with Cape Cod, Newport, or other New England add-ons."
+  },
+
+  newportri:{
+    label:"Newport, Rhode Island",emoji:"⛵",region:"New England",
+    vibe:"Newport blends Gilded Age mansions, sailboat-filled harbors, coastal elegance, and one of the strongest summer atmospheres in the Northeast. It works especially well for romantic weekends and upscale East Coast escapes.",
+    sell:"CxC can position Newport as a polished coastal getaway with the right mix of waterfront hotel, dining, and nearby New England charm.",
+    hotels:[
+      {name:"The Chanler at Cliff Walk",tier:"Luxury Boutique",price:"$700–$1,500/night",notes:"One of Newport's most romantic and exclusive stays directly on the Cliff Walk."},
+      {name:"Castle Hill Inn",tier:"Luxury",price:"$900–$2,000/night",notes:"Classic waterfront luxury with a true New England feel."},
+      {name:"Hotel Viking",tier:"Upscale Historic",price:"$300–$650/night",notes:"Reliable central option with strong walkability."}
+    ],
+    restaurants:[
+      {name:"The Mooring",cuisine:"Seafood",notes:"Classic harbor dining and a Newport staple."},
+      {name:"White Horse Tavern",cuisine:"American",notes:"Historic and atmospheric restaurant with major character."}
+    ],
+    activities:[
+      {name:"Cliff Walk",price:"Free",notes:"A signature Newport experience with mansions on one side and ocean views on the other."},
+      {name:"Mansion Tour",price:"$20–$40",notes:"The Breakers and other estates are essential to understanding the destination."}
+    ],
+    bestFor:["Couples","Summer weekends","Coastal luxury"],
+    bestTime:"May–October.",
+    travelNote:"Works best as a drive trip or an add-on from Boston, Providence, or other New England stops."
+  },
+
+  aspen:{
+    label:"Aspen",emoji:"🏔️",region:"Mountain USA",
+    vibe:"Aspen combines true luxury, serious ski access, strong dining, and a mountain town atmosphere that still feels exclusive and polished. It is one of the best high-end winter destinations in North America and still works beautifully in summer.",
+    sell:"CxC can build Aspen around ski, food, summer festivals, or a premium long weekend and help clients understand the big differences between town stays and Snowmass-style lodging.",
+    hotels:[
+      {name:"The Little Nell",tier:"Ultra-Luxury",price:"$1,200–$4,000/night",notes:"Aspen's flagship luxury hotel and the only ski-in/ski-out stay at the base of Ajax."},
+      {name:"Hotel Jerome",tier:"Luxury Historic",price:"$800–$2,500/night",notes:"One of the most iconic mountain hotels in the country."},
+      {name:"W Aspen",tier:"Luxury",price:"$600–$1,400/night",notes:"Lively newer luxury option with strong location and rooftop scene."}
+    ],
+    restaurants:[
+      {name:"Matsuhisa Aspen",cuisine:"Japanese",notes:"A signature upscale dining option in town."},
+      {name:"Cache Cache",cuisine:"French Bistro",notes:"Longtime Aspen favorite for polished mountain dining."}
+    ],
+    activities:[
+      {name:"Aspen Mountain Ski Day",price:"$200–$300/day",notes:"The core winter experience for many travelers and groups."},
+      {name:"Maroon Bells",price:"$16 shuttle or permit varies",notes:"One of the most beautiful summer and fall scenic experiences in the Rockies."}
+    ],
+    bestFor:["Luxury winter trips","Skiers","Mountain foodies"],
+    bestTime:"December–March for ski, June–September for summer mountain season.",
+    travelNote:"Best planned early because peak dates and top lodging book quickly."
   }
+
 
 }; // ── END KB ──────────────────────────────────────────────────────────────────
 
@@ -2128,7 +2591,29 @@ const DEST_KEYS={
   fiji:         ["fiji","south pacific","fiji resort","fiji island"],
   singapore:    ["singapore","marina bay sands","raffles singapore","gardens by the bay"],
   phuket:       ["phuket","phuket thailand","phi phi","old phuket town"],
-  vietnam:      ["vietnam","ha long bay","hoi an","hanoi","saigon"]
+  vietnam:      ["vietnam","ha long bay","hoi an","hanoi","saigon"],
+
+  seychelles:  ["seychelles","anse source d'argent","mahe","praslin"],
+  tahiti:      ["tahiti","moorea","french polynesia","papeete"],
+  venice:      ["venice","venezia","st marks","grand canal venice"],
+  milan:       ["milan","milano","duomo milan","galleria vittorio emanuele"],
+  lakecomo:    ["lake como","como","bellagio italy","varenna","menaggio"],
+  budapest:    ["budapest","danube budapest","szechenyi baths","hungary capital"],
+  munich:      ["munich","muenchen","oktoberfest","marienplatz"],
+  vancouver:   ["vancouver","stanley park","british columbia city","capilano"],
+  banff:       ["banff","lake louise","moraine lake","canadian rockies"],
+  quebeccity:  ["quebec city","old quebec","chateau frontenac","quebec canada"],
+  alaska:      ["alaska","denali","anchorage","alaska glacier","inside passage"],
+  yosemite:    ["yosemite","half dome","el capitan","yosemite valley"],
+  zion:        ["zion","zion national park","angels landing","the narrows"],
+  santabarbara:["santa barbara","montecito","santa ynez","funk zone"],
+  seattle:     ["seattle","pike place","bainbridge ferry","space needle"],
+  sanfrancisco:["san francisco","sf","golden gate","alcatraz","fishermans wharf"],
+  losangeles:  ["los angeles","la","santa monica","beverly hills","west hollywood"],
+  washingtondc:["washington dc","dc","national mall","georgetown dc","smithsonian"],
+  boston:      ["boston","fenway","freedom trail","back bay boston"],
+  newportri:   ["newport","newport ri","cliff walk","rhode island coast"],
+  aspen:       ["aspen","aspen colorado","maroon bells","ajax mountain"]
 
 };
 
