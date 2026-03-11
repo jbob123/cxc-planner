@@ -259,6 +259,7 @@ function deliverRecommendations() {
 
   botMsg(intro + '\n\n' + recText, recs.map(k => ({label: KB[k].emoji+' '+KB[k].label, action:()=>sendText(KB[k].label)})));
   currentDest = recs[0];
+  connectShown = false;
   maybeShowConnect();
 }
 
@@ -419,9 +420,9 @@ function getReply(text) {
     };
 
   // ── CATEGORY BUTTONS — use currentDest if no dest in text ─────────────────
-  const cat0 = detectCat(text);
-  if (cat0 && currentDest && KB[currentDest]) {
+  if (currentDest && KB[currentDest]) {
     const d0 = KB[currentDest];
+    const cat0 = detectCat(text);
     if (cat0==='hotels' && d0.hotels)
       return { text:`🏨 **Hotels in ${d0.label}:**\n\n${d0.sell||''}`, cards:d0.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d0.golf?["Golf Courses"]:[]),...(d0.allinclusive?["All-Inclusive Options"]:[])] };
     if (cat0==='restaurants' && d0.restaurants)
@@ -450,7 +451,7 @@ function getReply(text) {
   const cat = detectCat(text);
 
   if (cat==='hotels' && d.hotels)
-    return { text:`🏨 **Hotels in ${d.label}:**\n\n${d.sell||''}`, cards:d.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[])] };
+    return { text:`🏨 **Hotels in ${d.label}:**\n\n${d.sell||''}`, cards:d.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),"💬 Talk to Jesse & Sam"] };
 
   if (cat==='restaurants' && d.restaurants)
     return { text:`🍽️ **Top dining in ${d.label}:**`, cards:d.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do"] };
@@ -465,7 +466,7 @@ function getReply(text) {
     return { text:`🌴 **All-inclusive options in ${d.label}:**`, cards:d.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining"] };
 
   // General destination overview
-  const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),(d.bestFor||[]).length?"💬 Talk to Jesse & Sam":""];
+  const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),"💬 Talk to Jesse & Sam"];
   return {
     text:`${d.emoji} **${d.label}**\n\n${d.vibe}\n\n✦ *Why book with CxC:* ${d.sell||'Jesse and Sam handle every detail so you just show up and enjoy.'}\n\n✈️ ${d.travelNote||''}\n📅 Best time: ${d.bestTime||'Year-round'}\n🎯 Best for: ${(d.bestFor||[]).join(', ')}`,
     qrs:qrs.filter(Boolean)
