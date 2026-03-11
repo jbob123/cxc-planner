@@ -105,7 +105,7 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--navy);height:100svh;d
   <div class="header-r">
     <button class="pkg-btn" onclick="showPkgs()">📦 Packages</button>
     <a class="hdr-link" href="tel:412-420-6826">412-420-6826</a>
-    <a class="hdr-link" href="/cdn-cgi/l/email-protection#0c6f746f787e6d7a6960383d3e4c6b616d6560226f6361">Email Us</a>
+    <a class="hdr-link" href="/cdn-cgi/l/email-protection#44273c27303625322128707576042329252d286a272b29">Email Us</a>
   </div>
 </div>
 
@@ -254,12 +254,11 @@ function deliverRecommendations() {
   const intro = `Based on what you told me, here are my top ${recs.length} picks for you — let me know which one catches your eye and I'll go deep on it!`;
   const recText = recs.map((k,i) => {
     const d = KB[k];
-    return `${i+1}. ${d.emoji} **${d.label}**\n${d.vibe.split('.')[0] + '.'}`;
+    const fs = d.vibe.length > 140 ? d.vibe.slice(0,140).replace(/\s\S+$/, '') + '...' : d.vibe; return `${i+1}. ${d.emoji} **${d.label}**\n${fs}`;
   }).join('\n\n');
 
   botMsg(intro + '\n\n' + recText, recs.map(k => ({label: KB[k].emoji+' '+KB[k].label, action:()=>sendText(KB[k].label)})));
   currentDest = recs[0];
-  connectShown = false;
   maybeShowConnect();
 }
 
@@ -326,7 +325,7 @@ function isVague(text) {
 }
 
 function isBookingReady(text) {
-  return /\b(book|ready|contact|reach out|call me|email me|sign up|sign me up|let'?s do it|let'?s go|i('m| am) (in|ready|interested)|how do i (book|get started)|get started|set it up|connect me|talk to (jesse|sam|someone|an agent)|speak with|get a quote|plan my trip|move forward)\b|jesse\s*&\s*sam|connect with cxc/i.test(text);
+  return /\b(book|ready|contact|reach out|call me|email me|sign up|sign me up|let'?s do it|let'?s go|i('m| am) (in|ready|interested)|how do i (book|get started)|get started|set it up|connect me|talk to (jesse|sam)|speak with|get a quote|plan my trip)\b|jesse\s*&\s*sam|connect with cxc/i.test(text);
 }
 
 // ── MAIN REPLY ENGINE ─────────────────────────────────────────────────────────
@@ -349,47 +348,47 @@ function getReply(text) {
   if (/^(hi+|hey+|hello|howdy|hiya|sup|what'?s up)[\s!?]*$/.test(lo.trim()))
     return {
       text:`Hey! 👋 I'm your CxC Travel planning guide.\n\nI have detailed info on hotels, restaurants, activities, golf, and all-inclusive resorts for **${Object.keys(KB).length} destinations** — from the Caribbean to Europe to Hawaii. Zero cost to explore, no sign-up needed.\n\nTell me a destination you're thinking about, or ask me to help you figure out where to go!`,
-      qrs:["🏖️ Help me choose","🌴 Aruba","🎰 Las Vegas","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville"]
+      qrs:["🏖️ Help me choose","🌴 Aruba","🎰 Las Vegas","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville","💬 Talk to Jesse & Sam"]
     };
 
   // All-inclusive intent (no dest)
   if (/all.?inclusive/i.test(lo) && !detectDest(text))
     return {
       text:`🌴 All-inclusive is one of CxC's biggest specialties — and this is where working with Jesse and Sam really pays off. We have relationships with the top AI resorts and can often get room category upgrades and resort credits you won't get booking direct.\n\n**Best AI destinations:**\n• **Aruba** — hurricane-free year-round, calm beautiful beaches, great adults-only options\n• **Cancun / Riviera Maya** — most options at every price, ruins nearby, excellent group rates\n• **Punta Cana** — best value AI in the Caribbean, rivals Mexico at lower cost\n• **Jamaica** — Sandals and Beaches are world-class; Jesse and Sam are certified specialists\n• **St. Lucia** — more intimate, dramatic Pitons scenery, romantic\n• **Turks & Caicos** — Beaches TCI is exceptional for families on Grace Bay`,
-      qrs:["🌴 Aruba","🌊 Cancun","🌺 Punta Cana","🎵 Jamaica","🌋 St. Lucia","🐢 Turks & Caicos"]
+      qrs:["🌴 Aruba","🌊 Cancun","🌺 Punta Cana","🎵 Jamaica","🌋 St. Lucia","🐢 Turks & Caicos","💬 Talk to Jesse & Sam"]
     };
 
   // Honeymoon intent
   if (/honeymoon|romantic|anniversary|proposal/i.test(lo) && !detectDest(text))
     return {
       text:`💕 Honeymoon and romantic travel is where Jesse and Sam genuinely shine — they take the planning stress off completely so you can just enjoy it.\n\n**Most romantic destinations CxC books:**\n• **Aruba** — adults-only resorts, year-round perfect weather, Eagle Beach\n• **St. Lucia** — Jade Mountain's open-wall suites with private infinity pools, Pitons backdrop\n• **Turks & Caicos** — Grace Bay Beach (#1 in the world), exclusive private-island options\n• **Bali** — private pool villas, rice terraces, deeply spiritual and beautiful\n• **Santorini, Greece** — caldera views, cliff-edge infinity pools, unforgettable sunsets\n• **Amalfi Coast, Italy** — cliffside villas, incredible food, the most beautiful coastline in Europe\n• **Napa Valley** — vineyard estates, Michelin-starred dinners, no passport needed\n• **Maui, Hawaii** — Four Seasons, Road to Hana, volcanic drama`,
-      qrs:["🌴 Aruba","🌋 St. Lucia","🐢 Turks & Caicos","🌸 Bali","🏛️ Greece","🍕 Italy","🍷 Napa Valley","🌺 Hawaii"]
+      qrs:["🌴 Aruba","🌋 St. Lucia","🐢 Turks & Caicos","🌸 Bali","🏛️ Greece","🍕 Italy","🍷 Napa Valley","🌺 Hawaii","💬 Talk to Jesse & Sam"]
     };
 
   // Group / bachelor / bachelorette intent
   if (/\b(group|bachelor|bachelorette|birthday|corporate|reunion|trip with friends|party trip)\b/i.test(lo) && !detectDest(text))
     return {
       text:`👥 Groups are one of CxC's biggest specialties. The right destination, the right hotel, and the right itinerary makes the difference between a good trip and one people talk about for years.\n\n**Top group destinations:**\n• **Las Vegas** — something for every personality, world-class shows and dining, best nightlife in the US\n• **Nashville** — live music from noon to 3am, incredible food scene, perfect party energy\n• **New Orleans** — the best food and music culture in America, Frenchmen Street beats Bourbon every time\n• **Cancun** — all-inclusive group pricing is exceptional, Moon Palace handles 1,000+ guests effortlessly\n• **Jamaica (Sandals/Beaches)** — full resort takeover options for larger groups\n\nWhat's the occasion?`,
-      qrs:["🎰 Las Vegas","🎸 Nashville","🎺 New Orleans","🌊 Cancun","🎵 Jamaica"]
+      qrs:["🎰 Las Vegas","🎸 Nashville","🎺 New Orleans","🌊 Cancun","🎵 Jamaica","💬 Talk to Jesse & Sam"]
     };
 
   // Golf intent (no dest)
   if (/\bgolf\b/i.test(lo) && !detectDest(text))
     return {
       text:`⛳ Golf trips are Jesse and Sam's specialty — from planning the tee times to finding the right group hotel package.\n\n**Top golf destinations CxC books:**\n• **Scottsdale, AZ** — 200+ courses, TPC Scottsdale, Troon North, We-Ko-Pa. World-class.\n• **Myrtle Beach, SC** — 100+ courses within 60 miles. Best East Coast golf value.\n• **Pebble Beach, CA** — bucket-list golf. Holes 6–10 along the Pacific are the most beautiful in the game.\n• **Pinehurst, NC** — the cradle of American golf. More USGA championships than anywhere on earth.\n• **Bandon Dunes, OR** — five world-class links courses on the Oregon coast. The most serious golf trip in America.\n• **Ireland & Scotland** — St Andrews, Royal County Down, Ballybunion. Where the game was born.\n• **Cabo San Lucas** — Tiger Woods' Diamante, Quivira cliffside holes over the Pacific.\n• **Las Vegas** — Shadow Creek, Cascata, Wolf Creek. Dramatic desert golf.`,
-      qrs:["🌵 Scottsdale","⛳ Myrtle Beach","🌊 Pebble Beach","🌲 Pinehurst","🌊 Bandon Dunes","🍀 Ireland & Scotland Golf","🌵 Cabo Golf","🎰 Las Vegas Golf"]
+      qrs:["🌵 Scottsdale","⛳ Myrtle Beach","🌊 Pebble Beach","🌲 Pinehurst","🌊 Bandon Dunes","🍀 Ireland & Scotland Golf","🌵 Cabo Golf","🎰 Las Vegas Golf","💬 Talk to Jesse & Sam"]
     };
 
   // Cruise intent (no dest)
   if (/\bcruise/i.test(lo) && !detectDest(text)) {
     const d = KB.cruises;
     if (/port|depart|drive|no flight|nearest/i.test(lo))
-      return { text:"🚢 Cruise ports closest to you:", cards:d.ports.map(p=>({name:p.name,badge:"Port",notes:p.note})), qrs:["Compare cruise lines","Alaska cruise","Caribbean cruise","Mediterranean cruise"] };
+      return { text:"🚢 Cruise ports closest to you:", cards:d.ports.map(p=>({name:p.name,badge:"Port",notes:p.note})), qrs:["Compare cruise lines","Alaska cruise","Caribbean cruise","Mediterranean cruise","💬 Talk to Jesse & Sam"] };
     if (/line|which cruise|compare|best cruise company/i.test(lo))
-      return { text:"🚢 Major cruise lines Jesse & Sam book:", cards:d.lines.map(l=>({name:l.name,badge:l.best,notes:l.notes})), qrs:["Ports near me","Alaska cruise","Caribbean cruise","Family cruise"] };
+      return { text:"🚢 Major cruise lines Jesse & Sam book:", cards:d.lines.map(l=>({name:l.name,badge:l.best,notes:l.notes})), qrs:["Ports near me","Alaska cruise","Caribbean cruise","Family cruise","💬 Talk to Jesse & Sam"] };
     return {
       text:`🚢 ${d.vibe}\n\n${d.sell}\n\n🎯 Best for: ${(d.bestFor||[]).join(', ')}`,
-      qrs:["Compare cruise lines","Ports near me","Alaska cruise","Caribbean cruise","Mediterranean cruise"]
+      qrs:["Compare cruise lines","Ports near me","Alaska cruise","Caribbean cruise","Mediterranean cruise","💬 Talk to Jesse & Sam"]
     };
   }
 
@@ -397,50 +396,50 @@ function getReply(text) {
   if (/\b(family|kids|children|toddler|teen|with kids)\b/i.test(lo) && !detectDest(text))
     return {
       text:`👨‍👩‍👧 Family travel is all about the right mix of activities for different ages — and knowing which resorts genuinely deliver on their kids programming.\n\n**Best family destinations:**\n• **Orlando / Disney** — unbeatable for ages 3–15. Epic Universe is brand new and extraordinary.\n• **Cancun / Riviera Maya** — Moon Palace and Hyatt Ziva are excellent for families with great kids clubs\n• **Bahamas (Atlantis)** — 20+ waterslides, marine habitat, massive resort. Kids lose their minds.\n• **Jamaica (Beaches Negril)** — Sesame Street, waterpark, 7-Mile Beach. The gold standard family AI.\n• **Hawaii** — Big Island volcanoes, Maui beaches, sea turtles. Works for all ages.`,
-      qrs:["✨ Orlando / Disney","🌊 Cancun","🏝️ Bahamas","🎵 Jamaica","🌺 Hawaii"]
+      qrs:["✨ Orlando / Disney","🌊 Cancun","🏝️ Bahamas","🎵 Jamaica","🌺 Hawaii","💬 Talk to Jesse & Sam"]
     };
 
   // ── REGION BUTTONS ────────────────────────────────────────────────────────
   if (/\bcaribbean\b/i.test(lo) && !detectDest(text))
     return {
-      text:`🌴 **Caribbean destinations CxC books:**\n\n• **Aruba** — hurricane-free, Eagle Beach, best adults-only resorts\n• **Cancun / Riviera Maya** — best AI value, Mayan ruins, great for groups\n• **Jamaica** — Sandals & Beaches specialists, 7-Mile Beach\n• **Bahamas** — Atlantis, Exumas, pink-sand beaches\n• **Punta Cana** — best value all-inclusive in the Caribbean\n• **St. Lucia** — Jade Mountain, Pitons, most romantic island\n• **Turks & Caicos** — Grace Bay (#1 beach in the world), ultra-luxury\n• **Barbados** — Platinum Coast, refined elegance, best food scene\n• **Puerto Rico** — no passport needed, Old San Juan, bioluminescent bays\n• **US Virgin Islands** — no passport needed, St. John national park\n• **Anguilla, Antigua, Grenada, St. Barts, St. Martin** — boutique Caribbean`,
-      qrs:["🌴 Aruba","🌊 Cancun","🎵 Jamaica","🏝️ Bahamas","🌺 Punta Cana","🌋 St. Lucia","🐢 Turks & Caicos","🏏 Barbados","🇵🇷 Puerto Rico","🌺 US Virgin Islands"]
+      text:`🌴 **Caribbean destinations CxC books:**\n\n• **Aruba** — hurricane-free, Eagle Beach, best adults-only resorts\n• **Cancun / Riviera Maya** — best AI value, Mayan ruins, great for groups\n• **Jamaica** — Sandals & Beaches specialists, 7-Mile Beach\n• **Bahamas** — Atlantis, Exumas, pink-sand beaches\n• **Punta Cana** — best value all-inclusive in the Caribbean\n• **St. Lucia** — Jade Mountain, Pitons, most romantic island\n• **Turks & Caicos** — Grace Bay (#1 beach in the world), ultra-luxury\n• **Barbados** — Platinum Coast, refined elegance, best food scene\n• **Puerto Rico** — no passport needed, Old San Juan, bioluminescent bays\n• **US Virgin Islands** — no passport needed, St. John national park`,
+      qrs:["🌴 Aruba","🌊 Cancun","🎵 Jamaica","🏝️ Bahamas","🌺 Punta Cana","🌋 St. Lucia","🐢 Turks & Caicos","🏏 Barbados","🇵🇷 Puerto Rico","💬 Talk to Jesse & Sam"]
     };
 
   if (/\busa\b|usa destinations|domestic travel/i.test(lo) && !detectDest(text))
     return {
-      text:`🇺🇸 **USA destinations CxC books:**\n\n• **Las Vegas** — shows, dining, golf, nightlife. Best group city in America.\n• **Nashville** — live music, incredible food, perfect 3-night trip\n• **New Orleans** — best food culture in America, jazz, French Quarter\n• **Orlando / Disney** — Epic Universe just opened, unbeatable for families\n• **Miami** — South Beach, Wynwood, art deco, great food\n• **Florida Keys** — Key West charm, snorkeling, laid-back paradise\n• **Hawaii** — Maui, Oahu, Kauai, Big Island. Works for everyone.\n• **New York City** — museums, Broadway, the greatest food city in the US\n• **Napa Valley** — wine country, Michelin stars, romantic\n• **Sedona** — red rocks, spa, hiking, stunning scenery\n• **Savannah & Charleston** — best Southern cities for a long weekend`,
-      qrs:["🎰 Las Vegas","🎸 Nashville","🎺 New Orleans","✨ Orlando","🌺 Hawaii","🗽 New York City","🍷 Napa Valley","🔴 Sedona","🦚 Savannah","🌸 Charleston"]
+      text:`🇺🇸 **USA destinations CxC books:**\n\n• **Las Vegas** — shows, dining, golf, nightlife. Best group city in America.\n• **Nashville** — live music, incredible food, perfect 3-night trip\n• **New Orleans** — best food culture in America, jazz, French Quarter\n• **Orlando / Disney** — Epic Universe just opened, unbeatable for families\n• **Miami** — South Beach, Wynwood, art deco, great food\n• **Florida Keys** — Key West charm, snorkeling, laid-back paradise\n• **Hawaii** — Maui, Oahu, Kauai, Big Island. Works for everyone.\n• **New York City** — museums, Broadway, the greatest food city in the US\n• **Napa Valley** — wine country, Michelin stars, romantic\n• **Sedona** — red rocks, spa, hiking, stunning scenery`,
+      qrs:["🎰 Las Vegas","🎸 Nashville","🎺 New Orleans","✨ Orlando","🌺 Hawaii","🗽 New York City","🍷 Napa Valley","🔴 Sedona","🦚 Savannah","💬 Talk to Jesse & Sam"]
     };
 
   if (/\beurope\b/i.test(lo) && !detectDest(text))
     return {
-      text:`🌍 **Europe destinations CxC books:**\n\n• **Italy** — Rome, Amalfi Coast, Florence, Tuscany, Venice\n• **Greece** — Santorini, Mykonos, Athens, island hopping\n• **Spain** — Barcelona, Madrid, San Sebastián\n• **Portugal** — Lisbon, Porto, Algarve — best value in Western Europe\n• **France (Paris)** — the classics are classics for a reason\n• **Croatia** — Dubrovnik, Split, Hvar, Dalmatian sailing\n• **Ireland & Scotland** — golf, castles, whisky, wild coastlines\n• **Iceland** — Northern Lights, glaciers, Ring Road adventures\n• **London** — museums, West End theater, incredible food\n• **Amsterdam** — canals, Rijksmuseum, Van Gogh, easy day trips`,
-      qrs:["🍕 Italy","🏛️ Greece","🇪🇸 Spain","🇵🇹 Portugal","🗼 Paris","⛵ Croatia","🍀 Ireland & Scotland","🌋 Iceland","🇬🇧 London","🇳🇱 Amsterdam"]
+      text:`🌍 **Europe destinations CxC books:**\n\n• **Italy** — Rome, Amalfi Coast, Florence, Tuscany, Venice\n• **Greece** — Santorini, Mykonos, Athens, island hopping\n• **Spain** — Barcelona, Madrid, San Sebastián\n• **Portugal** — Lisbon, Porto, Algarve — best value in Western Europe\n• **France (Paris)** — the classics are classics for a reason\n• **Croatia** — Dubrovnik, Split, Hvar, Dalmatian sailing\n• **Ireland & Scotland** — golf, castles, whisky, wild coastlines\n• **Iceland** — Northern Lights, glaciers, Ring Road adventures\n• **London** — museums, West End theater, incredible food`,
+      qrs:["🍕 Italy","🏛️ Greece","🇪🇸 Spain","🇵🇹 Portugal","🗼 Paris","⛵ Croatia","🍀 Ireland & Scotland","🌋 Iceland","🇬🇧 London","💬 Talk to Jesse & Sam"]
     };
 
-  // ── CATEGORY BUTTONS — use currentDest if no dest in text ─────────────────
-  if (currentDest && KB[currentDest]) {
+  // ── CATEGORY BUTTONS — use currentDest ────────────────────────────────────
+  const cat0 = detectCat(text);
+  if (cat0 && currentDest && KB[currentDest]) {
     const d0 = KB[currentDest];
-    const cat0 = detectCat(text);
     if (cat0==='hotels' && d0.hotels)
-      return { text:`🏨 **Hotels in ${d0.label}:**\n\n${d0.sell||''}`, cards:d0.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d0.golf?["Golf Courses"]:[]),...(d0.allinclusive?["All-Inclusive Options"]:[])] };
+      return { text:`🏨 **Hotels in ${d0.label}:**\n\n${d0.sell||''}`, cards:d0.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d0.golf?["Golf Courses"]:[]),...(d0.allinclusive?["All-Inclusive Options"]:[]),"💬 Talk to Jesse & Sam"] };
     if (cat0==='restaurants' && d0.restaurants)
-      return { text:`🍽️ **Top dining in ${d0.label}:**`, cards:d0.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+      return { text:`🍽️ **Top dining in ${d0.label}:**`, cards:d0.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do","💬 Talk to Jesse & Sam"] };
     if (cat0==='activities' && (d0.activities||d0.lines))
-      return { text:`🎯 **Top things to do in ${d0.label}:**`, cards:(d0.activities||d0.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||'',note:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining",...(d0.golf?["Golf Courses"]:[])] };
+      return { text:`🎯 **Top things to do in ${d0.label}:**`, cards:(d0.activities||d0.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||'',note:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining","💬 Talk to Jesse & Sam"] };
     if (cat0==='golf' && d0.golf)
-      return { text:`⛳ **Golf in ${d0.label}:**\n\n${d0.sell||''}`, cards:d0.golf.map(g=>({name:g.name,badge:g.tier,sub:g.price,note:g.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+      return { text:`⛳ **Golf in ${d0.label}:**\n\n${d0.sell||''}`, cards:d0.golf.map(g=>({name:g.name,badge:g.tier,sub:g.price,note:g.notes})), qrs:["Hotels & Resorts","Things to Do","💬 Talk to Jesse & Sam"] };
     if (/all.?inclusive/i.test(lo) && d0.allinclusive)
-      return { text:`🌴 **All-inclusive in ${d0.label}:**`, cards:d0.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining"] };
+      return { text:`🌴 **All-inclusive in ${d0.label}:**`, cards:d0.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining","💬 Talk to Jesse & Sam"] };
   }
 
   // No destination detected
   const dest = detectDest(text);
   if (!dest)
     return {
-      text:`I'd love to help! Try asking about a specific destination, or let me help you choose.\n\nExamples:\n• "Tell me about Aruba"\n• "Best beaches for a honeymoon"\n• "Golf trip ideas"`,
-      qrs:["🤔 Help me choose","🌴 Caribbean","🇺🇸 USA destinations","🌍 Europe","⛳ Golf trips","🚢 Cruises"]
+      text:`I'd love to help! Try asking about a destination, or pick one below.`,
+      qrs:["🤔 Help me choose","🌴 Caribbean","🇺🇸 USA destinations","🌍 Europe","⛳ Golf trips","🚢 Cruises","💬 Talk to Jesse & Sam"]
     };
 
   // Good — we have a destination
@@ -454,16 +453,16 @@ function getReply(text) {
     return { text:`🏨 **Hotels in ${d.label}:**\n\n${d.sell||''}`, cards:d.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),"💬 Talk to Jesse & Sam"] };
 
   if (cat==='restaurants' && d.restaurants)
-    return { text:`🍽️ **Top dining in ${d.label}:**`, cards:d.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+    return { text:`🍽️ **Top dining in ${d.label}:**`, cards:d.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do","💬 Talk to Jesse & Sam"] };
 
   if (cat==='activities' && (d.activities||d.lines))
-    return { text:`🎯 **Top things to do in ${d.label}:**`, cards:(d.activities||d.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||'',note:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining",...(d.golf?["Golf Courses"]:[])] };
+    return { text:`🎯 **Top things to do in ${d.label}:**`, cards:(d.activities||d.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||'',note:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining","💬 Talk to Jesse & Sam"] };
 
   if (cat==='golf' && d.golf)
-    return { text:`⛳ **Golf in ${d.label}:**\n\n${d.sell||''}`, cards:d.golf.map(g=>({name:g.name,badge:g.tier,sub:g.price,note:g.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+    return { text:`⛳ **Golf in ${d.label}:**\n\n${d.sell||''}`, cards:d.golf.map(g=>({name:g.name,badge:g.tier,sub:g.price,note:g.notes})), qrs:["Hotels & Resorts","Things to Do","💬 Talk to Jesse & Sam"] };
 
   if (/all.?inclusive/i.test(lo) && d.allinclusive)
-    return { text:`🌴 **All-inclusive options in ${d.label}:**`, cards:d.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining"] };
+    return { text:`🌴 **All-inclusive options in ${d.label}:**`, cards:d.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining","💬 Talk to Jesse & Sam"] };
 
   // General destination overview
   const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),"💬 Talk to Jesse & Sam"];
