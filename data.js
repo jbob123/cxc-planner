@@ -2041,6 +2041,455 @@ const KB = {
     bestFor:["Foodies","Adventure travelers","Value-conscious luxury"],
     bestTime:"Varies by region, but February–April is a strong general window.",
     travelNote:"Best planned as a multi-stop itinerary because the country stretches north to south with different climates."
+  },
+
+  anguilla:{
+    label:"Anguilla",emoji:"🏖️",region:"Caribbean",
+    vibe:"Anguilla is understated Caribbean luxury at its best — long white sand beaches, calm turquoise water, and a low-key atmosphere that attracts travelers who want elegance without crowds. Shoal Bay East alone is enough to justify the trip.",
+    sell:"CxC can steer travelers toward the right beachfront villas and boutique resorts on an island where the best inventory is limited and the difference between a good stay and a great one is all about location.",
+    hotels:[
+      {name:"Cap Juluca, A Belmond Hotel",tier:"Ultra-Luxury",price:"$900–$2,500/night",notes:"Iconic whitewashed beachfront resort on Maundays Bay with one of the best beaches in the Caribbean."},
+      {name:"Four Seasons Resort Anguilla",tier:"Luxury Resort",price:"$800–$1,800/night",notes:"Clifftop luxury with beautiful villas, great pools, and panoramic ocean views."},
+      {name:"Zemi Beach House",tier:"Luxury Boutique",price:"$500–$1,100/night",notes:"Stylish boutique feel on Shoal Bay East with an excellent spa and strong dining."}
+    ],
+    restaurants:[
+      {name:"Blanchards",cuisine:"Caribbean / International",notes:"One of Anguilla's most loved restaurants, known for consistently excellent food and a polished but relaxed setting."},
+      {name:"Sharky's",cuisine:"Caribbean",notes:"Local favorite with creative island dishes and a more casual feel."}
+    ],
+    activities:[
+      {name:"Shoal Bay East Beach Day",price:"Free",notes:"Consistently ranked among the best beaches in the world with soft sand and clear calm water."},
+      {name:"Prickly Pear Cays Boat Trip",price:"$80–$140/pp",notes:"Short boat ride to tiny offshore cays for snorkeling and a true castaway feel."}
+    ],
+    bestFor:["Couples","Luxury travelers","Quiet beach escapes"],
+    bestTime:"December–April.",
+    travelNote:"Passport required. Typically reached via St. Maarten ferry or small regional flight."
+  },
+
+  antigua:{
+    label:"Antigua",emoji:"⛵",region:"Caribbean",
+    vibe:"Antigua has 365 beaches — one for every day of the year — plus calm turquoise coves, historic English Harbour, and a sailing culture that gives the island a distinctive upscale energy. It balances resort comfort with authentic island character very well.",
+    sell:"CxC can help travelers choose between adults-only beachfront resorts, family-friendly all-inclusives, and boutique stays near the island's prettiest coves and marinas.",
+    hotels:[
+      {name:"Jumby Bay Island",tier:"Ultra-Luxury Private Island",price:"$2,000–$4,500/night",notes:"Private island resort with exceptional privacy, service, and powdery beaches."},
+      {name:"Hermitage Bay",tier:"Luxury Adults-Only",price:"$1,200–$2,200/night",notes:"All-inclusive hillside suites and a peaceful boutique atmosphere."},
+      {name:"Carlisle Bay",tier:"Luxury Resort",price:"$700–$1,500/night",notes:"Spacious suites on a beautiful bay, excellent for both couples and families."}
+    ],
+    restaurants:[
+      {name:"Sheer Rocks",cuisine:"Mediterranean / Caribbean",notes:"Clifftop restaurant with stunning sunset views and private day beds."},
+      {name:"Catherine's Café",cuisine:"French Caribbean",notes:"Chic beachfront restaurant on Pigeon Point Beach with excellent seafood."}
+    ],
+    activities:[
+      {name:"Shirley Heights Sunset Party",price:"$10–$20",notes:"The island's most famous Sunday evening event with live music and huge harbor views."},
+      {name:"English Harbour & Nelson's Dockyard",price:"$15–$25",notes:"Historic UNESCO area packed with maritime history and beautiful marina scenery."}
+    ],
+    allinclusive:[
+      {name:"Hermitage Bay",type:"Adults-Only",price:"$1,200–$2,200/night",highlights:["Boutique luxury","All-inclusive dining","Quiet bay setting"]}
+    ],
+    bestFor:["Couples","Sailing lovers","Luxury escapes"],
+    bestTime:"December–April.",
+    travelNote:"Passport required. VC Bird International Airport has direct service from several US and UK gateways."
+  },
+
+  curacao:{
+    label:"Curaçao",emoji:"🎨",region:"Caribbean",
+    vibe:"Curaçao mixes Dutch-Caribbean charm, colorful architecture, off-the-radar beaches, and some of the best shore diving in the region. Willemstad feels lively and European while the island's west side is all hidden coves and clear water.",
+    sell:"CxC can position travelers in the right part of Curaçao — close to nightlife and dining in Willemstad or near the quieter beaches and dive sites out west.",
+    hotels:[
+      {name:"Baoase Luxury Resort",tier:"Ultra-Luxury Boutique",price:"$900–$1,800/night",notes:"Intimate beachfront hideaway with Balinese-inspired villas and excellent service."},
+      {name:"Sandals Royal Curaçao",tier:"Adults-Only All-Inclusive",price:"$500–$900/night",notes:"Popular all-inclusive with stylish design and a broad range of included dining."},
+      {name:"Avila Beach Hotel",tier:"Upscale",price:"$250–$500/night",notes:"Historic seaside hotel close to Willemstad with a strong value-to-quality ratio."}
+    ],
+    restaurants:[
+      {name:"The Wine Cellar",cuisine:"Fine Dining",notes:"One of the island's classic special-occasion restaurants with excellent service."},
+      {name:"Plasa Bieu",cuisine:"Local Curaçaoan",notes:"Best place to try authentic local dishes in a casual market setting."}
+    ],
+    activities:[
+      {name:"Klein Curaçao Boat Day",price:"$120–$180/pp",notes:"Uninhabited island day trip with surreal water color and top-tier snorkeling."},
+      {name:"Snorkeling at Playa Kalki",price:"Free–$20",notes:"Great shore snorkeling and easy access to Curaçao's famous reefs."}
+    ],
+    bestFor:["Divers","Couples","Culture + beach"],
+    bestTime:"January–September.",
+    travelNote:"Passport required. Outside the main hurricane belt and often great year-round."
+  },
+
+  cayman:{
+    label:"Cayman Islands",emoji:"🐠",region:"Caribbean",
+    vibe:"Grand Cayman is famous for Seven Mile Beach, upscale resorts, outstanding diving, and one of the strongest culinary scenes in the Caribbean. It feels polished, easy, and consistently high quality.",
+    sell:"CxC helps travelers secure the best stretch of Seven Mile Beach and pair beach time with diving, dining, and private boat days that make Cayman feel worth the splurge.",
+    hotels:[
+      {name:"The Ritz-Carlton, Grand Cayman",tier:"Ultra-Luxury",price:"$900–$2,000/night",notes:"The benchmark luxury resort on Seven Mile Beach with golf, spa, and beautiful beachfront."},
+      {name:"Kimpton Seafire Resort + Spa",tier:"Luxury",price:"$700–$1,400/night",notes:"Modern design, excellent pools, and one of the island's best overall beach setups."},
+      {name:"Westin Grand Cayman",tier:"Upscale Resort",price:"$450–$900/night",notes:"Reliable beachfront option with a strong location and family appeal."}
+    ],
+    restaurants:[
+      {name:"Blue by Eric Ripert",cuisine:"Seafood Fine Dining",notes:"One of the Caribbean's premier fine dining restaurants."},
+      {name:"Cayman Cabana",cuisine:"Caribbean",notes:"Waterfront local favorite in George Town with excellent seafood."}
+    ],
+    activities:[
+      {name:"Stingray City Sandbar",price:"$70–$120/pp",notes:"One of the signature Cayman experiences — standing in shallow crystal-clear water with southern stingrays."},
+      {name:"Seven Mile Beach Day",price:"Free",notes:"Soft white sand and calm water make this one of the Caribbean's best and easiest beaches."}
+    ],
+    bestFor:["Luxury travelers","Divers","Families"],
+    bestTime:"December–April.",
+    travelNote:"Passport required. Owen Roberts International Airport on Grand Cayman is the main entry point."
+  },
+
+  grenada:{
+    label:"Grenada",emoji:"🌿",region:"Caribbean",
+    vibe:"Known as the Spice Island, Grenada feels greener, quieter, and more authentic than many Caribbean destinations. Think waterfalls, rainforest drives, uncrowded beaches, and a slower pace that appeals to travelers who want natural beauty without heavy development.",
+    sell:"CxC can match travelers with boutique beachfront resorts and help turn Grenada into a two-part trip with nearby Carriacou for an even more secluded island experience.",
+    hotels:[
+      {name:"Silversands Grenada",tier:"Ultra-Luxury",price:"$900–$2,000/night",notes:"Modern beachfront luxury with one of the longest pools in the Caribbean."},
+      {name:"Spice Island Beach Resort",tier:"Luxury All-Inclusive",price:"$900–$1,800/night",notes:"Elegant all-inclusive directly on Grand Anse Beach."},
+      {name:"Calabash Hotel",tier:"Luxury Boutique",price:"$700–$1,400/night",notes:"Refined and intimate with excellent service and suites."}
+    ],
+    restaurants:[
+      {name:"BB's Crabback",cuisine:"Caribbean",notes:"Casual local favorite known for strong flavors and generous seafood dishes."},
+      {name:"The Beach Club at Silversands",cuisine:"International",notes:"Beautiful beachfront dining with a more polished resort feel."}
+    ],
+    activities:[
+      {name:"Grand Etang Rainforest & Waterfalls",price:"$20–$60",notes:"Explore crater lake scenery, monkeys, and lush rainforest trails."},
+      {name:"Underwater Sculpture Park",price:"$40–$80/pp",notes:"One of the most unique snorkeling sites in the Caribbean."}
+    ],
+    bestFor:["Nature lovers","Couples","Luxury + authenticity"],
+    bestTime:"January–May.",
+    travelNote:"Passport required. Main airport is Maurice Bishop International Airport."
+  },
+
+  stbarths:{
+    label:"St. Barths",emoji:"🍾",region:"Caribbean",
+    vibe:"St. Barths is the Caribbean's answer to the French Riviera — glamorous, stylish, and compact, with designer boutiques, yacht culture, and some of the most beautiful beaches in the region. It is polished without feeling large or overbuilt.",
+    sell:"CxC can help secure hard-to-get boutique hotels and villas on an island where peak-season inventory vanishes quickly and location matters a lot.",
+    hotels:[
+      {name:"Cheval Blanc St-Barth",tier:"Ultra-Luxury",price:"$1,800–$4,500/night",notes:"High-end beachfront luxury on Flamands Beach with top-tier service."},
+      {name:"Le Barthélemy Hotel & Spa",tier:"Luxury",price:"$1,200–$3,000/night",notes:"Refined beachfront resort on Grand Cul-de-Sac."},
+      {name:"Hotel Christopher",tier:"Luxury Boutique",price:"$900–$2,000/night",notes:"Clifftop design hotel with one of the island's best sunset pool scenes."}
+    ],
+    restaurants:[
+      {name:"Bonito",cuisine:"French / Latin",notes:"One of the island's signature restaurants with harbor views and excellent cocktails."},
+      {name:"Shellona",cuisine:"Mediterranean",notes:"Beach club vibe right on Shell Beach, perfect for a long lunch."}
+    ],
+    activities:[
+      {name:"Colombier Beach Hike",price:"Free",notes:"Short scenic hike or boat access to one of the island's prettiest beaches."},
+      {name:"Gustavia Harbor & Boutiques",price:"Free",notes:"Wander the chic harbor, luxury shops, and cafes in the island's capital."}
+    ],
+    bestFor:["Luxury travelers","Couples","Yacht and beach lovers"],
+    bestTime:"December–April.",
+    travelNote:"Passport required. Commonly accessed via St. Maarten connection."
+  },
+
+  bermuda:{
+    label:"Bermuda",emoji:"🌸",region:"Atlantic / Caribbean",
+    vibe:"Closer to the East Coast than most Caribbean islands, Bermuda offers pink sand beaches, pastel cottages, British island charm, and a much more polished feel than many tropical destinations. It works especially well for shorter luxury getaways.",
+    sell:"CxC can turn Bermuda into an easy upscale long weekend with the right resort, golf, and dining choices — especially appealing for East Coast travelers.",
+    hotels:[
+      {name:"Rosewood Bermuda",tier:"Luxury",price:"$800–$1,600/night",notes:"Elegant resort in Tucker's Point with golf, beach club, and great service."},
+      {name:"The Loren at Pink Beach",tier:"Luxury Boutique",price:"$900–$1,800/night",notes:"Sleek modern design and one of the island's best oceanfront settings."},
+      {name:"Hamilton Princess",tier:"Historic Luxury",price:"$500–$900/night",notes:"Iconic pink hotel in Hamilton with marina views and strong city access."}
+    ],
+    restaurants:[
+      {name:"Marcus'",cuisine:"International",notes:"Celebrity-chef restaurant at the Hamilton Princess with harbor views."},
+      {name:"The Waterlot",cuisine:"Steakhouse",notes:"Classic Bermuda special-occasion dining in a beautiful historic setting."}
+    ],
+    activities:[
+      {name:"Horseshoe Bay Beach",price:"Free",notes:"Bermuda's most famous pink sand beach and a must-see on a first trip."},
+      {name:"Crystal & Fantasy Caves",price:"$25–$40",notes:"Walk through dramatic underground caves filled with crystal-clear water."}
+    ],
+    bestFor:["East Coast escapes","Couples","Golf + beach"],
+    bestTime:"May–October.",
+    travelNote:"Passport required. Very easy nonstop access from many East Coast airports."
+  },
+
+  tulum:{
+    label:"Tulum",emoji:"🌴",region:"Mexico",
+    vibe:"Tulum combines boho luxury, white sand Caribbean beaches, cenotes, jungle hotels, and a more design-forward atmosphere than Cancun. It can be serene and romantic or nightlife-heavy depending on where you stay.",
+    sell:"CxC helps travelers choose the right side of Tulum — beachfront boutique, wellness retreat, or upscale resort — while avoiding the common transport and location headaches.",
+    hotels:[
+      {name:"Azulik",tier:"Boutique Luxury",price:"$700–$1,500/night",notes:"Famous adults-only eco-luxury stay with dramatic design and a strong wellness vibe."},
+      {name:"Conrad Tulum Riviera Maya",tier:"Luxury Resort",price:"$500–$1,000/night",notes:"More polished full-service luxury with beautiful suites and pools."},
+      {name:"Hotel Bardo",tier:"Boutique",price:"$350–$700/night",notes:"Stylish jungle hideaway with private plunge pools and a relaxed atmosphere."}
+    ],
+    restaurants:[
+      {name:"Hartwood",cuisine:"Open-Fire / Farm-to-Table",notes:"One of Tulum's most famous restaurants and still one of the best dinners in town."},
+      {name:"Arca",cuisine:"Modern Mexican",notes:"Creative upscale dining in an atmospheric jungle setting."}
+    ],
+    activities:[
+      {name:"Tulum Ruins",price:"$10–$20",notes:"Iconic cliffside Mayan ruins overlooking the Caribbean."},
+      {name:"Cenote Hopping",price:"$10–$30 per cenote",notes:"One of the best reasons to visit the region — freshwater sinkholes perfect for swimming and snorkeling."}
+    ],
+    bestFor:["Couples","Wellness travel","Design lovers"],
+    bestTime:"December–April.",
+    travelNote:"Passport required. Best reached via Cancun airport with ground transfer south."
+  },
+
+  playadelcarmen:{
+    label:"Playa del Carmen",emoji:"🌞",region:"Mexico",
+    vibe:"Playa del Carmen offers a nice middle ground between Cancun's resort zone and Tulum's boho scene. It has beaches, walkable dining and nightlife, ferry access to Cozumel, and a strong all-around vacation feel.",
+    sell:"CxC can help travelers choose between resort-style beach stays, boutique options near Fifth Avenue, and easy add-ons like Cozumel or cenote day trips.",
+    hotels:[
+      {name:"Rosewood Mayakoba",tier:"Ultra-Luxury",price:"$1,200–$2,500/night",notes:"One of the best resorts in Mexico with lagoon suites and exceptional service."},
+      {name:"Grand Hyatt Playa del Carmen",tier:"Luxury",price:"$400–$800/night",notes:"Walkable location with strong beachfront and resort amenities."},
+      {name:"Hilton Playa del Carmen",tier:"Adults-Only All-Inclusive",price:"$350–$650/night",notes:"Popular all-inclusive in a very convenient location."}
+    ],
+    restaurants:[
+      {name:"Alux",cuisine:"Mexican / International",notes:"Unique cave restaurant that gives dinner a memorable setting."},
+      {name:"Harry's",cuisine:"Steakhouse",notes:"Upscale steak and seafood spot popular for celebratory dinners."}
+    ],
+    activities:[
+      {name:"Cozumel Ferry Day Trip",price:"$25–$40 roundtrip",notes:"Easy way to add snorkeling or diving on one of the region's best reef islands."},
+      {name:"Fifth Avenue Walk",price:"Free",notes:"Pedestrian strip with shopping, bars, cafes, and nightlife."}
+    ],
+    bestFor:["Groups","Couples","Easy Mexico beach trips"],
+    bestTime:"December–April.",
+    travelNote:"Passport required. Easily reached from Cancun airport by car or transfer."
+  },
+
+  puertovallarta:{
+    label:"Puerto Vallarta",emoji:"🌅",region:"Mexico",
+    vibe:"Puerto Vallarta blends Pacific coast beaches with a charming old town, strong food scene, and lush jungle-backed scenery. It feels more authentically Mexican than some Caribbean resort destinations while still being easy and comfortable for visitors.",
+    sell:"CxC can combine beachfront resort time with the Romantic Zone, boat excursions, and luxury stays in Punta Mita for a much richer trip than a simple hotel booking.",
+    hotels:[
+      {name:"Four Seasons Resort Punta Mita",tier:"Ultra-Luxury",price:"$900–$2,000/night",notes:"One of Mexico's best resorts with golf, surf, and exceptional service."},
+      {name:"Grand Velas Riviera Nayarit",tier:"Luxury All-Inclusive",price:"$700–$1,400/night",notes:"One of the top all-inclusives on Mexico's Pacific side."},
+      {name:"Hotel Mousai",tier:"Adults-Only Luxury",price:"$500–$1,000/night",notes:"Stylish hillside resort with great views and a strong adults-only atmosphere."}
+    ],
+    restaurants:[
+      {name:"Cafe des Artistes",cuisine:"Fine Dining",notes:"Iconic romantic restaurant and one of Vallarta's most established top tables."},
+      {name:"La Palapa",cuisine:"Beachfront Seafood",notes:"A classic toes-in-the-sand dinner spot in the Romantic Zone."}
+    ],
+    activities:[
+      {name:"Marietas Islands Boat Tour",price:"$80–$150/pp",notes:"Popular day trip for snorkeling and hidden beach scenery."},
+      {name:"Malecon Walk",price:"Free",notes:"Oceanfront promenade packed with sculptures, restaurants, and nightlife."}
+    ],
+    bestFor:["Couples","Groups","Pacific coast luxury"],
+    bestTime:"November–April.",
+    travelNote:"Passport required. Puerto Vallarta International Airport has strong nonstop service from North America."
+  },
+
+  rome:{
+    label:"Rome",emoji:"🏛️",region:"Europe",
+    vibe:"Rome is an open-air museum where ancient ruins, Renaissance piazzas, and world-class food are all part of daily life. It feels grand, chaotic, and unforgettable in the best possible way.",
+    sell:"CxC can line up the right neighborhood, skip-the-line touring, and restaurant reservations that make Rome feel immersive instead of overwhelming.",
+    hotels:[
+      {name:"Hotel de Russie",tier:"Luxury",price:"$900–$1,800/night",notes:"One of Rome's most prestigious hotels with an exceptional garden setting."},
+      {name:"Hassler Roma",tier:"Ultra-Luxury",price:"$1,000–$2,000/night",notes:"Iconic property at the top of the Spanish Steps."},
+      {name:"The Hoxton Rome",tier:"Boutique",price:"$250–$450/night",notes:"Stylish option for travelers wanting design at a lower price point."}
+    ],
+    restaurants:[
+      {name:"Roscioli",cuisine:"Roman",notes:"Legendary for pasta, cured meats, and one of the city's best food experiences."},
+      {name:"Armando al Pantheon",cuisine:"Traditional Roman",notes:"Classic Roman dishes near the Pantheon and very hard to beat."}
+    ],
+    activities:[
+      {name:"Colosseum & Roman Forum",price:"$25–$60",notes:"Essential first-time Rome experience — especially with timed or guided entry."},
+      {name:"Vatican Museums & Sistine Chapel",price:"$30–$70",notes:"One of the most important art and history sites in the world."}
+    ],
+    bestFor:["History lovers","Foodies","First Italy trip"],
+    bestTime:"April–June and September–October.",
+    travelNote:"Passport required. Rome is typically entered via FCO airport."
+  },
+
+  santorini:{
+    label:"Santorini",emoji:"🌋",region:"Europe",
+    vibe:"Santorini is one of the world's most iconic island destinations — whitewashed villages clinging to volcanic cliffs above a blue caldera, dramatic sunsets, and boutique cave hotels with plunge pools and sweeping views.",
+    sell:"CxC can secure the right caldera-facing hotel and help balance iconic Oia views with quieter parts of the island that often work even better for couples.",
+    hotels:[
+      {name:"Canaves Oia Suites",tier:"Ultra-Luxury",price:"$900–$2,500/night",notes:"Top-tier caldera views, plunge pools, and an elegant adults-oriented atmosphere."},
+      {name:"Katikies Santorini",tier:"Luxury",price:"$900–$2,000/night",notes:"Classic whitewashed cave luxury in Oia."},
+      {name:"Andronis Boutique Hotel",tier:"Luxury Boutique",price:"$800–$1,800/night",notes:"One of the island's most desirable boutique stays."}
+    ],
+    restaurants:[
+      {name:"Ammoudi Fish Tavern",cuisine:"Seafood",notes:"Beautiful seafood setting right at the water below Oia."},
+      {name:"Metaxi Mas",cuisine:"Greek",notes:"Beloved local restaurant known for authentic food and strong value."}
+    ],
+    activities:[
+      {name:"Oia Sunset",price:"Free",notes:"One of the most famous sunsets in the world and still worth planning around."},
+      {name:"Catamaran Cruise",price:"$100–$180/pp",notes:"Great way to see the caldera, volcanic beaches, and cliffside villages from the water."}
+    ],
+    bestFor:["Honeymooners","Couples","Luxury island trips"],
+    bestTime:"May–June and September–October.",
+    travelNote:"Passport required. Reached via ferry or short flight from Athens."
+  },
+
+  mykonos:{
+    label:"Mykonos",emoji:"💙",region:"Europe",
+    vibe:"Mykonos blends chic beach clubs, stylish hotels, and classic Cycladic beauty. It is more energetic and social than Santorini, with a strong beach scene and nightlife reputation but still plenty of luxury and charm.",
+    sell:"CxC can help travelers decide whether they want party-forward Mykonos, a calmer luxury angle, or a split trip with Santorini for balance.",
+    hotels:[
+      {name:"Santa Marina, a Luxury Collection Resort",tier:"Ultra-Luxury",price:"$1,000–$2,400/night",notes:"Private beach, strong service, and a more exclusive feel than many island stays."},
+      {name:"Cavo Tagoo",tier:"Luxury",price:"$900–$2,200/night",notes:"Famous for its pool scene, views, and high-design aesthetic."},
+      {name:"Myconian Korali",tier:"Luxury Boutique",price:"$500–$1,200/night",notes:"Stylish option close to town with strong views and service."}
+    ],
+    restaurants:[
+      {name:"Scorpios",cuisine:"Mediterranean",notes:"One of the island's signature beach club dining experiences."},
+      {name:"Kiki's Tavern",cuisine:"Greek Grill",notes:"No-frills favorite with a big reputation and excellent food."}
+    ],
+    activities:[
+      {name:"Beach Club Day",price:"Varies",notes:"Mykonos is known for all-day beach clubs and beautiful Aegean water."},
+      {name:"Delos Day Trip",price:"$30–$60",notes:"Short boat ride to one of Greece's most important archaeological sites."}
+    ],
+    bestFor:["Groups","Luxury travelers","Beach nightlife"],
+    bestTime:"June–September.",
+    travelNote:"Passport required. Reached by short flight or ferry from Athens."
+  },
+
+  madrid:{
+    label:"Madrid",emoji:"🎨",region:"Europe",
+    vibe:"Madrid is elegant, energetic, and deeply underrated compared with Barcelona. It offers grand boulevards, excellent museums, beautiful parks, late dinners, and a food scene that ranges from classic tapas to some of Spain's best fine dining.",
+    sell:"CxC can pair Madrid with Barcelona, Andalusia, or quick wine-country extensions while making sure travelers stay in the neighborhoods that fit their pace and interests.",
+    hotels:[
+      {name:"Mandarin Oriental Ritz, Madrid",tier:"Ultra-Luxury",price:"$800–$1,800/night",notes:"The classic luxury address in Madrid, right near major museums."},
+      {name:"URSO Hotel & Spa",tier:"Luxury Boutique",price:"$400–$800/night",notes:"Elegant boutique stay in a very convenient location."},
+      {name:"Only YOU Boutique Hotel",tier:"Upscale",price:"$250–$500/night",notes:"Stylish and lively with a strong value proposition."}
+    ],
+    restaurants:[
+      {name:"Botín",cuisine:"Spanish",notes:"Claims to be the world's oldest restaurant and is famous for roast suckling pig."},
+      {name:"Sala de Despiece",cuisine:"Modern Tapas",notes:"One of Madrid's most fun and creative food experiences."}
+    ],
+    activities:[
+      {name:"Prado Museum",price:"$15–$25",notes:"One of Europe's great art museums, packed with Spanish masters."},
+      {name:"Retiro Park & Crystal Palace",price:"Free",notes:"Beautiful green space in the center of the city and great for a slower afternoon."}
+    ],
+    bestFor:["Art lovers","Foodies","City breaks"],
+    bestTime:"April–June and September–October.",
+    travelNote:"Passport required. Madrid-Barajas is one of Europe's major hub airports."
+  },
+
+  dublin:{
+    label:"Dublin",emoji:"🍀",region:"Europe",
+    vibe:"Dublin is compact, social, and easy to love — Georgian architecture, literary history, pubs with real character, and an energy that makes it a great first stop in Ireland. It also works well as a gateway to the rest of the country.",
+    sell:"CxC can turn Dublin into more than a city stay by pairing it with countryside castles, golf, or west coast extensions that make Ireland much more memorable.",
+    hotels:[
+      {name:"The Shelbourne",tier:"Luxury Historic",price:"$500–$1,000/night",notes:"Classic grand hotel overlooking St. Stephen's Green."},
+      {name:"The Merrion",tier:"Luxury",price:"$600–$1,200/night",notes:"Elegant Georgian luxury with one of the city's best fine dining programs."},
+      {name:"The Dean",tier:"Boutique",price:"$250–$450/night",notes:"Fun modern option with a lively vibe and strong city access."}
+    ],
+    restaurants:[
+      {name:"Chapter One",cuisine:"Fine Dining",notes:"One of Dublin's top restaurants and a great splurge meal."},
+      {name:"The Winding Stair",cuisine:"Irish",notes:"Great place for elevated Irish cooking by the river."}
+    ],
+    activities:[
+      {name:"Guinness Storehouse",price:"$30–$40",notes:"A tourist staple, but well done and worth it for first-time visitors."},
+      {name:"Trinity College & Book of Kells",price:"$20–$30",notes:"Historic campus and one of Ireland's most famous cultural sights."}
+    ],
+    bestFor:["First Ireland trip","Couples","Culture + nightlife"],
+    bestTime:"May–September.",
+    travelNote:"Passport required. Dublin is the easiest gateway for most Ireland itineraries."
+  },
+
+  switzerland:{
+    label:"Swiss Alps",emoji:"🏔️",region:"Europe",
+    vibe:"Switzerland delivers alpine scenery that feels almost unreal — glacier-fed lakes, storybook villages, mountain railways, and some of the cleanest, most efficient travel logistics anywhere in the world. It's a premium destination, but the scenery absolutely earns it.",
+    sell:"CxC can build classic Swiss routes like Zurich, Lucerne, Interlaken, and Zermatt while helping travelers avoid unnecessary transfers and wasted time.",
+    hotels:[
+      {name:"Badrutt's Palace",tier:"Ultra-Luxury",price:"$1,000–$3,000/night",notes:"Iconic St. Moritz luxury and one of Europe's great grand hotels."},
+      {name:"The Chedi Andermatt",tier:"Luxury",price:"$800–$1,800/night",notes:"Modern alpine luxury with a world-class spa and strong ski positioning."},
+      {name:"Mont Cervin Palace",tier:"Luxury Historic",price:"$700–$1,600/night",notes:"Classic Zermatt stay with great Matterhorn access."}
+    ],
+    restaurants:[
+      {name:"Chez Vrony",cuisine:"Swiss Alpine",notes:"Beautiful mountain restaurant above Zermatt with iconic Matterhorn views."},
+      {name:"Restaurant de l'Hôtel de Ville",cuisine:"Fine Dining",notes:"One of Switzerland's most celebrated gastronomic experiences."}
+    ],
+    activities:[
+      {name:"Glacier Express",price:"$150–$300",notes:"Scenic rail journey through some of Switzerland's most dramatic mountain landscapes."},
+      {name:"Jungfraujoch Excursion",price:"$180–$250",notes:"High-altitude rail trip to the famed Top of Europe viewpoint."}
+    ],
+    bestFor:["Scenic rail travel","Luxury mountain trips","Honeymoon"],
+    bestTime:"June–September for summer, December–March for ski trips.",
+    travelNote:"Passport required. Swiss rail makes multi-city travel easy and reliable."
+  },
+
+  alaska:{
+    label:"Alaska",emoji:"🧊",region:"USA / Adventure",
+    vibe:"Alaska is raw, massive, and unlike anywhere else in the United States — glaciers, wildlife, fjords, mountains, and a sense of scale that photos rarely capture. It works equally well by cruise, lodge stay, or land adventure trip.",
+    sell:"CxC can help travelers decide between cruise-based Alaska, luxury wilderness lodges, and rail-plus-land itineraries that get much deeper into the state.",
+    hotels:[
+      {name:"Alyeska Resort",tier:"Upscale Mountain Resort",price:"$300–$700/night",notes:"Best-known luxury base near Anchorage with mountain scenery and year-round appeal."},
+      {name:"Hotel Captain Cook",tier:"Luxury Historic",price:"$250–$500/night",notes:"Classic Anchorage hotel and a strong jumping-off point for broader Alaska trips."},
+      {name:"Tutka Bay Lodge",tier:"Luxury Wilderness Lodge",price:"$1,000–$2,500/night",notes:"Remote lodge experience ideal for travelers who want something truly special."}
+    ],
+    restaurants:[
+      {name:"Simon & Seafort's",cuisine:"Seafood",notes:"Anchorage classic with great views and strong local seafood."},
+      {name:"The Saltry",cuisine:"Seafood",notes:"Beloved Homer-area waterfront dining with a distinctly Alaskan feel."}
+    ],
+    activities:[
+      {name:"Kenai Fjords Cruise",price:"$150–$250/pp",notes:"One of the best ways to see glaciers, whales, and dramatic coastline."},
+      {name:"Denali National Park",price:"$15–$60",notes:"Bucket-list wildlife and scenery, especially for first-time Alaska visitors."}
+    ],
+    bestFor:["Adventure travelers","Wildlife lovers","Scenic cruises"],
+    bestTime:"June–August.",
+    travelNote:"No passport needed for US citizens unless traveling via certain cruise routings including Canada."
+  },
+
+  palmsprings:{
+    label:"Palm Springs",emoji:"🌴",region:"California",
+    vibe:"Palm Springs is retro desert cool — mid-century architecture, great pools, mountain backdrops, and a laid-back luxury vibe that works especially well for long weekends. It is part relaxation, part design trip, part warm-weather escape.",
+    sell:"CxC can build Palm Springs around boutique hotels, spa time, golf, and easy Joshua Tree add-ons for a very strong California weekend itinerary.",
+    hotels:[
+      {name:"Parker Palm Springs",tier:"Luxury Boutique",price:"$700–$1,500/night",notes:"The iconic design-forward luxury hotel in Palm Springs."},
+      {name:"La Quinta Resort & Club",tier:"Luxury Resort",price:"$400–$900/night",notes:"Classic desert resort with golf, pools, and beautiful grounds."},
+      {name:"Kimpton Rowan",tier:"Upscale",price:"$300–$600/night",notes:"Modern downtown option with a rooftop pool and walkable location."}
+    ],
+    restaurants:[
+      {name:"Workshop Kitchen + Bar",cuisine:"Modern American",notes:"Design-heavy restaurant in a beautiful industrial space."},
+      {name:"Spencer's",cuisine:"American",notes:"Reliable classic for brunch or dinner with mountain views."}
+    ],
+    activities:[
+      {name:"Palm Springs Aerial Tramway",price:"$30–$40",notes:"Ride from the desert floor into cooler mountain scenery in minutes."},
+      {name:"Joshua Tree Day Trip",price:"$30/car",notes:"Easy and worthwhile add-on for desert landscapes and stargazing."}
+    ],
+    golf:[
+      {name:"PGA West",tier:"Elite",price:"$150–$300/round",notes:"Major golf draw in the Coachella Valley with multiple notable courses."}
+    ],
+    bestFor:["Long weekends","Golf","Spa escapes"],
+    bestTime:"October–April.",
+    travelNote:"Palm Springs airport is easy, and the area is also drivable from Los Angeles or San Diego."
+  },
+
+  hiltonhead:{
+    label:"Hilton Head Island",emoji:"⛳",region:"Southeast USA",
+    vibe:"Hilton Head is one of the East Coast's best easy resort islands — broad beaches, bike-friendly paths, golf, and a polished but relaxed atmosphere. It is especially strong for family trips and golf weekends.",
+    sell:"CxC can package Hilton Head with golf tee times, villa stays, and dining reservations in a way that makes it ideal for both couples and multi-generational groups.",
+    hotels:[
+      {name:"The Sea Pines Resort",tier:"Golf Resort",price:"$300–$800/night",notes:"Home to Harbour Town Golf Links and one of the island's signature stays."},
+      {name:"Omni Hilton Head Oceanfront Resort",tier:"Upscale Resort",price:"$300–$700/night",notes:"Popular beachfront resort with suites and a strong family appeal."},
+      {name:"Montage Palmetto Bluff",tier:"Ultra-Luxury Nearby",price:"$900–$2,000/night",notes:"Technically nearby, but a top-tier luxury option often paired with Hilton Head trips."}
+    ],
+    restaurants:[
+      {name:"Hudson's Seafood House on the Docks",cuisine:"Seafood",notes:"A classic Hilton Head seafood stop with local character."},
+      {name:"The Crazy Crab",cuisine:"Seafood",notes:"Casual island favorite with strong family appeal."}
+    ],
+    activities:[
+      {name:"Bike the Island",price:"$20–$40/day rental",notes:"One of the best and easiest ways to experience Hilton Head."},
+      {name:"Harbour Town Lighthouse",price:"$5–$10",notes:"Iconic island landmark and a nice easy stop around Sea Pines."}
+    ],
+    golf:[
+      {name:"Harbour Town Golf Links",tier:"World-Class",price:"$300–$500/round",notes:"Home of the PGA Tour's RBC Heritage and one of the South's iconic courses."}
+    ],
+    bestFor:["Families","Golf trips","Easy beach vacations"],
+    bestTime:"April–June and September–October.",
+    travelNote:"Hilton Head Airport is small and easy; Savannah is also a convenient nearby gateway."
+  },
+
+  yosemite:{
+    label:"Yosemite",emoji:"🌲",region:"California / National Parks",
+    vibe:"Yosemite is one of America's most awe-inspiring landscapes — granite cliffs, giant waterfalls, massive sequoias, and one of the most famous valley views in the world. It feels like a true national park pilgrimage.",
+    sell:"CxC can help structure Yosemite with the right gateway city, lodge timing, and surrounding California add-ons so travelers aren't scrambling for scarce park lodging.",
+    hotels:[
+      {name:"The Ahwahnee",tier:"Historic Luxury",price:"$600–$1,200/night",notes:"Iconic in-park hotel and the most sought-after stay in Yosemite Valley."},
+      {name:"Rush Creek Lodge",tier:"Upscale",price:"$350–$700/night",notes:"Popular family-friendly option just outside the park with good amenities."},
+      {name:"Tenaya at Yosemite",tier:"Resort",price:"$300–$600/night",notes:"Strong full-service base near the south entrance."}
+    ],
+    restaurants:[
+      {name:"The Ahwahnee Dining Room",cuisine:"American",notes:"The classic Yosemite special-occasion meal in a grand historic setting."},
+      {name:"Mountain Room",cuisine:"American",notes:"Reliable park dining with windows facing Yosemite Falls."}
+    ],
+    activities:[
+      {name:"Tunnel View",price:"Free",notes:"One of the most famous and instantly recognizable views in the US."},
+      {name:"Mist Trail to Vernal Fall",price:"Free",notes:"One of the park's most popular and rewarding hikes."}
+    ],
+    bestFor:["Nature lovers","National park trips","Adventure travelers"],
+    bestTime:"May–October.",
+    travelNote:"No passport needed for US citizens. Access usually via San Francisco, Fresno, or Sacramento."
   }
 
 }; // ── END KB ──────────────────────────────────────────────────────────────────
@@ -2129,7 +2578,28 @@ const DEST_KEYS={
   singapore:    ["singapore","marina bay sands","raffles singapore","gardens by the bay"],
   phuket:       ["phuket","phuket thailand","phi phi","old phuket town"],
   vietnam:      ["vietnam","ha long bay","hoi an","hanoi","saigon"]
+,
 
+  anguilla:    ["anguilla","shoal bay","cap juluca"],
+  antigua:     ["antigua","english harbour","shirley heights","jumby bay"],
+  curacao:     ["curacao","curaçao","willemstad","klein curacao","klein curaçao"],
+  cayman:      ["cayman","grand cayman","seven mile beach","stingray city"],
+  grenada:     ["grenada","spice island","grand anse","underwater sculpture park"],
+  stbarths:    ["st barths","st. barths","st barts","saint barth","saint barths"],
+  bermuda:     ["bermuda","horseshoe bay","hamilton bermuda"],
+  tulum:       ["tulum","tulum ruins","tulum beach","cenotes tulum"],
+  playadelcarmen:["playa del carmen","playa","fifth avenue playa","mayakoba"],
+  puertovallarta:["puerto vallarta","vallarta","punta mita","romantic zone"],
+  rome:        ["rome","roma","colosseum","vatican","roman forum"],
+  santorini:   ["santorini","oia","caldera","fira","greek island santorini"],
+  mykonos:     ["mykonos","delos","mykonos town","scorpios"],
+  madrid:      ["madrid","prado","retiro park","spain madrid"],
+  dublin:      ["dublin","ireland dublin","guinness storehouse","trinity college"],
+  switzerland: ["switzerland","swiss alps","zermatt","interlaken","jungfraujoch","lucerne"],
+  alaska:      ["alaska","denali","kenai fjords","anchorage","glacier cruise alaska"],
+  palmsprings: ["palm springs","coachella valley","la quinta","joshua tree"],
+  hiltonhead:  ["hilton head","hilton head island","harbour town","sea pines"],
+  yosemite:    ["yosemite","yosemite national park","ahwahnee","tunnel view"]
 };
 
 const CAT_KEYS={
