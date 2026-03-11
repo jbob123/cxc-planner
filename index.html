@@ -105,7 +105,7 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--navy);height:100svh;d
   <div class="header-r">
     <button class="pkg-btn" onclick="showPkgs()">📦 Packages</button>
     <a class="hdr-link" href="tel:412-420-6826">412-420-6826</a>
-    <a class="hdr-link" href="mailto:cxctravel412@gmail.com">Email Us</a>
+    <a class="hdr-link" href="/cdn-cgi/l/email-protection#0c6f746f787e6d7a6960383d3e4c6b616d6560226f6361">Email Us</a>
   </div>
 </div>
 
@@ -125,7 +125,7 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--navy);height:100svh;d
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── CONSTANTS ──────────────────────────────────────────────────────────────────
 const CXC_PHONE = "412-420-6826";
 const CXC_EMAIL = "cxctravel412@gmail.com";
@@ -325,7 +325,7 @@ function isVague(text) {
 }
 
 function isBookingReady(text) {
-  return /\b(book|ready|contact|reach out|call me|email me|sign up|sign me up|let'?s do it|let'?s go|i('m| am) (in|ready|interested)|how do i (book|get started)|get started|set it up)\b/i.test(text);
+  return /\b(book|ready|contact|reach out|call me|email me|sign up|sign me up|let'?s do it|let'?s go|i('m| am) (in|ready|interested)|how do i (book|get started)|get started|set it up|connect me|talk to (jesse|sam|someone|an agent)|speak with|get a quote|plan my trip|move forward)\b|jesse\s*&\s*sam|connect with cxc/i.test(text);
 }
 
 // ── MAIN REPLY ENGINE ─────────────────────────────────────────────────────────
@@ -399,18 +399,53 @@ function getReply(text) {
       qrs:["✨ Orlando / Disney","🌊 Cancun","🏝️ Bahamas","🎵 Jamaica","🌺 Hawaii"]
     };
 
+  // ── REGION BUTTONS ────────────────────────────────────────────────────────
+  if (/\bcaribbean\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`🌴 **Caribbean destinations CxC books:**\n\n• **Aruba** — hurricane-free, Eagle Beach, best adults-only resorts\n• **Cancun / Riviera Maya** — best AI value, Mayan ruins, great for groups\n• **Jamaica** — Sandals & Beaches specialists, 7-Mile Beach\n• **Bahamas** — Atlantis, Exumas, pink-sand beaches\n• **Punta Cana** — best value all-inclusive in the Caribbean\n• **St. Lucia** — Jade Mountain, Pitons, most romantic island\n• **Turks & Caicos** — Grace Bay (#1 beach in the world), ultra-luxury\n• **Barbados** — Platinum Coast, refined elegance, best food scene\n• **Puerto Rico** — no passport needed, Old San Juan, bioluminescent bays\n• **US Virgin Islands** — no passport needed, St. John national park\n• **Anguilla, Antigua, Grenada, St. Barts, St. Martin** — boutique Caribbean`,
+      qrs:["🌴 Aruba","🌊 Cancun","🎵 Jamaica","🏝️ Bahamas","🌺 Punta Cana","🌋 St. Lucia","🐢 Turks & Caicos","🏏 Barbados","🇵🇷 Puerto Rico","🌺 US Virgin Islands"]
+    };
+
+  if (/\busa\b|usa destinations|domestic travel/i.test(lo) && !detectDest(text))
+    return {
+      text:`🇺🇸 **USA destinations CxC books:**\n\n• **Las Vegas** — shows, dining, golf, nightlife. Best group city in America.\n• **Nashville** — live music, incredible food, perfect 3-night trip\n• **New Orleans** — best food culture in America, jazz, French Quarter\n• **Orlando / Disney** — Epic Universe just opened, unbeatable for families\n• **Miami** — South Beach, Wynwood, art deco, great food\n• **Florida Keys** — Key West charm, snorkeling, laid-back paradise\n• **Hawaii** — Maui, Oahu, Kauai, Big Island. Works for everyone.\n• **New York City** — museums, Broadway, the greatest food city in the US\n• **Napa Valley** — wine country, Michelin stars, romantic\n• **Sedona** — red rocks, spa, hiking, stunning scenery\n• **Savannah & Charleston** — best Southern cities for a long weekend`,
+      qrs:["🎰 Las Vegas","🎸 Nashville","🎺 New Orleans","✨ Orlando","🌺 Hawaii","🗽 New York City","🍷 Napa Valley","🔴 Sedona","🦚 Savannah","🌸 Charleston"]
+    };
+
+  if (/\beurope\b/i.test(lo) && !detectDest(text))
+    return {
+      text:`🌍 **Europe destinations CxC books:**\n\n• **Italy** — Rome, Amalfi Coast, Florence, Tuscany, Venice\n• **Greece** — Santorini, Mykonos, Athens, island hopping\n• **Spain** — Barcelona, Madrid, San Sebastián\n• **Portugal** — Lisbon, Porto, Algarve — best value in Western Europe\n• **France (Paris)** — the classics are classics for a reason\n• **Croatia** — Dubrovnik, Split, Hvar, Dalmatian sailing\n• **Ireland & Scotland** — golf, castles, whisky, wild coastlines\n• **Iceland** — Northern Lights, glaciers, Ring Road adventures\n• **London** — museums, West End theater, incredible food\n• **Amsterdam** — canals, Rijksmuseum, Van Gogh, easy day trips`,
+      qrs:["🍕 Italy","🏛️ Greece","🇪🇸 Spain","🇵🇹 Portugal","🗼 Paris","⛵ Croatia","🍀 Ireland & Scotland","🌋 Iceland","🇬🇧 London","🇳🇱 Amsterdam"]
+    };
+
+  // ── CATEGORY BUTTONS — use currentDest if no dest in text ─────────────────
+  const cat0 = detectCat(text);
+  if (cat0 && currentDest && KB[currentDest]) {
+    const d0 = KB[currentDest];
+    if (cat0==='hotels' && d0.hotels)
+      return { text:`🏨 **Hotels in ${d0.label}:**\n\n${d0.sell||''}`, cards:d0.hotels.map(h=>({name:h.name,badge:h.tier,sub:h.price,note:h.notes})), qrs:["Restaurants & Dining","Things to Do",...(d0.golf?["Golf Courses"]:[]),...(d0.allinclusive?["All-Inclusive Options"]:[])] };
+    if (cat0==='restaurants' && d0.restaurants)
+      return { text:`🍽️ **Top dining in ${d0.label}:**`, cards:d0.restaurants.map(r=>({name:r.name,badge:r.cuisine,note:r.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+    if (cat0==='activities' && (d0.activities||d0.lines))
+      return { text:`🎯 **Top things to do in ${d0.label}:**`, cards:(d0.activities||d0.lines||[]).map(a=>({name:a.name,badge:a.price||a.best||'',note:a.notes})), qrs:["Hotels & Resorts","Restaurants & Dining",...(d0.golf?["Golf Courses"]:[])] };
+    if (cat0==='golf' && d0.golf)
+      return { text:`⛳ **Golf in ${d0.label}:**\n\n${d0.sell||''}`, cards:d0.golf.map(g=>({name:g.name,badge:g.tier,sub:g.price,note:g.notes})), qrs:["Hotels & Resorts","Things to Do"] };
+    if (/all.?inclusive/i.test(lo) && d0.allinclusive)
+      return { text:`🌴 **All-inclusive in ${d0.label}:**`, cards:d0.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining"] };
+  }
+
   // No destination detected
   const dest = detectDest(text);
   if (!dest)
     return {
-      text:`I'd love to help — can you give me a destination or tell me a bit about what kind of trip you have in mind?\n\nI have detailed info on **${Object.keys(KB).length} destinations** — Caribbean, USA, Europe, Hawaii, golf, cruises, all-inclusive.\n\nOr try asking me something like:\n• "Best beaches for a honeymoon"\n• "Where should we go for a group trip"\n• "Golf trip under $2,000"`,
-      qrs:["Help me choose a destination","🌴 Caribbean","🇺🇸 USA destinations","🌍 Europe","⛳ Golf trips","🚢 Cruises"]
+      text:`I'd love to help! Try asking about a specific destination, or let me help you choose.\n\nExamples:\n• "Tell me about Aruba"\n• "Best beaches for a honeymoon"\n• "Golf trip ideas"`,
+      qrs:["🤔 Help me choose","🌴 Caribbean","🇺🇸 USA destinations","🌍 Europe","⛳ Golf trips","🚢 Cruises"]
     };
 
   // Good — we have a destination
   currentDest = dest;
   const d = KB[dest];
-  if (!d) return { text:"I don't have full details on that one yet — but Jesse and Sam can absolutely help. Hit the button below to reach out!", qrs:[] };
+  if (!d) return { text:"I don't have full details on that one yet — but Jesse and Sam can absolutely help!", qrs:["💬 Talk to Jesse & Sam"] };
 
   const cat = detectCat(text);
 
@@ -430,7 +465,7 @@ function getReply(text) {
     return { text:`🌴 **All-inclusive options in ${d.label}:**`, cards:d.allinclusive.map(a=>({name:a.name,badge:a.type,sub:a.price,note:(a.highlights||[]).join(' · ')})), qrs:["Hotels & Resorts","Things to Do","Restaurants & Dining"] };
 
   // General destination overview
-  const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),(d.bestFor||[]).length?"Talk to Jesse & Sam":""];
+  const qrs = ["Hotels & Resorts","Restaurants & Dining","Things to Do",...(d.golf?["Golf Courses"]:[]),...(d.allinclusive?["All-Inclusive Options"]:[]),(d.bestFor||[]).length?"💬 Talk to Jesse & Sam":""];
   return {
     text:`${d.emoji} **${d.label}**\n\n${d.vibe}\n\n✦ *Why book with CxC:* ${d.sell||'Jesse and Sam handle every detail so you just show up and enjoy.'}\n\n✈️ ${d.travelNote||''}\n📅 Best time: ${d.bestTime||'Year-round'}\n🎯 Best for: ${(d.bestFor||[]).join(', ')}`,
     qrs:qrs.filter(Boolean)
@@ -599,7 +634,7 @@ botMsg(
   `Hey! 👋 I'm your CxC Travel planning guide.\n\nTell me where you're dreaming of going and I'll give you the full picture — hotels, restaurants, activities, golf courses, and all-inclusive options. Or if you're not sure where to go yet, I'll help you figure that out too.\n\nWhat kind of trip are you thinking about?`,
   null
 );
-addQRs(["🤔 Help me choose","🌴 Caribbean","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville","💕 Honeymoon","👨‍👩‍👧 Family Trip","🌍 Europe","🗾 Japan","🐒 Costa Rica"]);
+addQRs(["🤔 Help me choose","🌴 Caribbean","⛳ Golf Trip","🚢 Cruises","🍕 Italy","🌺 Hawaii","🎸 Nashville","💕 Honeymoon","👨‍👩‍👧 Family","🌍 Europe"]);
 </script>
 </body>
 </html>
