@@ -2505,6 +2505,592 @@ const KB = {
     travelNote:"Best planned early because peak dates and top lodging book quickly."
   }
 
+,
+// ─── SOUTH AMERICA ───────────────────────────────────────────────────────────
+
+  cartagena:{
+    label:"Cartagena, Colombia",emoji:"🏰",region:"South America",
+    vibe:"One of the most beautiful cities in the Western Hemisphere — a perfectly preserved walled colonial city on the Caribbean coast, with colorful buildings draped in bougainvillea, cobblestone streets, rooftop bars, and warm turquoise water just minutes away. Cartagena is romantic, sophisticated, and genuinely unlike anywhere else in the Americas.",
+    sell:"Cartagena is one of CxC's most-requested international cities right now. Boutique hotels inside the walled city, day trips to the Rosario Islands, and a food scene that's gotten global attention. Jesse and Sam know exactly how to build a perfect trip here — usually paired with Bogotá or the Coffee Region.",
+    hotels:[
+      {name:"Casa San Agustín",tier:"Ultra-Luxury",price:"$500–$1,200/night",notes:"The most celebrated hotel in the walled city. Antique rooms, plunge pools, rooftop bar, extraordinary service."},
+      {name:"Sofitel Legend Santa Clara",tier:"Luxury",price:"$350–$800/night",notes:"A 17th-century convent transformed into a grand luxury hotel. Stunning courtyards, two pools, historic romance everywhere."},
+      {name:"Hotel Almanac Cartagena",tier:"Luxury",price:"$300–$700/night",notes:"Modern boutique luxury in the Getsemaní neighborhood. Rooftop pool with walled city views."},
+      {name:"Bastión Luxury Hotel",tier:"Luxury",price:"$250–$600/night",notes:"Former colonial mansion. Rooftop pool, beautiful courtyards, walking distance to everything."}
+    ],
+    restaurants:[
+      {name:"Carmen",cuisine:"Modern Colombian",notes:"The best restaurant in Cartagena. Carmen Cabrales' flagship — seasonal, sophisticated, genuinely world-class."},
+      {name:"El Cielo",cuisine:"Molecular Colombian",notes:"Chef Juan Manuel Barrientos' avant-garde experience. Colombia's most decorated chef. Extraordinary tasting menu."},
+      {name:"Alma (Hotel Santa Clara)",cuisine:"Colombian/Caribbean",notes:"Beautiful setting in the historic hotel's courtyard. Excellent ceviches and grilled seafood."},
+      {name:"La Cevichería",cuisine:"Seafood",notes:"Famous for ceviches and fresh Caribbean catch. Outdoor tables on a colonial street. Casual and excellent."}
+    ],
+    activities:[
+      {name:"Rosario Islands Day Trip",price:"$60–$200/pp",notes:"Boat excursion to white-sand islands with snorkeling and coral reefs. Best in calm weather Oct–Apr."},
+      {name:"Walled City Walking Tour",price:"$30–$80/pp",notes:"Colonial architecture, castles, palenqueras (fruit sellers) — one of the best walking cities in the Americas."},
+      {name:"Castillo San Felipe de Barajas",price:"$20/pp",notes:"Massive 17th-century Spanish fortress overlooking the city. Fascinating history and great views."},
+      {name:"Sunset Sailboat Cruise",price:"$50–$150/pp",notes:"Traditional wooden sailboats depart at sunset around the bay. Iconic and romantic."}
+    ],
+    bestFor:["Couples","History lovers","Food & culture travelers","Honeymoons"],
+    bestTime:"December–April (dry season). Avoid October–November (rainy season).",
+    travelNote:"Valid passport required. US passport holders get 90 days visa-free. Airport: Rafael Núñez International (CTG). Spanish is helpful but English widely spoken in tourist areas."
+  },
+
+  buenosaires:{
+    label:"Buenos Aires, Argentina",emoji:"🥩",region:"South America",
+    vibe:"The Paris of South America — a city of European architecture, world-class steakhouses, passionate tango, late-night energy, and a sophisticated cultural scene that rivals any global capital. Buenos Aires is expansive, cosmopolitan, and thrillingly alive. It's one of the most underrated long-haul destinations on earth — and the exchange rate makes ultra-luxury accessible at mid-range prices.",
+    sell:"For sophisticated travelers who want a true global city experience with world-class food and culture, Buenos Aires consistently overdelivers. Jesse and Sam love pairing it with Patagonia, Mendoza wine country, or Iguazú Falls for a complete Argentina itinerary.",
+    hotels:[
+      {name:"Palacio Duhau Park Hyatt",tier:"Ultra-Luxury",price:"$400–$1,000/night",notes:"Two landmark buildings connected by a garden — a Belle Époque palace and a modern tower. One of the finest hotels in South America."},
+      {name:"Faena Hotel Buenos Aires",tier:"Ultra-Luxury",price:"$500–$1,200/night",notes:"Philippe Starck-designed art hotel in the Puerto Madero district. Red-and-white maximalist rooms, legendary service, Cabaret shows nightly."},
+      {name:"Four Seasons Buenos Aires",tier:"Luxury",price:"$350–$800/night",notes:"Classic grand hotel in Recoleta with the best pool in the city. Exceptional steakhouse, Le Mistral, on-site."},
+      {name:"Alvear Palace Hotel",tier:"Luxury",price:"$300–$700/night",notes:"The legendary grande dame of Buenos Aires — a Louis XVI-style palace in Recoleta open since 1932. Traditional and magnificent."}
+    ],
+    restaurants:[
+      {name:"Don Julio",cuisine:"Parrilla / Steakhouse",notes:"Consistently ranked the best steakhouse in South America. Book months ahead. The 200-day dry-aged Angus is extraordinary."},
+      {name:"Tegui",cuisine:"Modern Argentine",notes:"Intimate 30-seat tasting menu in Palermo. One of Latin America's 50 best restaurants. Reservation essential."},
+      {name:"El Baqueano",cuisine:"Wild Game / Indigenous",notes:"Innovative tasting menus focused on indigenous Argentine ingredients. Unique and outstanding."},
+      {name:"Gran Bar Danzón",cuisine:"Wine Bar / Tapas",notes:"The original upscale wine bar in Buenos Aires. Excellent wine list, small plates, beautiful people-watching."}
+    ],
+    activities:[
+      {name:"Tango Show & Dinner",price:"$100–$200/pp",notes:"Milonga at El Viejo Almacén or Café de los Angelitos — world-class tango in the most atmospheric venues."},
+      {name:"La Recoleta Cemetery",price:"Free",notes:"The most extraordinary cemetery in the world — labyrinthine mausoleums of Argentina's elite. Eva Perón is buried here."},
+      {name:"San Telmo Market & Antiques",price:"Free",notes:"Sunday market in the oldest neighborhood. Antiques, street tango, empanadas, energy."},
+      {name:"Mendoza Wine Country Day Trip / Extension",price:"From $200/pp",notes:"World-class Malbec just 90 minutes by plane. Pairs beautifully with a Buenos Aires trip."}
+    ],
+    bestFor:["Food lovers","Culture travelers","Couples","Adventurous travelers","Honeymooners"],
+    bestTime:"March–May (autumn) or September–November (spring). Avoid January–February (summer heat, locals on vacation).",
+    travelNote:"Valid passport required. US citizens get 90 days visa-free. Long flight from East Coast (11–12 hours) but nonstops from Miami, NYC, Dallas available. Argentina uses 220V power."
+  },
+
+  rio:{
+    label:"Rio de Janeiro, Brazil",emoji:"🌊",region:"South America",
+    vibe:"One of the most visually stunning cities on earth — a place where mountains meet the jungle meet the sea, where Copacabana and Ipanema are as beautiful in person as in the photographs, and where life is celebrated with a joyful, sensuous energy that's uniquely Brazilian. Cristo Redentor watching over the city from above is one of the great sights in travel.",
+    sell:"Rio is an experience unlike anywhere else — equal parts natural spectacle, cultural intensity, and beach-city hedonism. CxC specializes in building Rio itineraries that show travelers the city safely and fully, pairing it with the Amazon, Iguazú Falls, or São Paulo for a complete Brazil experience.",
+    hotels:[
+      {name:"Belmond Copacabana Palace",tier:"Ultra-Luxury",price:"$500–$1,500/night",notes:"The iconic white palace on Copacabana Beach open since 1923. Pool overlooking the beach, the best address in Rio. Legendary."},
+      {name:"Hotel Fasano Rio de Janeiro",tier:"Ultra-Luxury",price:"$400–$1,000/night",notes:"Philippe Starck-designed hotel on Ipanema. Rooftop pool, Fasano Al Mare restaurant, the most stylish hotel in the city."},
+      {name:"Manna Urban Resort",tier:"Luxury",price:"$250–$600/night",notes:"Design hotel in Santa Teresa with views over the city. Pool, eclectic art, wonderful neighborhood."},
+      {name:"Windsor Atlântica",tier:"Luxury",price:"$200–$450/night",notes:"Excellent location on Copacabana. Great value for the tier, excellent service, stunning sea views."}
+    ],
+    restaurants:[
+      {name:"Olympe",cuisine:"French-Brazilian",notes:"Claude Troisgros' Rio flagship — French technique applied to Brazilian ingredients. One of the best fine dining experiences in South America."},
+      {name:"Manekineko",cuisine:"Japanese-Brazilian",notes:"Rio has one of the world's largest Japanese diaspora communities. This is the city's finest Japanese fusion."},
+      {name:"Aprazível",cuisine:"Brazilian / Contemporary",notes:"Hillside restaurant in Santa Teresa with city views and exceptional traditional Brazilian cooking."},
+      {name:"CT Boucherie",cuisine:"Steak / Brazilian Grill",notes:"Claude Troisgros' casual steakhouse. Outstanding churrasco, great wine list, lively atmosphere."}
+    ],
+    activities:[
+      {name:"Cristo Redentor (Christ the Redeemer)",price:"$30–$60/pp",notes:"One of the New Seven Wonders of the World. Arrive at sunrise to avoid crowds and see the city emerge from morning mist."},
+      {name:"Sugarloaf Mountain Cable Car",price:"$30/pp",notes:"Two-stage cable car to the summit. Extraordinary 360-degree views of Guanabara Bay and the city."},
+      {name:"Ipanema & Copacabana Beach",price:"Free",notes:"Two of the most famous beaches in the world. Best on weekends when the whole city comes out. Incredible people-watching."},
+      {name:"Tijuca National Forest",price:"$30–$100/pp",notes:"The world's largest urban rainforest. Waterfalls, hiking, toucans, monkeys — right inside the city."}
+    ],
+    bestFor:["Adventure travelers","Beach lovers","Culture travelers","Couples","Bucket list"],
+    bestTime:"May–October (dry season, cooler). Avoid Carnival week unless you want Carnival (crowded, expensive, extraordinary).",
+    travelNote:"Valid passport required. US citizens need an eVisa for Brazil ($80, processed online). Safety awareness important — Jesse and Sam provide detailed neighborhood and safety guidance for every Rio client."
+  },
+
+  galapagos:{
+    label:"Galápagos Islands, Ecuador",emoji:"🦎",region:"South America",
+    vibe:"The most extraordinary wildlife encounter on earth. Darwin's laboratory — volcanic islands 600 miles off Ecuador's coast where animals evolved without predators and still have no fear of humans. Blue-footed boobies nest inches from the path. Giant tortoises roam freely. Sea lions sleep on benches. You snorkel with marine iguanas, sea turtles, and Galápagos penguins in the same hour. There is nowhere else like it.",
+    sell:"The Galápagos requires expertise to get right — the best experience is a small-ship live-aboard expedition, not a hotel-based island-hopper. Jesse and Sam specialize in matching travelers to the right itinerary, ship, and season. This is a bucket-list trip that deserves to be done perfectly.",
+    hotels:[
+      {name:"Ecoventura/Theory (Live-aboard)",tier:"Ultra-Luxury",price:"$7,000–$12,000/pp/week",notes:"15-guest expedition yachts — the absolute best way to see the islands. Naturalist guides, remote islands, snorkeling daily."},
+      {name:"Celebrity Flora/Xpedition (Live-aboard)",tier:"Ultra-Luxury",price:"$6,000–$10,000/pp/week",notes:"Celebrity's Galápagos expedition ships. Larger vessels, more amenities, still excellent naturalist guides."},
+      {name:"Finch Bay Eco Hotel (Santa Cruz)",tier:"Luxury",price:"$500–$900/night",notes:"The best land-based option. Private beach, expedition boats depart daily, exceptional location."},
+      {name:"Royal Palm Galápagos",tier:"Luxury",price:"$400–$700/night",notes:"Highland retreat on Santa Cruz with giant tortoise habitat nearby. Unique setting, excellent service."}
+    ],
+    restaurants:[
+      {name:"Most meals on-ship",cuisine:"Expedition cuisine",notes:"Live-aboard ships include all meals — quality varies by vessel. Ecoventura and Celebrity are excellent."},
+      {name:"Isla Grill (Puerto Ayora)",cuisine:"Ecuadorian / Seafood",notes:"Best restaurant in the main town. Fresh seafood, ceviche, grilled local fish."},
+      {name:"Angermeyer Waterfront Inn",cuisine:"Ecuadorian",notes:"Picturesque waterfront dining. Lobster and seafood when in season."}
+    ],
+    activities:[
+      {name:"Snorkeling with Marine Iguanas & Sea Turtles",price:"Included on live-aboards",notes:"Daily snorkeling with unique Galápagos wildlife. Sea lions, penguins, marine iguanas, sharks. Unlike anything else in the world."},
+      {name:"Giant Tortoise Reserve (Santa Cruz)",price:"$20–$80/pp",notes:"Walk among free-roaming giant tortoises — some over 100 years old. Deeply moving experience."},
+      {name:"Bartolomé Island Hike",price:"Included on tours",notes:"Volcanic moonscape with the iconic Pinnacle Rock and sea lions. One of the most photographed spots in the Pacific."},
+      {name:"Deep-water SCUBA Diving",price:"From $150/dive",notes:"Hammerhead sharks, whale sharks, manta rays — world-class diving for certified divers."}
+    ],
+    bestFor:["Bucket list travelers","Wildlife enthusiasts","Divers & snorkelers","Family adventures","Honeymooners"],
+    bestTime:"Year-round. December–May: warmer water, calmer seas, lush vegetation. June–November: cooler water, whale sharks, better diving.",
+    travelNote:"Fly into Quito or Guayaquil, Ecuador (passport required). Galápagos National Park entrance fee ~$200/pp payable on arrival. All visitors require a naturalist guide. Book live-aboard well in advance — top ships sell out 6–18 months ahead."
+  },
+
+  medellin:{
+    label:"Medellín, Colombia",emoji:"🌸",region:"South America",
+    vibe:"The world's most remarkable urban transformation story — once the most dangerous city on earth, Medellín has reinvented itself into Colombia's most innovative, creative, and vibrant city. Eternal spring weather (70s year-round thanks to elevation), stunning mountain setting, a world-class metro and cable car system, extraordinary food, and a creative energy that attracts entrepreneurs, artists, and travelers from across the globe. El Poblado neighborhood is beautiful, safe, and endlessly walkable.",
+    sell:"Medellín is one of CxC's most exciting emerging destinations — travelers who go are almost universally surprised by how much they love it. Best paired with Cartagena for a perfect Colombia itinerary. Jesse and Sam know the best neighborhoods, guides, and experiences to make the trip extraordinary.",
+    hotels:[
+      {name:"The Charlee Lifestyle Hotel",tier:"Luxury",price:"$200–$400/night",notes:"Rooftop pool with Andes views, design-forward, in the heart of El Poblado. The social hub of Medellín's hotel scene."},
+      {name:"Casa Dann Carlton",tier:"Luxury",price:"$150–$300/night",notes:"Classic Colombian luxury hotel, excellent service, great location in Laureles."},
+      {name:"Hotel 5ta Carabobo",tier:"Boutique",price:"$120–$250/night",notes:"Converted historic building in downtown Medellín. Art collection, rooftop views, walking distance to Botero Plaza."},
+      {name:"Diez Hotel Categoría Colombia",tier:"Luxury",price:"$150–$300/night",notes:"Modern business luxury in El Poblado. Excellent pool deck with city views."}
+    ],
+    restaurants:[
+      {name:"El Cielo Medellín",cuisine:"Molecular Colombian",notes:"Juan Manuel Barrientos' original flagship. Avant-garde 10-course tasting menu using exclusively Colombian ingredients. Outstanding."},
+      {name:"Carmen",cuisine:"Modern Colombian",notes:"Rooftop restaurant with Andes views. Contemporary takes on regional Colombian flavors."},
+      {name:"Mondongos",cuisine:"Traditional Colombian",notes:"Beloved local institution. Bandeja paisa, mondongo soup, arepas — authentic Colombian home cooking done perfectly."},
+      {name:"Pergamino Café",cuisine:"Specialty Coffee",notes:"One of the best specialty coffee shops in South America. Colombia's finest beans, perfectly prepared."}
+    ],
+    activities:[
+      {name:"Metrocable & Parque Arví",price:"$3/pp",notes:"Ride the iconic gondola cable cars over hillside neighborhoods to the cloud forest above the city. Medellín's most impressive infrastructure."},
+      {name:"Botero Plaza & MAMM",price:"Free–$10",notes:"Fernando Botero's iconic sculptures in the open air plaza. The Museum of Modern Art is world-class."},
+      {name:"Coffee Region Day Trip (Salento)",price:"$50–$150/pp",notes:"Day trip to the coffee-growing Eje Cafetero. Walk among wax palm trees, tour a coffee farm, taste the world's best coffee at source."},
+      {name:"Pablo Escobar Tour",price:"$30–$80/pp",notes:"Complicated history told with honesty. Best experienced with a guide from the communities most affected. Moving and important."}
+    ],
+    bestFor:["Culture travelers","Food lovers","Digital nomads","City explorers","Budget luxury travelers"],
+    bestTime:"Year-round (eternal spring, 65–80°F). Avoid Feria de las Flores week in August if you want fewer crowds.",
+    travelNote:"Valid passport required. US citizens get 90-day visa-free entry to Colombia. Airport: José María Córdova International (MDE). Uber works well. El Poblado neighborhood recommended for first-time visitors."
+  },
+
+  // ─── AFRICA ──────────────────────────────────────────────────────────────────
+
+  kenyasafari:{
+    label:"Kenya / Maasai Mara Safari",emoji:"🦁",region:"Africa",
+    vibe:"The greatest wildlife spectacle on earth. The Maasai Mara in Kenya is where the Great Migration happens — hundreds of thousands of wildebeest and zebra crossing the Mara River in one of nature's most dramatic and dangerous events. Even outside migration season, lion prides, elephant herds, leopards, cheetahs, and giraffes are reliably encountered. This is the Africa of your imagination, and it delivers completely.",
+    sell:"A Kenya safari is the ultimate bucket list trip, and it absolutely has to be done right. CxC works with expert operators who know which camps, which guides, and which timing gets you the most extraordinary experience. Jesse and Sam handle every detail from international flights to bush transfers.",
+    hotels:[
+      {name:"andBeyond Bateleur Camp",tier:"Ultra-Luxury",price:"$1,500–$3,000/pp/night all-inclusive",notes:"One of the most celebrated safari camps in Africa. Tented suites with private verandas, exceptional guiding, all-inclusive. Legendary."},
+      {name:"Singita Mara River Tented Camp",tier:"Ultra-Luxury",price:"$2,000–$4,000/pp/night all-inclusive",notes:"Singita's flagship Kenya property on the Mara River. Migration front-row seats. The best guides on the continent."},
+      {name:"Mahali Mzuri (Sir Richard Branson)",tier:"Ultra-Luxury",price:"$1,200–$2,500/pp/night all-inclusive",notes:"Richard Branson's Virgin Limited Edition tented camp. 12 tents, private wildlife conservancy, extraordinary sunset views."},
+      {name:"Governors' Camp",tier:"Luxury",price:"$600–$1,200/pp/night all-inclusive",notes:"One of the original camps in the Mara — open since 1972. Historic, excellent, outstanding value for the experience."}
+    ],
+    restaurants:[
+      {name:"All meals at camp",cuisine:"Safari camp cuisine",notes:"All stays are full-board with game drives. Quality at top camps (Singita, andBeyond) is genuinely world-class."},
+      {name:"Carnivore Restaurant (Nairobi)",cuisine:"African Game Grill",notes:"Nairobi institution. Exotic game meats grilled over open fire. A classic Nairobi experience before or after safari."},
+      {name:"Talisman Restaurant (Nairobi Karen)",cuisine:"International / African",notes:"Beautiful Karen suburb restaurant. Excellent food, lovely garden, popular with expats and travelers."}
+    ],
+    activities:[
+      {name:"Game Drive (Morning & Evening)",price:"Included",notes:"Two game drives daily in open 4x4 vehicles with expert Maasai guides. Lion sightings almost guaranteed in peak season."},
+      {name:"Great Migration River Crossing",price:"Included (seasonal)",notes:"July–October: wildebeest and zebra mass-cross the crocodile-filled Mara River. One of the most extraordinary natural events on earth."},
+      {name:"Hot Air Balloon Safari",price:"$450–$600/pp",notes:"Dawn flight over the Mara followed by champagne breakfast in the bush. Transformative and beautiful."},
+      {name:"Maasai Village Visit",price:"Included with guides",notes:"Authentic visits to working Maasai villages — traditional jumping, beadwork, and cultural exchange with warrior communities."}
+    ],
+    bestFor:["Bucket list travelers","Wildlife enthusiasts","Couples","Families (ages 6+)","Honeymooners"],
+    bestTime:"July–October for the Great Migration. January–February: excellent year-round wildlife with fewer crowds. Avoid April–June (long rains).",
+    travelNote:"Passport required. US citizens get visa-on-arrival or eVisa ($50). Yellow fever vaccination required. Main flights to Nairobi (NBO) with connections to Maasai Mara airstrips. Antimalarial medication required."
+  },
+
+  capetown:{
+    label:"Cape Town, South Africa",emoji:"🏔️",region:"Africa",
+    vibe:"One of the most spectacularly situated cities in the world — Table Mountain rising dramatically from the Atlantic, the Cape Peninsula stretching south to the Cape of Good Hope, world-class winelands within an hour's drive, extraordinary beaches, and a food scene that's gotten serious global attention. Cape Town is cosmopolitan, strikingly beautiful, and endlessly diverse in what it offers. Few cities reward exploration more.",
+    sell:"Cape Town consistently tops global best-city lists and for good reason — it combines natural spectacle with urban sophistication at a level few places match. Jesse and Sam love pairing it with a safari in Kruger or the Garden Route for the ultimate South Africa trip.",
+    hotels:[
+      {name:"Silo Hotel",tier:"Ultra-Luxury",price:"$800–$2,000/night",notes:"Converted grain silo above the Zeitz MOCAA museum on the V&A Waterfront. Pixelated glass facade, rooftop pool, extraordinary art collection. One of the most visually stunning hotels in Africa."},
+      {name:"Ellerman House",tier:"Ultra-Luxury",price:"$1,000–$2,500/night",notes:"Boutique hillside villa in Bantry Bay. Private villa with butler service, pool, and curated wine cellar. The most exclusive address in Cape Town."},
+      {name:"Twelve Apostles Hotel & Spa",tier:"Luxury",price:"$400–$900/night",notes:"Dramatic location between the mountains and the Atlantic. One of the most scenic hotel settings in the world."},
+      {name:"Belmond Mount Nelson Hotel",tier:"Luxury",price:"$350–$800/night",notes:"The legendary 'Pink Lady' of Cape Town — open since 1899. Gardens, afternoon tea tradition, enormous charm."}
+    ],
+    restaurants:[
+      {name:"The Test Kitchen",cuisine:"Contemporary African",notes:"Luke Dale-Roberts' flagship — consistently ranked among the world's 50 best restaurants. Dark Lounge and Light Room experiences. Book months ahead."},
+      {name:"La Colombe",cuisine:"Modern French-African",notes:"Constantia wine valley setting, extraordinary tasting menus. One of the top fine dining experiences on the continent."},
+      {name:"Pier Restaurant (The Silo)",cuisine:"Contemporary",notes:"Stunning Waterfront views, excellent produce-driven cooking, one of the most beautiful dining rooms in the city."},
+      {name:"Brattah",cuisine:"Lebanese/Middle Eastern",notes:"Atlantic Seaboard gem. Excellent mezze, great wine list, popular with locals and in-the-know visitors."}
+    ],
+    activities:[
+      {name:"Table Mountain Cable Car & Summit",price:"$25–$35/pp",notes:"The cable car to the summit is non-negotiable. Views of the city, ocean, and peninsula on clear days are extraordinary."},
+      {name:"Cape Peninsula Drive",price:"$80–$200 guided",notes:"Full-day drive: Boulders Beach penguins, Cape of Good Hope, Chapman's Peak — one of the world's great coastal drives."},
+      {name:"Stellenbosch & Franschhoek Wine Tasting",price:"$80–$200/pp",notes:"World-class winelands 45 minutes from the city. Pinotage, Chenin Blanc, outstanding Bordeaux blends. Beautiful Cape Dutch architecture."},
+      {name:"Robben Island",price:"$20–$30/pp",notes:"Nelson Mandela's prison — deeply moving, historically essential. Ferry from the V&A Waterfront."}
+    ],
+    bestFor:["Couples","Adventure travelers","Food & wine lovers","Honeymooners","Cultural travelers"],
+    bestTime:"November–March (Southern Hemisphere summer). Avoid June–August (cold, windy). January–February is peak.",
+    travelNote:"Passport required. US citizens get 90 days visa-free. Long flight from East Coast (~16–18 hours, usually via Johannesburg or Doha). South Africa uses 220V/Type M plugs."
+  },
+
+  zanzibar:{
+    label:"Zanzibar, Tanzania",emoji:"🌴",region:"Africa / Indian Ocean",
+    vibe:"A spice-scented island off Tanzania's coast where Arabic, African, and Indian cultures have mingled for centuries, producing one of the most atmospheric destinations in the world. Stone Town's labyrinthine old city is a UNESCO World Heritage Site. The beaches on the north and northeast coasts — Nungwi, Kendwa, Matemwe — are among the most beautiful in the Indian Ocean, with white sand, turquoise water, and traditional dhow sailboats on the horizon.",
+    sell:"Zanzibar is exceptional as a standalone beach destination and absolutely perfect as a post-safari addition to a Tanzania trip. Jesse and Sam specialize in Zanzibar + Serengeti combinations that are among the most sought-after Africa itineraries we book.",
+    hotels:[
+      {name:"Zuri Zanzibar",tier:"Ultra-Luxury",price:"$600–$1,400/night",notes:"Eco-luxury resort on the northwest tip with the best sunset views on the island. Stunning infinity pools, exceptional food."},
+      {name:"The Residence Zanzibar",tier:"Ultra-Luxury",price:"$800–$2,000/night all-inclusive",notes:"Ultra-private villas with private pools on the southwest coast. One of the most romantic resorts in the Indian Ocean."},
+      {name:"Baraza Resort & Spa",tier:"Luxury",price:"$400–$800/night all-inclusive",notes:"Swahili-style luxury on Bwejuu Beach. Extraordinary spa, beautiful pool, excellent food. Adults preferred."},
+      {name:"Mnemba Island Lodge",tier:"Ultra-Luxury",price:"$1,500–$3,000/pp/night all-inclusive",notes:"The most exclusive property in East Africa — a tiny private island off Zanzibar's northeast tip. 12 bandas, extraordinary diving, pure seclusion."}
+    ],
+    restaurants:[
+      {name:"The Rock Restaurant",cuisine:"Seafood",notes:"Built on a rock in the Indian Ocean — accessible by foot at low tide, by boat at high tide. Extraordinary setting, excellent fresh seafood."},
+      {name:"Forodhani Night Market",cuisine:"Zanzibari Street Food",notes:"Stone Town's legendary waterfront night market. Fresh seafood, Zanzibar pizza, urojo soup — an authentic and essential experience."},
+      {name:"Emerson Spice Rooftop",cuisine:"Zanzibari",notes:"Four-story tower in Stone Town with spice-scented dining at dusk. Dhow sunset views. Very romantic."}
+    ],
+    activities:[
+      {name:"Stone Town Walking Tour",price:"$20–$60/pp",notes:"UNESCO World Heritage old city — carved doors, bazaars, the former slave market, Freddie Mercury's birthplace."},
+      {name:"Spice Farm Tour",price:"$30–$50/pp",notes:"Zanzibar's spice history is fascinating. Walking tours through farms growing cloves, vanilla, cinnamon, and black pepper."},
+      {name:"Dolphin Swimming (Kizimkazi)",price:"$40–$80/pp",notes:"Early morning boat trip to swim with wild spinner and bottlenose dolphins."},
+      {name:"Diving & Snorkeling (Mnemba Atoll)",price:"$50–$150/pp",notes:"One of the best diving sites in East Africa. Coral gardens, sea turtles, rays, reef fish in extraordinary diversity."}
+    ],
+    bestFor:["Beach lovers","Couples","Honeymooners","Safari add-ons","Divers & snorkelers"],
+    bestTime:"June–October and December–February (dry seasons). Avoid March–May (long rains).",
+    travelNote:"Passport required. US citizens get visa-on-arrival in Tanzania ($50) or Tanzania eVisa online. Yellow fever vaccination required if arriving from yellow fever endemic countries. Fly Dar es Salaam then short connection."
+  },
+
+  // ─── MIDDLE EAST / CROSSROADS ────────────────────────────────────────────────
+
+  jordan:{
+    label:"Jordan / Petra",emoji:"🏛️",region:"Middle East",
+    vibe:"Petra is one of the genuine wonders of the world — a Nabataean city carved into rose-red sandstone cliffs, hidden for centuries and still breathtaking beyond what photographs prepare you for. Walking through the narrow Siq canyon and emerging before the Treasury is one of the great moments in travel. Beyond Petra, Wadi Rum's alien desert landscape, the lowest point on earth at the Dead Sea, and the ancient city of Jerash make Jordan one of the most rewarding destinations in the region.",
+    sell:"Jordan is one of the safest, most welcoming countries in the Middle East and the region's most tourist-ready destination. Jesse and Sam love Jordan for its density of extraordinary experiences in a compact country — Petra, Wadi Rum, the Dead Sea, and Amman can all be covered in 7–10 days.",
+    hotels:[
+      {name:"Aman Amoudi (Petra)",tier:"Ultra-Luxury",price:"$1,500–$4,000/night",notes:"Caves carved into the cliffs above Petra — the most extraordinary hotel location on earth. Each suite is a private cave. Genuinely unforgettable."},
+      {name:"Petra Marriott Hotel",tier:"Luxury",price:"$200–$400/night",notes:"Best standard luxury option in Petra. Spectacular canyon views, walking distance to the site entrance."},
+      {name:"Memories Aicha Charme Hotel (Wadi Rum)",tier:"Boutique",price:"$150–$300/night",notes:"Desert camp in Wadi Rum. Transparent bubble tents for stargazing, Bedouin hospitality."},
+      {name:"Four Seasons Amman",tier:"Luxury",price:"$300–$600/night",notes:"Best hotel in Amman. Excellent base for the city before/after touring."}
+    ],
+    restaurants:[
+      {name:"Sufra Restaurant (Amman)",cuisine:"Traditional Jordanian",notes:"The definitive Jordanian dining experience. Mansaf, maqluba, mezze in a beautiful old villa."},
+      {name:"Tawaheen Al Hawa (Amman)",cuisine:"Jordanian / Regional",notes:"Windmill restaurant with views. Traditional dishes, excellent meze."},
+      {name:"Camp dinner (Wadi Rum)",cuisine:"Bedouin",notes:"Zarb — meat and vegetables slow-cooked in an underground sand oven. Served in the desert under the Milky Way. Extraordinary."}
+    ],
+    activities:[
+      {name:"Petra — The Treasury & Beyond",price:"$70–$90/day",notes:"Plan a full day minimum — most tourists only see the Treasury but the best of Petra (The Monastery, High Place of Sacrifice) requires 6+ hours."},
+      {name:"Little Petra (Al Beidha)",price:"Free",notes:"Smaller Nabataean site 8km from Petra. Far fewer tourists and genuinely beautiful."},
+      {name:"Wadi Rum Jeep Tour & Desert Camp",price:"$80–$200/pp",notes:"4x4 tours through Jordan's surreal sandstone desert. Overnight camping is the best way to experience it."},
+      {name:"Dead Sea Float",price:"$30–$80/pp",notes:"Floating in the saltiest large body of water on earth is a genuinely weird, wonderful experience. The mud is extraordinary for skin."}
+    ],
+    bestFor:["History lovers","Adventure travelers","Bucket list","Couples","Cultural travelers"],
+    bestTime:"March–May and September–November. Avoid July–August (extreme heat at Petra and Wadi Rum).",
+    travelNote:"Passport required. Jordan Pass ($70–$100) includes visa + Petra entrance — essential purchase. US citizens get visa-on-arrival or via Jordan Pass. Fly into Amman (AMM) with connections via Amsterdam, London, Frankfurt."
+  },
+
+  istanbul:{
+    label:"Istanbul, Turkey",emoji:"🕌",region:"Europe / Middle East",
+    vibe:"The only city that sits on two continents — Istanbul is the meeting point of East and West, ancient and modern, Christian and Islamic civilization. The Hagia Sophia, the Blue Mosque, the Grand Bazaar, the Bosphorus strait, the spice markets, the rooftop terrace views over the Golden Horn — Istanbul is overwhelming in the best possible way, a city of 15 million that somehow manages to feel intimate and endlessly discoverable.",
+    sell:"Istanbul has emerged as one of the world's most exciting food cities while maintaining its position as one of the great historical capitals. Jesse and Sam love it as a standalone destination or as a natural pairing with Greece — Istanbul to Athens by ferry is one of travel's great short trips.",
+    hotels:[
+      {name:"Four Seasons Sultanahmet",tier:"Ultra-Luxury",price:"$600–$1,500/night",notes:"A converted 19th-century prison 50 meters from the Hagia Sophia. One of the most coveted addresses in the world. Extraordinary location."},
+      {name:"Soho House Istanbul",tier:"Luxury",price:"$300–$700/night",notes:"Former tobacco factory in Karaköy transformed into the city's most stylish hotel. Rooftop pool with Bosphorus views."},
+      {name:"Çırağan Palace Kempinski",tier:"Ultra-Luxury",price:"$500–$1,200/night",notes:"A restored Ottoman palace on the Bosphorus in Beşiktaş. Suites in the original palace building are extraordinary."},
+      {name:"Pera Palace Hotel Jumeirah",tier:"Luxury",price:"$350–$750/night",notes:"The legendary 1892 hotel where Agatha Christie wrote Murder on the Orient Express. Magnificently restored."}
+    ],
+    restaurants:[
+      {name:"Mikla",cuisine:"New Anatolian",notes:"Rooftop restaurant atop the Marmara Pera with extraordinary panoramic views. Chef Mehmet Gürs' modern Turkish cuisine. Outstanding."},
+      {name:"Karaköy Lokantası",cuisine:"Traditional Turkish Meyhane",notes:"The most atmospheric meyhane (tavern) in Istanbul. Raki, mezze, grilled fish, live traditional music. Essential Istanbul experience."},
+      {name:"Çiya Sofrası (Kadıköy Market)",cuisine:"Anatolian Regional",notes:"Musa Dağdeviren's legendary market restaurant on the Asian side. Deep regional Anatolian cooking found nowhere else in the city."},
+      {name:"Neolokal",cuisine:"Modern Anatolian",notes:"In SALT Galata building. Chef Maksut Aşkar's sophisticated take on Turkish cuisine. Excellent wine and natural wine list."}
+    ],
+    activities:[
+      {name:"Hagia Sophia & Blue Mosque",price:"Free–$25",notes:"The two greatest monuments of Istanbul — both within walking distance. Arrive early to beat the crowds at Hagia Sophia."},
+      {name:"Grand Bazaar & Spice Bazaar",price:"Free entry",notes:"The Grand Bazaar is one of the world's oldest covered markets — 4,000 shops. The Spice Bazaar is smaller and more atmospheric."},
+      {name:"Bosphorus Cruise",price:"$20–$100/pp",notes:"Seeing the city from the water is essential. Private sunset boat or public Şehir Hatları ferry — both extraordinary."},
+      {name:"Topkapı Palace",price:"$25–$40/pp",notes:"The seat of the Ottoman Empire for 400 years. The Treasury and Harem are unmissable."}
+    ],
+    bestFor:["History lovers","Food travelers","Couples","Cultural explorers","City break travelers"],
+    bestTime:"April–June and September–November. Avoid July–August (hot, crowded). Istanbul is excellent in winter — fewer tourists and atmospheric.",
+    travelNote:"Passport required. US citizens need an e-Visa ($50, applied online before travel). Fly direct from New York (JFK) or through Europe. Airport: Istanbul (IST) — the new airport is 45 minutes from the city."
+  },
+
+  // ─── ASIA ─────────────────────────────────────────────────────────────────────
+
+  seoul:{
+    label:"Seoul, South Korea",emoji:"🏙️",region:"Asia",
+    vibe:"One of the world's most dynamic, futuristic, and delicious cities — a 24-hour metropolis where ancient palaces and Buddhist temples sit alongside gleaming glass towers, and where the food (Korean BBQ, tteokbokki, bibimbap, jjajangmyeon) is so good and so omnipresent it becomes the central activity of the trip. Seoul is extraordinarily safe, incredibly efficient, and has one of the best nightlife and beauty cultures in Asia. K-pop, K-beauty, K-drama — the global cultural export of the 21st century starts here.",
+    sell:"Seoul is one of the most consistently impressive cities CxC books — clients go with moderate expectations and come back converted. Outstanding value for the tier, exceptional food at every price point, and a level of organization and safety that makes first-time Asia travelers comfortable. Jesse and Sam love pairing it with Jeju Island.",
+    hotels:[
+      {name:"Four Seasons Seoul",tier:"Ultra-Luxury",price:"$500–$1,200/night",notes:"Best hotel in Seoul. N Seoul Tower views, extraordinary spa, Gyeongbokgung Palace within walking distance."},
+      {name:"The Shilla Seoul",tier:"Ultra-Luxury",price:"$400–$1,000/night",notes:"The quintessential Korean luxury hotel — exquisite service in the Korean tradition, beautiful garden, exceptional spa."},
+      {name:"Park Hyatt Seoul",tier:"Luxury",price:"$300–$700/night",notes:"COEX district. Panoramic rooftop views over the city. Clean, modern, excellent service."},
+      {name:"Josun Palace (Autograph Collection)",tier:"Luxury",price:"$250–$550/night",notes:"Gangnam district. Modern luxury with Korean aesthetic touches. Excellent location for shopping and dining."}
+    ],
+    restaurants:[
+      {name:"Gaon",cuisine:"Korean Fine Dining",notes:"Three Michelin stars — the highest expression of Korean royal court cuisine. Extraordinary tasting menus using seasonal Korean ingredients."},
+      {name:"Jungsik",cuisine:"Modern Korean",notes:"The restaurant that put Korean fine dining on the global map. Tasting menus that balance innovation with Korean identity."},
+      {name:"Gwangjang Market",cuisine:"Korean Street Food",notes:"Seoul's oldest market. Bindaetteok (mung bean pancakes), mayak gimbap, sundae — the most authentic Korean street food experience in the city."},
+      {name:"Local Korean BBQ (Mapo-gu)",cuisine:"Korean BBQ",notes:"Mapo-gu neighborhood has the best pork BBQ in Seoul. Cook at the table, wrap in perilla leaves, drink soju. Essential."}
+    ],
+    activities:[
+      {name:"Gyeongbokgung Palace",price:"$3/pp",notes:"The main Joseon Dynasty palace — stunning traditional Korean architecture. Guard changing ceremony daily. Try to visit in hanbok (traditional dress)."},
+      {name:"Bukchon Hanok Village",price:"Free",notes:"Historic neighborhood of preserved hanok houses. Best in early morning before the crowds arrive."},
+      {name:"DMZ Tour",price:"$50–$100/pp",notes:"Day trip to the Demilitarized Zone between North and South Korea. Sobering, fascinating, and one of travel's most unique experiences."},
+      {name:"Myeongdong & K-Beauty Shopping",price:"Free",notes:"The world capital of skincare and cosmetics. Sheet masks, serums, BB creams — extraordinary value and selection."}
+    ],
+    bestFor:["Food lovers","Culture travelers","City explorers","K-pop fans","Tech enthusiasts"],
+    bestTime:"March–May (spring, cherry blossoms) and September–November (autumn foliage). Avoid July–August (hot and humid).",
+    travelNote:"Passport required. US citizens get 90 days visa-free. K-ETA required ($10, applied online). Direct flights from multiple US cities — Korean Air and Asiana both excellent. Airport: Incheon (ICN)."
+  },
+
+  newzealand:{
+    label:"New Zealand",emoji:"🌿",region:"South Pacific",
+    vibe:"Middle-earth is real — New Zealand's landscapes are so dramatic and varied that Peter Jackson filmed the Lord of the Rings here, and the locations are every bit as extraordinary in person. Two islands, completely different characters: the North Island has geothermal geysers, Maori culture, and the wine country of Hawke's Bay; the South Island has Fiordland's dramatic fjords, the Southern Alps, Milford Sound, and the adventure capital Queenstown. World-class wine, superb seafood, and some of the friendliest people on earth.",
+    sell:"New Zealand is a dream destination that consistently tops travelers' best-ever-trip lists. Jesse and Sam specialize in 10–14 day itineraries that cover both islands without rushing — the country rewards those who stay long enough to explore beyond the tourist circuit.",
+    hotels:[
+      {name:"Blanket Bay Lodge (Queenstown)",tier:"Ultra-Luxury",price:"$1,500–$3,500/night all-inclusive",notes:"The most celebrated luxury lodge in New Zealand. Lake Wakatipu and Remarkables mountain views. Helicopter day trips, world-class cuisine."},
+      {name:"The Farm at Cape Kidnappers (Hawke's Bay)",tier:"Ultra-Luxury",price:"$1,200–$2,500/night all-inclusive",notes:"Clifftop luxury lodge above a gannet colony. Robertson Lodges' finest New Zealand property. Outstanding golf course and wine."},
+      {name:"Eichardt's Private Hotel (Queenstown)",tier:"Luxury",price:"$600–$1,200/night",notes:"Historic lakefront hotel in the heart of Queenstown. Beautifully restored, exceptional service."},
+      {name:"The Rees Hotel (Queenstown)",tier:"Luxury",price:"$350–$750/night",notes:"Lakefront location with mountains backdrop. Apartment-style suites, excellent restaurant."}
+    ],
+    restaurants:[
+      {name:"Hippopotamus (Wellington)",cuisine:"Contemporary New Zealand",notes:"Wellington's finest restaurant. New Zealand lamb, Marlborough Sounds seafood, Central Otago pinot noir."},
+      {name:"Botswana Butchery (Queenstown)",cuisine:"Premium Grill",notes:"Best steakhouse in the South Island. New Zealand grass-fed beef is world-class."},
+      {name:"Hawke's Bay Wine Trail",cuisine:"Wine & food",notes:"New Zealand's finest red wine region — syrah, merlot, cabernet. Cellar door lunches at Craggy Range, Te Mata, and Trinity Hill are outstanding."},
+      {name:"Hiakai (Wellington)",cuisine:"Maori Contemporary",notes:"Chef Monique Fiso's celebrated Maori-ingredient-led restaurant. Unique to New Zealand. Book well ahead."}
+    ],
+    activities:[
+      {name:"Milford Sound Cruise",price:"$80–$200/pp",notes:"One of the most beautiful fjords in the world — sheer cliff faces, waterfalls, dolphins, fur seals. Fly-cruise-fly from Queenstown is the best way."},
+      {name:"Queenstown Adventure (Bungy, Jet Boat)",price:"$100–$250/pp",notes:"The original bungy jump and jet boating on the Shotover River. The adventure capital of the world earns its title."},
+      {name:"Rotorua Geothermal & Maori Culture",price:"$80–$150/pp",notes:"Geysers, boiling mud pools, Maori hangi feast and cultural performance — the most concentrated Maori cultural experience available."},
+      {name:"Abel Tasman Coastal Track",price:"$80–$200/pp",notes:"Golden sand, clear water, forest — New Zealand's most popular national park. Walk sections or take a water taxi."}
+    ],
+    bestFor:["Adventure travelers","Nature lovers","Couples","Honeymooners","Bucket list trips"],
+    bestTime:"December–February (Southern Hemisphere summer). September–November excellent and less crowded. Skiing in Queenstown June–September.",
+    travelNote:"Passport required. US citizens get visa-free entry via NZeTA ($17, applied online). Long flight from US West Coast (~12–14 hours). Auckland (AUK) or Christchurch (CHC) as entry points. Drive on the left."
+  },
+
+  australia:{
+    label:"Australia",emoji:"🦘",region:"South Pacific",
+    vibe:"A continent-sized adventure — from the Great Barrier Reef to the red desert of the Outback to the sophisticated food cities of Sydney and Melbourne to the surf beaches of Byron Bay and the Whitsundays' turquoise waters. Sydney Harbour with the Opera House and Harbour Bridge is one of the world's great city settings. Australia is a genuinely hard country to see in one trip, which means it rewards repeat visits. The food, wine, and coffee culture are extraordinary.",
+    sell:"Australia is best approached as a highlights tour — Sydney, the Reef, and either Melbourne or Uluru cover the most iconic experiences. Jesse and Sam build custom Australia itineraries that work within real travel time constraints, often pairing with New Zealand for the ultimate South Pacific trip.",
+    hotels:[
+      {name:"Park Hyatt Sydney",tier:"Ultra-Luxury",price:"$700–$2,000/night",notes:"The most coveted hotel room in Australia — Harbour Bridge view rooms overlooking the Opera House. Extraordinary location, exceptional service."},
+      {name:"Qualia (Whitsundays)",tier:"Ultra-Luxury",price:"$1,500–$3,500/night all-inclusive",notes:"Australia's finest resort on Hamilton Island. Private pavilions, fringing reef, absolute seclusion. One of the world's best resort experiences."},
+      {name:"Longitude 131° (Uluru)",tier:"Ultra-Luxury",price:"$1,500–$3,000/pp/night all-inclusive",notes:"Canvas pavilion camp with direct Uluru views. Sunset and sunrise over the Rock from your private deck. Once-in-a-lifetime."},
+      {name:"Como The Treasury (Perth)",tier:"Luxury",price:"$400–$800/night",notes:"Converted State Treasury building — extraordinary architecture. Best hotel in Perth, excellent restaurant."}
+    ],
+    restaurants:[
+      {name:"Quay (Sydney)",cuisine:"Contemporary Australian",notes:"Peter Gilmore's flagship overlooking the Opera House. Consistently ranked among the best restaurants in Australia. Snow egg dessert is legendary."},
+      {name:"Attica (Melbourne)",cuisine:"Modern Australian / Native",notes:"Ben Shewry's restaurant in Ripponlea — one of the World's 50 Best. Native Australian ingredients in bold, original ways. Book 6+ months ahead."},
+      {name:"Flower Drum (Melbourne)",cuisine:"Cantonese",notes:"Melbourne's most celebrated Chinese restaurant — four decades of excellence. The Peking duck is extraordinary."},
+      {name:"Icebergs Dining Room (Bondi Beach)",cuisine:"Italian-Australian",notes:"Iconic Bondi perch above the famous pool. Excellent Italian-influenced food, extraordinary Pacific views."}
+    ],
+    activities:[
+      {name:"Great Barrier Reef Snorkeling & Diving",price:"$150–$400/pp",notes:"The world's largest coral reef system — 1,400 miles of coral, 1,500 fish species. Depart from Cairns or Port Douglas."},
+      {name:"Sydney Harbour Bridge Climb",price:"$200–$350/pp",notes:"3.5 hours climbing to the top of the Harbour Bridge. Views of the Opera House and harbor are extraordinary."},
+      {name:"Uluru / Ayers Rock at Sunset",price:"$40–$80 park entry",notes:"One of the great sacred sites on earth. The Rock changes color at sunset from orange to deep red to purple. The Aboriginal Anangu cultural experience is essential context."},
+      {name:"Wine Tasting (Barossa Valley / Hunter Valley)",price:"$80–$200/pp",notes:"Barossa Shiraz is world-class. Hunter Valley is within 2 hours of Sydney. Yering Station and Henschke are extraordinary producers."}
+    ],
+    bestFor:["Adventure travelers","Nature lovers","Beach lovers","Couples","Families","Bucket list"],
+    bestTime:"September–November (spring) and March–May (autumn) for Sydney and Melbourne. June–August for the Reef (best visibility). Avoid December–February up north (wet season, crocodile hazard).",
+    travelNote:"Passport required. US citizens must apply for an ETA ($20, instant online). Long flight from US West Coast (~15–17 hours). Sydney (SYD) is the main entry. Australia uses 240V/Type I plugs. Tipping not expected."
+  },
+
+  // ─── MEXICO ADDITIONAL ────────────────────────────────────────────────────────
+
+  oaxaca:{
+    label:"Oaxaca, Mexico",emoji:"🫙",region:"Mexico",
+    vibe:"The culinary capital of Mexico — a highland city in the Sierra Madre Sur with a food culture so rich and distinctive that chefs worldwide travel here to study it. Mole negro, tlayudas, chapulines (grasshoppers), mezcal from the source, chocolate, and one of the most vibrant indigenous market cultures in Latin America. The colonial center is a UNESCO World Heritage Site. Nearby Monte Albán is one of the great pre-Columbian ruins. The Day of the Dead celebrations here are the most authentic in the world.",
+    sell:"For food-obsessed travelers, Oaxaca is the most exciting domestic-to-international trip CxC books — it's genuinely one of the world's great culinary destinations at an extraordinary value price point. Jesse and Sam love it for couples, foodies, and anyone who wants something completely off the tourist conveyor belt.",
+    hotels:[
+      {name:"Hotel Quintaesencia",tier:"Ultra-Luxury",price:"$400–$900/night",notes:"Hillside hacienda with pool overlooking the valley. 10 suites, extraordinary privacy, organic farm-to-table breakfast."},
+      {name:"Casa Oaxaca Hotel",tier:"Luxury",price:"$250–$500/night",notes:"Celebrated boutique in the historic center. Chef Alejandro Ruiz's restaurant on-site. Intimate courtyard pool."},
+      {name:"Palacio Borghese",tier:"Luxury",price:"$200–$400/night",notes:"Beautiful colonial mansion near the zócalo. Rooftop terrace, excellent service."},
+      {name:"El Callejón Boutique Hotel",tier:"Boutique",price:"$120–$250/night",notes:"Charming boutique on a quiet cobblestone street. Excellent value in the best location."}
+    ],
+    restaurants:[
+      {name:"Criollo",cuisine:"Oaxacan",notes:"Chef René Redzepi collaborated on this open-air restaurant at a working farm. Stunning setting, exceptional Oaxacan ingredients."},
+      {name:"Casa Oaxaca (El Restaurante)",cuisine:"Modern Oaxacan",notes:"Chef Alejandro Ruiz's flagship — modern takes on Oaxacan tradition. Mole negro with chocolate and chilhuacle. Extraordinary."},
+      {name:"Itanoni",cuisine:"Traditional Maize",notes:"The only restaurant dedicated to native Oaxacan corn in its 30+ varieties. Essential for understanding the food culture."},
+      {name:"Mezcalería Los Amantes",cuisine:"Mezcal Bar",notes:"The city's most celebrated mezcal bar. Expert pour staff, rare artisanal mezcals, outdoor courtyard."}
+    ],
+    activities:[
+      {name:"Mercado Benito Juárez & Mercado 20 de Noviembre",price:"Free",notes:"The city's two main markets — cheese, chocolate, Oaxacan crafts, grasshoppers, and the best tlayudas you'll ever eat."},
+      {name:"Monte Albán Ruins",price:"$5/pp",notes:"Zapotec civilization's capital — one of the first cities in the Americas. Hilltop location with panoramic valley views. Outstanding."},
+      {name:"Mezcal Distillery Tour (Papalomé or El Silencio)",price:"$30–$80/pp",notes:"Watch single-village mezcal made in traditional clay pots with roasted agave. Extraordinary process and flavors."},
+      {name:"Day of the Dead (Nov 1–2)",price:"Free–events vary",notes:"The most authentic Día de los Muertos celebration in Mexico. Cemetery vigils, flower markets, processions. Book hotels 6+ months ahead."}
+    ],
+    bestFor:["Food lovers","Culture travelers","Adventure travelers","Couples","Photographers"],
+    bestTime:"October–May (dry season). Day of the Dead (Nov 1–2) is extraordinary but requires advance booking.",
+    travelNote:"Valid passport required. Fly into Oaxaca International (OAX) via Mexico City or direct from select US cities. Low crime in tourist areas. Altitude is 5,100 feet — acclimatize before strenuous activity."
+  },
+
+  // ─── CENTRAL AMERICA ─────────────────────────────────────────────────────────
+
+  belize:{
+    label:"Belize",emoji:"🐠",region:"Central America",
+    vibe:"The only English-speaking country in Central America, and one of the most biologically diverse destinations in the Western Hemisphere. The Belize Barrier Reef — second largest in the world — protects a chain of cayes (islands) with some of the best snorkeling and diving in the Caribbean. The Great Blue Hole is one of the most famous dive sites on earth. Inland, the jungle hides Mayan ruins, jaguars, and extraordinary birding. Belize is small, accessible, and deeply rewarding.",
+    sell:"Belize is a perfect travel agent destination — the logistics are manageable but the choices matter enormously. Which caye? Which lodge? What combination of reef and jungle? Jesse and Sam know this country well and build combinations that work perfectly for couples, divers, and adventure travelers.",
+    hotels:[
+      {name:"Chaa Creek (Cayo District)",tier:"Luxury",price:"$350–$800/night",notes:"The finest eco-lodge in Belize — 400 acres of private nature reserve in the jungle. Thatch casitas, butterfly farm, Mayan ruins on property."},
+      {name:"The Placencia (Placencia Peninsula)",tier:"Luxury",price:"$400–$900/night",notes:"Best resort on the southern peninsula. Three-mile beach, overwater bungalows, excellent diving access."},
+      {name:"Victoria House (Ambergris Caye)",tier:"Luxury",price:"$300–$700/night",notes:"Best hotel on the most popular island. Excellent location, great diving packages, lovely beach."},
+      {name:"Hamanasi Adventure & Dive Resort",tier:"Luxury",price:"$250–$550/night all-inclusive",notes:"Hopkins Village. Outstanding dive packages, beach and jungle combination, excellent food."}
+    ],
+    restaurants:[
+      {name:"Elvi's Kitchen (Ambergris Caye)",cuisine:"Belizean Seafood",notes:"The institution on San Pedro. Lobster, conch fritters, Belizean stew chicken. Open since 1974."},
+      {name:"Wild Mango's (Ambergris Caye)",cuisine:"Caribbean Fusion",notes:"Best contemporary cooking on the caye. Fresh ingredients, creative cocktails, beautiful open-air setting."},
+      {name:"Chaa Creek Dining Room",cuisine:"Belizean / International",notes:"Outstanding jungle dining using locally sourced ingredients. Candles, wildlife sounds, romantic."}
+    ],
+    activities:[
+      {name:"Great Blue Hole Dive / Snorkel",price:"$200–$300/pp",notes:"UNESCO World Heritage Site — a 300-meter wide, 125-meter deep submarine sinkhole. Bull sharks, stalactites. One of the world's great dives."},
+      {name:"Hol Chan Marine Reserve & Shark Ray Alley",price:"$50–$100/pp",notes:"Snorkel with nurse sharks and rays in shallow water. Excellent for non-divers and outstanding for divers."},
+      {name:"Actun Tunichil Muknal Cave (ATM Cave)",price:"$100–$150/pp",notes:"Wade through an underground river to a Mayan sacrificial cave with ceramic and human remains still in place. One of the most extraordinary experiences in Central America."},
+      {name:"Lamanai Ruins Boat Tour",price:"$100–$150/pp",notes:"Ancient Mayan city on a lagoon — access by jungle river boat. Howler monkeys in the ruins, crocodiles in the water."}
+    ],
+    bestFor:["Divers & snorkelers","Adventure travelers","Couples","Nature lovers","Beach lovers"],
+    bestTime:"November–April (dry season). Avoid June–November (hurricane season, heavy rains).",
+    travelNote:"No visa required for US citizens. Direct flights from Miami, Houston, Dallas, Charlotte to Belize City (BZE). English spoken everywhere. Small country — easy to navigate between coast and jungle."
+  },
+
+  // ─── USA ADDITIONS ────────────────────────────────────────────────────────────
+
+  palmsprings:{
+    label:"Palm Springs, California",emoji:"🌵",region:"Southwest USA",
+    vibe:"The Rat Pack's favorite playground is back, better than ever — a desert city surrounded by the San Jacinto Mountains where mid-century modern architecture meets an extraordinary weekend escape culture. Clean air, dry heat, 300+ days of sunshine, world-class golf, luxurious spa resorts, and a design culture that makes every hotel and restaurant feel curated. Two hours from LA and three from San Diego, it's the perfect desert escape.",
+    sell:"Palm Springs is perfect for groups, golf trips, spa weekends, and adult birthday celebrations. Jesse and Sam book it year-round — it's best in winter when the rest of the country is frozen, and the pools and outdoor living are unmatched.",
+    hotels:[
+      {name:"Parker Palm Springs",tier:"Luxury",price:"$400–$900/night",notes:"The most celebrated hotel in Palm Springs — Jonathan Adler-designed maximalist fantasy. Two pools, tennis, croquet, extraordinary vibe."},
+      {name:"L'Horizon Resort & Spa",tier:"Luxury",price:"$600–$1,200/night",notes:"25 mid-century bungalows with private patios. Adults-only. The most design-forward boutique hotel in the desert."},
+      {name:"La Quinta Resort & Club",tier:"Luxury",price:"$350–$800/night",notes:"The original desert resort — open since 1926. 41 swimming pools, PGA West golf, historic California glamour."},
+      {name:"Agua Caliente Casino Resort Spa",tier:"Luxury",price:"$250–$550/night",notes:"The Tribe's flagship resort. Largest casino in the desert, full spa with natural hot spring water, excellent dining."}
+    ],
+    restaurants:[
+      {name:"Workshop Kitchen + Bar",cuisine:"Contemporary American",notes:"Best restaurant in Palm Springs — in a converted 1920s artist's studio. Excellent cocktails, beautiful design."},
+      {name:"Mr. Lyons Steakhouse",cuisine:"Classic Steakhouse",notes:"Iconic Rat Pack-era steakhouse restored to its 1958 glory. Caesar salads, prime beef, old school glamour."},
+      {name:"Wilma & Frieda's",cuisine:"Brunch / Casual",notes:"The most popular brunch spot in the desert. Long waits on weekends. Worth it."},
+      {name:"Birba",cuisine:"Italian / Pizza",notes:"Outdoor pizza and cocktails — best casual Italian in the desert, especially on a warm evening."}
+    ],
+    activities:[
+      {name:"Palm Springs Aerial Tramway",price:"$30–$35/pp",notes:"Cable car from the desert floor to the San Jacinto Mountains at 8,500 feet. Temperature drops 40° — hike through pine forest then descend to the pool."},
+      {name:"Golf (PGA West, Indian Wells, TPC Stadium)",price:"$100–$400/greens fee",notes:"Some of the finest public and resort golf in California. Stadium Course at PGA West is one of the most famous courses in the US."},
+      {name:"Spa at Desert Hot Springs",price:"$30–$80/pp",notes:"Natural mineral hot springs — the area has exceptional geothermal water. Miracle Springs, Two Bunch Palms — therapeutic and outstanding."},
+      {name:"Joshua Tree National Park",price:"$35/vehicle",notes:"45 minutes from Palm Springs — otherworldly boulder formations and Joshua trees. Best at sunrise or sunset."}
+    ],
+    bestFor:["Golf trips","Groups","Couples","Spa weekends","Bachelor/bachelorette","Adult birthday"],
+    bestTime:"October–April (ideal desert weather, 70s–80s). Avoid June–September (extreme heat, 110°F+).",
+    travelNote:"No passport needed — US domestic. Fly into Palm Springs (PSP) or drive from LA (2 hrs) or San Diego (3 hrs). Car essential for getting around. Resort fees common."
+  },
+
+  smokymountains:{
+    label:"Smoky Mountains / Asheville Area",emoji:"🏔️",region:"Southeast USA",
+    vibe:"The Blue Ridge and Great Smoky Mountains offer some of the most accessible wilderness in America — ancient forested peaks, mist-shrouded ridges, waterfalls, and a cultural richness born from the Appalachian and Cherokee traditions of the region. Asheville has emerged as one of America's most exciting small food cities with a thriving arts scene, microbrewery culture, and the extraordinary Biltmore Estate. Easy drive from Pittsburgh, Atlanta, Charlotte, and the entire Mid-Atlantic.",
+    sell:"For CxC clients who want a spectacular domestic nature trip without the logistics of a long flight, the Smokies and Asheville combination is one of the best itineraries we recommend. Fall foliage season (October) is absolutely extraordinary.",
+    hotels:[
+      {name:"The Inn on Biltmore Estate",tier:"Luxury",price:"$400–$800/night",notes:"Stay on the grounds of America's largest private home. Estate access included, winery tours, carriage rides. Extraordinary setting."},
+      {name:"Omni Grove Park Inn (Asheville)",tier:"Luxury",price:"$300–$700/night",notes:"Historic 1913 stone resort on a ridge with Blue Ridge views. Best spa in the Southeast — underground grotto pools in the original arts and crafts building."},
+      {name:"Blackberry Farm (Walland, TN)",tier:"Ultra-Luxury",price:"$1,200–$2,500/pp/night all-inclusive",notes:"The finest luxury farm inn in America. Relais & Châteaux property in the Smoky Mountains foothills. World-class food, extraordinary wine cellar."},
+      {name:"1899 Wright Inn & Carriage House",tier:"Boutique",price:"$200–$400/night",notes:"Award-winning Victorian B&B in the heart of Asheville's Montford neighborhood. Outstanding breakfasts."}
+    ],
+    restaurants:[
+      {name:"Cúrate (Asheville)",cuisine:"Spanish Tapas",notes:"Chef Katie Button's Barcelona-inspired tapas restaurant is one of the best restaurants in the Southeast. Ibérico ham, perfect jamón, natural wines."},
+      {name:"Chai Pani (Asheville)",cuisine:"Indian Street Food",notes:"James Beard Award winner for Outstanding Restaurant. Indian street food done with extraordinary authenticity. Lines out the door."},
+      {name:"The Dining Room at Blackberry Farm",cuisine:"Foothills Cuisine",notes:"If you're staying at Blackberry Farm, the food alone justifies the price. Tennessee terroir, extraordinary cellar."},
+      {name:"Tupelo Honey (Asheville)",cuisine:"Southern",notes:"The Asheville original. Buttermilk biscuits, shrimp and grits, sweet potato pancakes — the best Southern brunch in the region."}
+    ],
+    activities:[
+      {name:"Blue Ridge Parkway Drive",price:"Free",notes:"469 miles of ridgeline driving — the most scenic road in America. October leaf season is extraordinary. Clingmans Dome at 6,643 feet."},
+      {name:"Biltmore Estate Tour",price:"$65–$100/pp",notes:"George Vanderbilt's 8,000-acre estate and 250-room château. The most visited historic house in America. Winery included."},
+      {name:"Whitewater Rafting (Nantahala / Pigeon River)",price:"$40–$80/pp",notes:"Class II–V rapids in the Nantahala National Forest. Family-friendly and expert options available."},
+      {name:"Chimney Tops & Alum Cave Trail Hikes",price:"Free (park entry $35)",notes:"Great Smoky Mountains National Park — the most visited national park in the US. Stunning wildflower season in May."}
+    ],
+    bestFor:["Families","Couples","Nature lovers","Fall foliage","Road trips","Groups"],
+    bestTime:"May–June (wildflowers) and October (peak fall foliage). Avoid summer weekends (crowded).",
+    travelNote:"No passport needed. Fly into Asheville (AVL) or Knoxville (TYS). Drive from Pittsburgh (~7 hours), Charlotte (~2 hours), Atlanta (~3 hours). Great Smoky Mountains NP is free entry on certain days."
+  },
+
+  hiltonhead:{
+    label:"Hilton Head Island, South Carolina",emoji:"⛳",region:"Southeast USA",
+    golf:[
+      {name:"Harbour Town Golf Links (Heritage Course)",tier:"Championship",price:"$300–$600",notes:"Host of the RBC Heritage PGA Tour event. Pete Dye design — one of the most photographed courses in America. The lighthouse at 18 is iconic."},
+      {name:"Robert Trent Jones Oceanfront Course",tier:"Championship",price:"$200–$400",notes:"Only oceanfront course in the Southeast. Sea Pines Resort. Extraordinary coastal setting."},
+      {name:"Atlantic Dunes by Davis Love III",tier:"Premium",price:"$150–$300",notes:"2018 renovated course in Sea Pines. Beautiful ocean views, challenging layout."},
+      {name:"Country Club of Hilton Head",tier:"Premium",price:"$100–$200",notes:"Excellent semi-private course. Heron Pointe is a great value alternative."}
+    ],
+    vibe:"A barrier island off South Carolina where golf, beaches, and Southern hospitality combine in a perfectly groomed resort environment. Harbour Town Golf Links is one of the most beautiful courses in America — host to the RBC Heritage PGA Tour event every April. Beyond golf, Hilton Head has 12 miles of wide Atlantic beaches, excellent seafood, and a bicycling culture that makes the whole island feel relaxed and accessible.",
+    sell:"Hilton Head is a CxC specialty for both golf trips and family beach vacations. Jesse and Sam know Sea Pines and Palmetto Bluff intimately — and can put together group golf packages with tee times at Harbour Town that casual visitors can't get.",
+    hotels:[
+      {name:"Palmetto Bluff (Bluffton)",tier:"Ultra-Luxury",price:"$700–$1,500/night",notes:"The most extraordinary resort in the South Carolina Lowcountry — 20,000 acres of private preserve. Village Inn, cottages, world-class spa and golf."},
+      {name:"The Inn at Harbour Town (Sea Pines)",tier:"Luxury",price:"$350–$700/night",notes:"Golf icon — right on the 18th fairway of Harbour Town. Best location on the island for golfers."},
+      {name:"Omni Hilton Head Oceanfront Resort",tier:"Luxury",price:"$300–$600/night",notes:"Excellent oceanfront location, multiple pools, kids program, closest major resort to the beach."},
+      {name:"Montage Palmetto Bluff",tier:"Ultra-Luxury",price:"$800–$2,000/night",notes:"Montage's extraordinary Lowcountry retreat — boat dock, river access, brilliant spa, extraordinary dining."}
+    ],
+    restaurants:[
+      {name:"Skull Creek Boathouse",cuisine:"Seafood / Lowcountry",notes:"The most popular restaurant on the island. Dock bar, shrimp and grits, raw bar, gorgeous sunset views over the Intracoastal."},
+      {name:"Signé (Palmetto Bluff)",cuisine:"Lowcountry Fine Dining",notes:"Extraordinary farm-to-table Lowcountry dining in the most beautiful setting on the island."},
+      {name:"Salty Dog Café",cuisine:"Casual Seafood",notes:"The beloved island institution. Cold beer, fresh shrimp, dockside — an essential Hilton Head experience."},
+      {name:"One Hot Mama's",cuisine:"BBQ / American",notes:"Award-winning BBQ on the island. Ribs, pulled pork, craft cocktails — casual and excellent."}
+    ],
+    activities:[
+      {name:"Golf at Harbour Town Golf Links",price:"$300–$600",notes:"One of America's great golf experiences — Pete Dye's masterpiece in Sea Pines."},
+      {name:"Dolphin Watching & Kayaking",price:"$30–$80/pp",notes:"Hilton Head has one of the East Coast's largest resident bottlenose dolphin populations. Kayaking the tidal creeks is exceptional."},
+      {name:"Biking the Island",price:"$15–$30/day rental",notes:"60+ miles of paved bike paths connect the whole island. The best way to explore."},
+      {name:"Savannah Day Trip",price:"$15–$80/pp",notes:"45 minutes from Hilton Head. One of America's most beautiful cities."}
+    ],
+    bestFor:["Golf trips","Families","Couples","Groups","Beach lovers","Southern travel"],
+    bestTime:"April–June and September–October. Avoid July–August (hot, humid, family crowds).",
+    travelNote:"No passport needed. Fly into Savannah (SAV) — 45 minutes away, much cheaper than Hilton Head's small airport. Car required on the island."
+  },
+
+  capecod:{
+    label:"Cape Cod & The Islands (Martha's Vineyard / Nantucket)",emoji:"⚓",region:"New England",
+    vibe:"The quintessential New England summer — shingled cottages, lobster rolls, lighthouses, gray-shingled beach houses, the smell of salt air and sunscreen, and a relaxed elegance that feels like an earlier, better version of America. The Cape itself is accessible and family-friendly. Martha's Vineyard is a celebrity hideaway with charming towns and beautiful beaches. Nantucket is perfectly preserved 19th-century America with extraordinary food and a social scene that's New England at its most refined.",
+    sell:"Cape Cod and the Islands are peak summer New England travel — and getting the ferry timing, accommodations, and reservations right makes all the difference. Jesse and Sam specialize in building the perfect Vineyard or Nantucket itinerary, including the impossible restaurant reservations.",
+    hotels:[
+      {name:"White Elephant (Nantucket)",tier:"Luxury",price:"$500–$1,200/night",notes:"The premier hotel on Nantucket — waterfront location, excellent service, stunning harbor views. The social hub of the island in summer."},
+      {name:"The Winnetu Oceanside Resort (Martha's Vineyard)",tier:"Luxury",price:"$400–$900/night",notes:"South Beach — the best hotel on the Vineyard. Private beach, multiple pools, excellent for families and couples."},
+      {name:"Chatham Bars Inn (Cape Cod)",tier:"Luxury",price:"$500–$1,000/night",notes:"The grand dame of Cape Cod — 1914 resort on a private beach in Chatham. Extraordinary service, spectacular sunsets."},
+      {name:"Harbor View Hotel (Martha's Vineyard)",tier:"Luxury",price:"$350–$700/night",notes:"Victorian 1891 hotel above Edgartown Harbor. Classic New England charm, excellent location."}
+    ],
+    restaurants:[
+      {name:"The Pearl (Nantucket)",cuisine:"New American / Seafood",notes:"Nantucket's most celebrated restaurant. Lobster bisque, seared scallops, stunning harbor views."},
+      {name:"Atria (Martha's Vineyard)",cuisine:"New American",notes:"Edgartown's finest. Farm-to-table New England cuisine in a beautiful 19th-century house."},
+      {name:"Black Dog Tavern (Martha's Vineyard)",cuisine:"Seafood / New England",notes:"The beloved institution — John Belushi's favorite. Chowder, fishcakes, Black Dog merchandise. Essential Vineyard experience."},
+      {name:"Even Keel Café (Nantucket)",cuisine:"Casual / Breakfast",notes:"Best breakfast and lunch on Nantucket. Lobster rolls, egg sandwiches, perfect coffee."}
+    ],
+    activities:[
+      {name:"Bike the Cape Cod Rail Trail",price:"$20–$30 rental",notes:"22 miles of paved trail through kettle ponds, cranberry bogs, and beach access. The best way to see the mid-Cape."},
+      {name:"Whale Watching (Provincetown)",price:"$50–$70/pp",notes:"The waters off the tip of the Cape are among the richest whale feeding grounds on the Atlantic. Humpbacks guaranteed in season."},
+      {name:"Edgartown & Oak Bluffs Ferry Day (Vineyard)",price:"$25–$40 ferry",notes:"The ferry from Woods Hole or Falmouth is 45 minutes. Two very different towns — Oak Bluffs' gingerbread cottages and Edgartown's white captains' houses."},
+      {name:"Madaket Beach at Sunset (Nantucket)",price:"Free",notes:"The most celebrated sunset on the East Coast. Locals gather nightly at Madaket Beach on the western shore. Bring wine."}
+    ],
+    bestFor:["Families","Couples","New England travelers","Summer beach","Celebrity-spotting","Group getaways"],
+    bestTime:"June–September. July and August are peak — book 6+ months ahead. Early June and September have better availability and similar weather.",
+    travelNote:"No passport needed. Fly into Hyannis (HYA), Boston (BOS), or Providence (PVD). Ferries from Woods Hole (Vineyard) and Hyannis (Nantucket). Cars limited on islands — bikes and taxis work well. Book ferries and top restaurants very early."
+  },
+
+  memphis:{
+    label:"Memphis, Tennessee",emoji:"🎸",region:"Southeast USA",
+    vibe:"The birthplace of the blues, the home of soul food, and the city that gave America Elvis Presley and Beale Street. Memphis is raw and authentic in a way Nashville is not — this is where American music was born, where W.C. Handy wrote the first published blues, where Elvis recorded 'That's All Right' at Sun Studio, and where the Stax sound created soul music. The BBQ is genuinely exceptional (Rendezvous, Central BBQ, and Tops are all in the conversation for best in the South).",
+    sell:"Memphis is one of CxC's favorite music and food travel recommendations — usually paired with Nashville for the ultimate Tennessee music trail. Jesse and Sam know the city's best experiences, guides, and hidden gems.",
+    hotels:[
+      {name:"The Peabody Memphis",tier:"Luxury",price:"$250–$500/night",notes:"The grande dame of Memphis — the famous Peabody Ducks march through the lobby twice daily since 1933. Beautiful hotel, Beale Street location."},
+      {name:"Central Station Memphis (Virgin Hotels)",tier:"Luxury",price:"$200–$400/night",notes:"Restored 1914 train station transformed into Virgin's Memphis outpost. Exceptional design, rooftop pool, great restaurant."},
+      {name:"The Guest House at Graceland",tier:"Luxury",price:"$200–$400/night",notes:"The official hotel at Elvis Presley's Graceland. Elvis-themed but genuinely well done. Pool, live music, the most unique hotel experience in Memphis."}
+    ],
+    restaurants:[
+      {name:"Charlie Vergos' Rendezvous",cuisine:"Memphis BBQ",notes:"The most famous restaurant in Memphis — dry-rub ribs in a basement on an alley since 1948. An American institution. Open Wednesday–Saturday only."},
+      {name:"Central BBQ",cuisine:"Memphis BBQ",notes:"Best pulled pork in Memphis. Multiple locations, consistent, excellent nachos piled with BBQ."},
+      {name:"Restaurant Iris",cuisine:"New American / Creole",notes:"The finest dining in Memphis — chef Kelly English's New Orleans-influenced New American cuisine. James Beard nominee."},
+      {name:"Gus's World Famous Fried Chicken",cuisine:"Fried Chicken",notes:"The most celebrated fried chicken in the Mid-South. Spicy, crispy, perfect. Lines are long and worth it."}
+    ],
+    activities:[
+      {name:"Sun Studio Tour",price:"$14/pp",notes:"The most important small room in American music history. Elvis, Johnny Cash, Jerry Lee Lewis, Carl Perkins all recorded here. Genuinely moving."},
+      {name:"Graceland",price:"$40–$100/pp",notes:"Elvis Presley's home — more moving and interesting than you'd expect. The Meditation Garden where he's buried is quietly extraordinary."},
+      {name:"National Civil Rights Museum (Lorraine Motel)",price:"$20/pp",notes:"Dr. Martin Luther King Jr. was assassinated at the Lorraine Motel — now the country's most important civil rights museum. Essential and extraordinary."},
+      {name:"Beale Street Live Music",price:"Cover varies",notes:"Blues bars, live music every night. B.B. King's, Rum Boogie, Blues City Café — authentic live music culture in the city where it was born."}
+    ],
+    bestFor:["Music lovers","Food lovers","History travelers","Couples","Groups"],
+    bestTime:"March–May and September–November. Avoid July–August (very hot, humid).",
+    travelNote:"No passport needed. Memphis International Airport (MEM) has direct flights from most major cities. Downtown is very walkable for Beale Street, the Civil Rights Museum, and the Peabody."
+  },
+
+  // ─── GOLF ADDITIONS ──────────────────────────────────────────────────────────
+
+  kiawah:{
+    label:"Kiawah Island, South Carolina",emoji:"⛳",region:"Golf / Southeast USA",
+    golf:[
+      {name:"The Ocean Course",tier:"Elite Championship",price:"$500–$1,000",notes:"Pete Dye's masterpiece — host of the 2021 PGA Championship (Phil Mickelson's win at 50). 10 oceanfront holes, relentless wind, the hardest course on the island. Bucket list."},
+      {name:"Osprey Point",tier:"Premium",price:"$200–$400",notes:"Tom Fazio design through marshes and lagoons. More forgiving than Ocean Course but just as beautiful."},
+      {name:"Turtle Point",tier:"Premium",price:"$175–$350",notes:"Jack Nicklaus design with three dramatic oceanfront holes. Beautiful and accessible."},
+      {name:"Cassique",tier:"Luxury",price:"$250–$450",notes:"Tom Watson design. Semi-private. Exceptional experience."}
+    ],
+    vibe:"America's greatest golf island — a barrier island just off the South Carolina coast where world-class golf, pristine beaches, and luxury resort life combine perfectly. The Ocean Course's 10 oceanfront holes are unlike anything else in American golf. Beyond the golf, Kiawah has 10 miles of uncrowded Atlantic beach, exceptional wildlife (bobcats, alligators, eagles, loggerhead turtles), and resort amenities at the Sanctuary that match any in the country.",
+    sell:"Kiawah is one of CxC's top golf trip destinations — Jesse and Sam specialize in the Ocean Course tee times that are nearly impossible to secure as a public golfer without connections. Paired with Hilton Head or Charleston for the perfect South Carolina golf trip.",
+    hotels:[
+      {name:"The Sanctuary at Kiawah Island",tier:"Ultra-Luxury",price:"$600–$1,500/night",notes:"The finest golf resort on the East Coast. Forbes Five-Star — the only one in South Carolina. Five golf courses, beach access, exceptional spa."},
+      {name:"The Andell Inn",tier:"Boutique",price:"$250–$450/night",notes:"Charming inn at Kiawah's town center. Good value for the island, convenient to all courses."}
+    ],
+    restaurants:[
+      {name:"The Ocean Room (The Sanctuary)",cuisine:"Fine Dining / Seafood",notes:"Forbes Five-Star dining at the Sanctuary. South Carolina Low Country cuisine elevated to extraordinary. Ocean views."},
+      {name:"Jasmine Porch (The Sanctuary)",cuisine:"Lowcountry",notes:"Casual Lowcountry dining with porchside views. She-crab soup, shrimp and grits, sweet tea."},
+      {name:"Freshfields Village",cuisine:"Multiple",notes:"Golf island's main dining hub — several good options including Nico, Cantina 76, and The Obstinate Daughter."}
+    ],
+    activities:[
+      {name:"Golf (5 courses + nearby Seabrook)",price:"$175–$1,000/round",notes:"Five resort courses, multiple partner courses nearby. The Ocean Course is the headline attraction."},
+      {name:"Beach (10 miles, uncrowded)",price:"Free",notes:"Wide, uncrowded Atlantic beach — much quieter than Hilton Head. Loggerhead sea turtle nesting season May–August."},
+      {name:"Charleston Day Trip",price:"$15–$30 transport",notes:"30 minutes from Kiawah. One of America's most beautiful historic cities."},
+      {name:"Wildlife Tour (Biking & Kayaking)",price:"$30–$80/pp",notes:"Kiawah has extraordinary wildlife — bobcats commonly spotted. Kayaking the marsh is a beautiful experience."}
+    ],
+    bestFor:["Golfers","Couples","Groups","Luxury beach travel","Golf + history combos"],
+    bestTime:"March–May and September–October. October is ideal — warm enough for the beach, cool enough for comfortable golf.",
+    travelNote:"No passport needed. Fly into Charleston (CHS) — 30 minutes from Kiawah. The Sanctuary has private transfer arrangements. Ocean Course tee times require resort stay or advance booking — Jesse and Sam handle this."
+  },
 
 }; // ── END KB ──────────────────────────────────────────────────────────────────
 
@@ -2614,7 +3200,28 @@ const DEST_KEYS={
   boston:      ["boston","fenway","freedom trail","back bay boston"],
   newportri:   ["newport","newport ri","cliff walk","rhode island coast"],
   aspen:       ["aspen","aspen colorado","maroon bells","ajax mountain"]
-
+,
+cartagena:["cartagena","colombia","walled city","rosario islands","col"],
+  buenosaires:["buenos aires","argentina","buenos","tango","ba","bsas","patagonia"],
+  rio:["rio","rio de janeiro","brazil","copacabana","ipanema","christ the redeemer","sugarloaf","carioca"],
+  galapagos:["galapagos","galápagos","ecuador","darwin","giant tortoises","blue footed boobies","live aboard"],
+  medellin:["medellin","medellín","colombia medellin","el poblado","coffee region","poblado"],
+  kenyasafari:["kenya","safari","maasai mara","mara","masai mara","africa safari","great migration","nairobi","african safari","east africa safari"],
+  capetown:["cape town","south africa","table mountain","cape peninsula","stellenbosch","franschhoek","cape winelands","garden route"],
+  zanzibar:["zanzibar","tanzania","stone town","spice island","east africa beach","mnemba"],
+  jordan:["jordan","petra","wadi rum","dead sea","jerash","amman","nabataean","aqaba"],
+  istanbul:["istanbul","turkey","hagia sophia","blue mosque","bosphorus","grand bazaar","ottoman","turkish"],
+  seoul:["seoul","south korea","korea","k-pop","korean bbq","kpop","incheon","myeongdong","gangnam"],
+  newzealand:["new zealand","nz","queenstown","milford sound","rotorua","hobbiton","fiordland","south island","north island","kiwi","auckland"],
+  australia:["australia","sydney","melbourne","great barrier reef","uluru","bondi","brisbane","perth","cairns","aussie","down under","sydney opera house"],
+  oaxaca:["oaxaca","oaxaca city","oaxacan","mezcal","monte alban","day of the dead oaxaca","oaxaca food"],
+  belize:["belize","great blue hole","ambergris caye","san pedro","placencia","caye caulker","barrier reef belize"],
+  palmsprings:["palm springs","palm desert","coachella valley","joshua tree","desert springs","la quinta","rancho mirage"],
+  smokymountains:["smoky mountains","asheville","great smoky","blue ridge","biltmore","appalachian","blackberry farm","tennessee mountains","nc mountains"],
+  hiltonhead:["hilton head","hilton head island","sea pines","harbour town","palmetto bluff","lowcountry"],
+  capecod:["cape cod","martha's vineyard","nantucket","the vineyard","the cape","provincetown","edgartown","oak bluffs","hyannis"],
+  memphis:["memphis","beale street","graceland","sun studio","bbq memphis","memphis tennessee","civil rights museum"],
+  kiawah:["kiawah","kiawah island","ocean course","the sanctuary kiawah","kiawah golf"],
 };
 
 const CAT_KEYS={
