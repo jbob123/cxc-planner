@@ -295,6 +295,24 @@ function finishLead() {
   stored.push(lead);
   localStorage.setItem('cxc_leads', JSON.stringify(stored));
 
+  // Send email via Web3Forms
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '97f964f8-5681-4e8b-9993-501223a8e69b',
+      subject: '🌴 New CxC Travel Lead — ' + (leadData.name || 'Unknown') + ' → ' + dest,
+      from_name: 'CxC Travel Planner',
+      name: leadData.name || 'Unknown',
+      email: leadData.email || 'Not provided',
+      phone: leadData.phone || 'Not provided',
+      destination: dest,
+      travel_dates: leadData.dates || 'Not specified',
+      group_size: leadData.people || 'Not specified',
+      chat_transcript: summary
+    })
+  }).catch(() => {}); // silent fail — lead is already saved locally
+
   // Show confirmation
   const el = document.createElement('div');
   el.className = 'lead-done';
